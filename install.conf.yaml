@@ -1,0 +1,77 @@
+- defaults:
+    link:
+      relink: true
+      create: true
+
+- clean: ['~']
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+
+- link:
+    ~/.tmux.conf:
+        path: tmux.conf
+    ~/.zprezto:
+        path: prezto
+    ~/.zshrc:
+        create: true
+        path:  zshrc
+    ~/.zshenv:
+        path: zshenv
+    ~/.zlogin:
+        path: zlogin
+    ~/.zlogout:
+        path: zlogout
+    ~/.zpreztorc:
+        path: zpreztorc
+    ~/.zprofile:
+        path: zprofile
+    ~/.gitconfig:
+        path: gitconfig
+    ~/.dir_colors:
+        path: dir_colors
+    ~/.gitignore_global:
+        path: gitignore_global
+    ~/.Xdefaults:
+        path: Xdefaults
+    ~/.Xresources:
+        path: Xresources
+    ~/.fonts:
+        path: fonts
+    ~/.i3:
+        path: i3
+    ~/bin:
+        path: bin
+    ~/.zfunc:
+        path: zfunc
+    ~/.config/mopidy:
+        path: mopidy
+    ~/.gnupg/gpg.conf:
+        path: gnupg/gpg.conf
+    ~/.gnupg/gpg-agent.conf:
+        path: gnupg/gpg-agent.conf
+    ~/.gnupg/dirmngr.conf:
+        path: gnupg/dirmngr.conf
+    ~/.gnupg/scd-event:
+        path: gnupg/scd-event
+    ~/.gnupg/scdaemon.conf:
+        path: gnupg/scdaemon.conf
+    ~/.exports:
+        path: exports
+    ~/.config/termite:
+        path: termite
+    ~/.todo/config:
+        path: todo/config
+    ~/.todo.actions.d:
+        path: todo/actions.d
+    ~/.config/nvim/init.vim:
+        path: nvim/init.vim
+    ~/.config/nvim/after:
+        path: nvim/after/
+    ~/.vim:
+        path: ~/.config/nvim
+    ~/.vimrc:
+        path: ~/.config/nvim/init.vim
+
+- shell:
+    - [nvim -c "call minpac#update()|quit" --headless, Installing vim plugins]

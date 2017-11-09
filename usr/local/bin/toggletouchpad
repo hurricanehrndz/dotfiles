@@ -1,0 +1,21 @@
+#!/bin/bash
+
+while IFS= read -r touchpad_id; do
+  touchpad_enabled=$(xinput list-props $touchpad_id | awk 'BEGIN{IGNORECASE=1}/Device Enabled/ { match($0,"[[:space:]]+Device Enabled[^:]*[[:space:]]+.*:[[:space:]]+([0-9])",a); print a[1] }')
+  if [[ $touchpad_enabled -eq 1 ]]; then
+    xinput disable $touchpad_id
+    synclient TouchpadOff=1 ;
+  else
+    xinput enable $touchpad_id
+    synclient TouchpadOff=0 ;
+  fi
+
+done < <(xinput list | awk 'BEGIN{IGNORECASE=1}/pointer/,/keyboard/ {if( $0 ~ /touchpad/) {match($0,".*id=([0-9]+).*",a);print a[1]}}')
+
+touchpad_status=$(synclient | awk '/TouchpadOff/ { match($0,".*= ([0-9])",a); print a[1] }')
+
+if [[ $touchpad_status -eq 1 ]]; then
+  echo "Touchpad turned off."
+else
+  echo "Touchpad turned on."
+fi

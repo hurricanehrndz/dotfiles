@@ -1,0 +1,15 @@
+/dev/*
+/proc/*
+/sys/*
+/sys
+/tmp/*
+/run/*
+/mnt/*
+/media/*
+/var/run/*
+/var/lock/*
+lost+found
+/home/hurricanehrndz/Net/*
+/home/hurricanehrndz/Net
+/home/hurricanehrndz/NetDrives
+/var/lib/docker

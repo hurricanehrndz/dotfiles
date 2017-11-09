@@ -1,0 +1,3 @@
+#!/bin/bash
+
+[[ $(pgrep -c scdaemon) -eq 0 ]] || killall -9 scdaemon

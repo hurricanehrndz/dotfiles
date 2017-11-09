@@ -1,0 +1,51 @@
+# vim:set ft=sh sw=2 sts=2 ts=2 et:
+# Environment exports executed at start of an interactive session.
+#
+# Authors:
+#   HurricaneHrndz <carlos@techbyte.ca>
+#
+
+#
+# BROWSER
+#
+export BROWSER='firefox'
+
+#
+# Editors
+#
+
+export EDITOR="nvim"
+export VISUAL="nvim"
+export PAGER="less"
+
+#
+# neovim
+#
+export VIMCONFIG=~/.config/nvim
+export VIMDATA=~/.local/share/nvim
+
+#
+# Terminal
+#
+#export TERMINAL=urxvtc-256color
+export TERMINAL=termite
+
+#
+# MAN PAGES
+#
+
+# Highlight section titles in manual pages
+export LESS_TERMCAP_md="${yellow}";
+
+# Don’t clear the screen after quitting a manual page
+export MANPAGER="less -X";
+
+# Prefer US English and use UTF-8
+export LANG="en_US.utf8"
+export LC_ALL="en_US.utf8"
+
+# disable python messing with prompt
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Projects

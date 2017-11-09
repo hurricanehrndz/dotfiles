@@ -1,0 +1,22 @@
+# vim:set ft=sh sw=2 sts=2 st=2 et:
+#
+# simple calculator
+#
+# Authors:
+#   HurricaneHrndz <carlos@techbyte.ca>
+#
+
+local result=""
+result="$(printf "scale=10;$*\n" | bc --mathlib | tr -d '\\\n')"
+#           └─ default (when `--mathlib` is used) is 20
+
+if [[ "$result" == *.* ]]; then
+  # improve the output for decimal numbers
+  printf "$result" |
+  sed -e 's/^\./0./'      `# add "0" for cases like ".5"` \
+    -e 's/^-\./-0./'    `# add "0" for cases like "-.5"`\
+    -e 's/0*$//;s/\.$//';  # remove trailing zeros
+else
+  printf "$result"
+fi
+printf "\n"
