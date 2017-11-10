@@ -76,5 +76,9 @@
 - shell:
     - mkdir -p ~/.config/nvim/pack/minpac/opt
     - rm -rf ~/.config/nvim/pack/minpac/opt/minpac
-    - [git clone --depth 1 https://github.com/k-takata/minpac ~/.config/nvim/pack/minpac/opt/minpac, Installing minpac]
+    -
+      command: git clone --depth 1 https://github.com/k-takata/minpac ~/.config/nvim/pack/minpac/opt/minpac
+      description: Installing minpac
+
     - [nvim -c "call minpacgupdate()|quit" --headless, Installing vim plugins]
+    - [nvim -c "call minpacgupdate()|quit" --headless, Confirm vim plugin install]
