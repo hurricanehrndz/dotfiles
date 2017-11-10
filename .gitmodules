@@ -4,3 +4,6 @@
 [submodule "prezto"]
 	path = prezto
 	url = https://github.com/hurricanehrndz/prezto/
+[submodule "nvim"]
+	path = nvim
+	url = https://github.com/hurricanehrndz/nvim
