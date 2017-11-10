@@ -80,5 +80,5 @@
       command: git clone --depth 1 https://github.com/k-takata/minpac ~/.config/nvim/pack/minpac/opt/minpac
       description: Installing minpac
 
-    - [nvim -c "call minpacgupdate()|quit" --headless, Installing vim plugins]
-    - [nvim -c "call minpacgupdate()|quit" --headless, Confirm vim plugin install]
+    - [nvim -c "call minpac#update()|quit" --headless, Installing vim plugins]
+    - [nvim -c "call minpac#update()|quit" --headless, Confirm vim plugin install]
