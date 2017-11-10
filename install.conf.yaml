@@ -73,5 +73,5 @@
     ~/.vimrc:
         path: ~/.config/nvim/init.vim
 
-- shell:
-    - [nvim -c "call minpac#update()|quit" --headless, Installing vim plugins]
+#- shell:
+#    - [nvim -c "call minpacgupdate()|quit" --headless, Installing vim plugins]
