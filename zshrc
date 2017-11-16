@@ -50,8 +50,9 @@ alias egrep='egrep --color=auto'
 
 # commonly used sudo programs
 alias lsblk='sudo lsblk'
-alias svirsh='virsh -c qemu:///system'
-alias svirt-viewer='virt-viewer -c qemu:///system'
+alias virsh='virsh -c qemu:///system'
+alias virt-viewer='virt-viewer -c qemu:///system'
+alias virt-install='sudo virt-install -c qemu:///system'
 
 # password store
 alias pwork="PASSWORD_STORE_DIR=$HOME/.work-pass-store pass"
@@ -89,7 +90,7 @@ fpath=(~/.zfunc /etc/zsh_completion.d $fpath)
 autoload -Uz alarm calc btheadphones
 
 # wake-on-lan cal-fedora-vmm01
-alias wake-server='sudo ether-wake -i wlan0 4c:cc:6a:fc:f0:7f'
+alias wake-server='sudo ether-wake -i wlp58s0 4c:cc:6a:fc:f0:7f'
 
 # kitchen
 alias bek='bundle exec kitchen'
