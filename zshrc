@@ -92,8 +92,15 @@ autoload -Uz alarm calc btheadphones
 # wake-on-lan cal-fedora-vmm01
 alias wake-server='sudo ether-wake -i wlp58s0 4c:cc:6a:fc:f0:7f'
 
+# bundle exec
+alias be='TERM=xterm-color bundle exec'
+
 # kitchen
-alias bek='bundle exec kitchen'
+alias kitchen='TERM=xterm-color kitchen'
+alias kc='TERM=xterm-color kitchen'
+
+# ssh
+alias ssh='TERM=xterm-color ssh'
 
 # unlock server
 alias unlock-ryzen='ppers -c systems/cal-fedora-vmm01 && xclip -o -selection clipboard | ssh -p 222 root@cal-fedora-vmm01 unlock'
