@@ -6,3 +6,7 @@ host *
     ControlMaster auto
     ControlPath ~/.ssh/master-%r@%h:%p
     ControlPersist 1m
+
+host bitbucket.org
+    ControlMaster no
+    ControlPersist no
