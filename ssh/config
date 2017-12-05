@@ -2,11 +2,12 @@ ServerAliveInterval 120
 ServerAliveCountMax 1200
 TCPKeepAlive yes
 
+host bitbucket.org
+    ControlMaster no
+    ControlPersist no
+
 host *
     ControlMaster auto
     ControlPath ~/.ssh/master-%r@%h:%p
     ControlPersist 1m
 
-host bitbucket.org
-    ControlMaster no
-    ControlPersist no

@@ -26,8 +26,9 @@ if [[ -o interactive ]] && [[ -t 2 ]]; then
 fi
 
 # make sure vi opens vim
-alias vi='nvim'
+alias vi="nvim term://zsh "
 alias vim='vim'
+alias vimdiff='nvim -d'
 
 # Create a rm alias, default alias too intrusive
 alias rm='nocorrect rm'
@@ -97,11 +98,11 @@ alias be='TERM=xterm-color bundle exec'
 
 # kitchen
 alias kitchen='TERM=xterm-color kitchen'
-alias kc='TERM=xterm-color kitchen'
+alias k='TERM=xterm-color kitchen'
 
 # ssh
 alias ssh='TERM=xterm-color ssh'
 
 # unlock server
-alias unlock-ryzen='ppers -c systems/cal-fedora-vmm01 && xclip -o -selection clipboard | ssh -p 222 root@cal-fedora-vmm01 unlock'
+alias unlock-ryzen='ppers -c systems/ryzen-vmm01 && xclip -o -selection clipboard | ssh -p 222 root@ryzen-vmm01 cryptroot-unlock'
 alias unlock-dev='ppers -c systems/cal-fedora-dev01 && xclip -o -selection clipboard | ssh -p 222 root@cal-fedora-dev01 unlock'
