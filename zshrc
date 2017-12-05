@@ -94,15 +94,15 @@ autoload -Uz alarm calc btheadphones
 alias wake-server='sudo ether-wake -i wlp58s0 4c:cc:6a:fc:f0:7f'
 
 # bundle exec
-alias be='TERM=xterm-color bundle exec'
+alias be='TERM=xterm-256color bundle exec'
 
 # kitchen
-alias kitchen='TERM=xterm-color kitchen'
-alias k='TERM=xterm-color kitchen'
+alias kitchen='TERM=xterm-256color kitchen'
+alias k='TERM=xterm-256color kitchen'
 
 # ssh
-alias ssh='TERM=xterm-color ssh'
+alias ssh='TERM=xterm-256color ssh'
 
 # unlock server
 alias unlock-ryzen='ppers -c systems/ryzen-vmm01 && xclip -o -selection clipboard | ssh -p 222 root@ryzen-vmm01 cryptroot-unlock'
-alias unlock-dev='ppers -c systems/cal-fedora-dev01 && xclip -o -selection clipboard | ssh -p 222 root@cal-fedora-dev01 unlock'
+alias unlock-dev='ppers -c systems/ryzen-vm-dev01 && xclip -o -selection clipboard | ssh -p 222 root@ryzen-vm-dev01 unlock'
