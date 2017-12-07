@@ -85,3 +85,9 @@
 
     - [nvim -c "call minpac#update()|quit" --headless, Installing vim plugins]
     - [nvim -c "call minpac#update()|quit" --headless, Confirm vim plugin install]
+
+- shell:
+    -
+      command: ~/.config/nvim/pack/minpac/start/fzf/install --bin
+      description: Installing fzf
+
