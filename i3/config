@@ -149,6 +149,8 @@ assign [class="Termite"] $w1
 for_window [class="Termite"] border pixel 1, move workspace $w1
 assign [class="URxvt"] $w1
 for_window [class="URxvt"] border pixel 1, move workspace $w1
+assign [class="Mate-terminal"] $w1
+for_window [class="Mate-terminal"] border pixel 1, move workspace $w1
 
 # scratch pad windows
 #for_window [class="URxvt" title="scratchpad"] move window to scratchpad, scratchpad show
