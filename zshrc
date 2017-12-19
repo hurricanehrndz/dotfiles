@@ -87,7 +87,6 @@ alias t='todo.sh'
 alias m='buku'
 
 # load custom functions
-fpath=(~/.zfunc /etc/zsh_completion.d $fpath)
 autoload -Uz alarm calc btheadphones
 
 # wake-on-lan cal-fedora-vmm01

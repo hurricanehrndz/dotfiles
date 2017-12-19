@@ -28,3 +28,7 @@ fi
 
 # fix docker bug
 unset TERMINFO
+
+# ensure compinit is started by prezto
+skip_global_compinit=1
+fpath=(~/.zfunc /etc/zsh_completion.d $fpath)
