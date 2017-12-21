@@ -11,9 +11,10 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-if [[ $TERM == xterm-termite ]]; then
-  . /etc/profile.d/vte.sh
-  __vte_osc7
+if [ -e /usr/share/terminfo/x/xterm-256color ]; then
+  export TERM='xterm-256color'
+else
+  export TERM='xterm-color'
 fi
 
 if [[ ! -z  "$(command -v chruby)" ]]; then
@@ -101,6 +102,9 @@ alias k='TERM=xterm-256color kitchen'
 
 # ssh
 alias ssh='TERM=xterm-256color ssh'
+
+# tmux
+alias tmux="env TERM=xterm-256color tmux"
 
 # sudo with path
 alias sudoe='sudo env PATH=$PATH'

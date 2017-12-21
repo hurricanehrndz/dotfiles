@@ -4,6 +4,11 @@ if [[ "$TERMINAL" == "urxvtc-256color" ]]; then
     # start urxvt daemon
     urxvtd-256color --quiet --opendisplay --fork
 fi
+if [ -e /usr/share/terminfo/x/xterm-256color ]; then
+  export TERM='xterm-256color'
+else
+  export TERM='xterm-color'
+fi
 
 # Browser
 i3-msg "workspace 3 "
@@ -14,7 +19,7 @@ sleep 3
 i3-msg "workspace 4 "
 i3-msg "exec Telegram"
 i3-msg "workspace 4 "
-i3-msg "exec $TERMINAL -e weechat"
+i3-msg "exec $TERMINAL -e \"env TERM=$TERM weechat\""
 
 
 # Terminal
