@@ -228,9 +228,6 @@ bar {
 # load URxvt config and console colors
 exec_always xrdb -merge ${HOME}/.Xdefaults
 
-# start firewall-applet
-exec_always --no-startup-id "killall -q firewall-applet; firewall-applet"
-
 # start dropbox
 exec --no-startup-id "dropbox start"
 
