@@ -111,4 +111,4 @@ alias sudoe='sudo env PATH=$PATH'
 
 # unlock server
 alias unlock-ryzen='ppers -c systems/ryzen-vmm01 && xclip -o -selection clipboard | ssh -p 222 root@ryzen-vmm01 cryptroot-unlock'
-alias unlock-ryzen='ppers -c systems/ryzen-dev-vm01 && xclip -o -selection clipboard | ssh -p 222 root@ryzen-dev-vm01 cryptroot-unlock'
+alias unlock-dev='ppers -c systems/ryzen-dev-vm01 && xclip -o -selection clipboard | ssh -p 222 root@ryzen-dev-vm01 cryptroot-unlock'
