@@ -110,5 +110,5 @@ alias tmux="env TERM=xterm-256color tmux"
 alias sudoe='sudo env PATH=$PATH'
 
 # unlock server
-alias unlock-ryzen='ppers -c systems/ryzen-vmm01 && xclip -o -selection clipboard | ssh -p 222 root@ryzen-vmm01 cryptroot-unlock'
-alias unlock-dev='ppers -c systems/ryzen-dev-vm01 && xclip -o -selection clipboard | ssh -p 222 root@ryzen-dev-vm01 cryptroot-unlock'
+alias unlock-ryzen='until ping -c1 ryzen-vmm01 &>/dev/null; do :; done; ppers -c systems/ryzen-vmm01 && xclip -o -selection clipboard | ssh -p 222 root@ryzen-vmm01 cryptroot-unlock'
+alias unlock-dev='until ping -c1 ryzend-dev-vm01 &>/dev/null; do :; done; ppers -c systems/ryzen-dev-vm01 && xclip -o -selection clipboard | ssh -p 222 root@ryzen-dev-vm01 cryptroot-unlock'
