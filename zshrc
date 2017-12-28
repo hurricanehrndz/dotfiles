@@ -26,6 +26,10 @@ if [[ -o interactive ]] && [[ -t 2 ]]; then
   print -n -- "\033[1 q"
 fi
 
+if [[ ! -d $XDG_RUNTIME_DIR/gnupg ]]; then
+  gpgconf --create-socketdir
+fi
+
 # make sure vi opens vim
 alias vi="nvim term://zsh "
 alias vim='vim'
