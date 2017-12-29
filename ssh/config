@@ -6,12 +6,6 @@ host bitbucket.org
     ControlMaster no
     ControlPersist no
 
-host ryzen-dev-vm01
-    ControlMaster auto
-    ControlPath ~/.ssh/master-%r@%h:%p
-    ControlPersist 1m
-    RemoteForward $XDG_RUNTIME_DIR/gnupg/S.gpg-agent $XDG_RUNTIME_DIR/gnupg/S.gpg-agent.extra
-
 host *
     ControlMaster auto
     ControlPath ~/.ssh/master-%r@%h:%p
