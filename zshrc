@@ -6,15 +6,6 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
-# create gpgconf directories
-if [[  -n "$SSH_CONNECTION" ]]; then
-  GPG_AGENT_SOCK="$(gpgconf --list-dirs agent-socket)"
-  GPG_AGENT_SOCK_FWD=${HOME}/.gnupg/S.gpg-agent
-  if [[ ! -e $GPG_AGENT_SOCK && -S ${GPG_AGENT_SOCK_FWD} ]]; then
-    gpgconf --create-socketdir
-    ln -sf $GPG_AGENT_SOCK_FWD $GPG_AGENT_SOCK
-  fi
-fi
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
