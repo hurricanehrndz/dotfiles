@@ -6,6 +6,11 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+# create gpgconf directories
+if [[ ! -d $XDG_RUNTIME_DIR/gnupg ]]; then
+  gpgconf --create-socketdir
+fi
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -24,10 +29,6 @@ fi
 # set cursor, to pipe
 if [[ -o interactive ]] && [[ -t 2 ]]; then
   print -n -- "\033[1 q"
-fi
-
-if [[ ! -d $XDG_RUNTIME_DIR/gnupg ]]; then
-  gpgconf --create-socketdir
 fi
 
 # make sure vi opens vim
