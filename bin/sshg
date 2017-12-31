@@ -1,0 +1,32 @@
+#!/bin/bash
+
+REMOTEUSER_AT_REMOTEHOST="${*:-1}"
+REMOTEHOST="${REMOTEUSER_AT_REMOTEHOST##*@}"
+REMOTEUSER="${REMOTEUSER_AT_REMOTEHOST%%@*}"
+CONTROLPATH="${HOME}/.ssh/master-%r@%h:%p"
+
+# SSH command to use, ignore conifg
+SSH="ssh -F /dev/null -o ControlMaster=auto -o ControlPath=$CONTROLPATH -o ControlPersist=45"
+
+# check to see if a ControlMaster exists
+if ssh -q -O check "$REMOTEHOST"; then
+  ssh -q -O exit "$REMOTEHOST"
+fi
+
+echo "Connecting to $REMOTEHOST as $REMOTEUSER"
+
+if $SSH -A -N -f "$REMOTEUSER_AT_REMOTEHOST"; then
+  # Figure out local and remote GPG socket paths
+  LOCAL_GPG_SOCKET=$(gpgconf --list-dir agent-extra-socket)
+  REMOTE_GPG_SOCKET=$($SSH $REMOTEHOST gpgconf --list-dir agent-socket)
+
+  # make required directories for gpg forwarding
+  $SSH $REMOTEHOST gpgconf --create-socketdir
+
+  # forward gpg socket
+  $SSH -o ExitOnForwardFailure=yes -o "RemoteForward=$REMOTE_GPG_SOCKET $LOCAL_GPG_SOCKET" -O forward $REMOTEHOST
+
+  echo "Connection to $REMOTEHOST with interactive shell..."
+  # finally connect to host
+  $SSH -A $REMOTEHOST
+fi
