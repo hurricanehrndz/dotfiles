@@ -1,0 +1,3 @@
+export TERMINAL=mate-terminal
+export BROWSER=firefox
+export PATH=$HOME/.local/bin:$PATH

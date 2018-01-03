@@ -75,6 +75,10 @@
         path: ~/.config/nvim/init.vim
     ~/.ssh/config:
         path: ssh/config
+    ~/.config/compton.conf:
+        path: compton.conf
+    ~/.xsessionrc:
+        path: xsessionrc
 
 - shell:
     - mkdir -p ~/.config/nvim/pack/minpac/opt
