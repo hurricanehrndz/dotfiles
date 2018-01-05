@@ -9,7 +9,7 @@ CONTROLPATH="${HOME}/.ssh/master-%r@%h:%p"
 SSH="ssh -F /dev/null -o ControlMaster=auto -o ControlPath=$CONTROLPATH -o ControlPersist=45"
 
 # check to see if a ControlMaster exists
-if ssh -q -O check "$REMOTEHOST"; then
+if ssh -q -O check "$REMOTEHOST" > /dev/null 2>&1; then
   ssh -q -O exit "$REMOTEHOST"
 fi
 
@@ -17,14 +17,21 @@ echo "Connecting to $REMOTEHOST as $REMOTEUSER"
 
 if $SSH -A -N -f "$REMOTEUSER_AT_REMOTEHOST"; then
   # Figure out local and remote GPG socket paths
-  LOCAL_GPG_SOCKET=$(gpgconf --list-dir agent-extra-socket)
-  REMOTE_GPG_SOCKET=$($SSH $REMOTEHOST gpgconf --list-dir agent-socket)
+  LOCAL_GPG_SOCKET="$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.extra"
+  REMOTE_GPG_SOCKET="$($SSH $REMOTEHOST gpgconf --list-dir agent-socket)"
+
+  # kill all gpg-agent instances
+  $SSH $REMOTEHOST pkill gpg-agent
 
   # make required directories for gpg forwarding
   $SSH $REMOTEHOST gpgconf --create-socketdir
 
   # forward gpg socket
-  $SSH -o ExitOnForwardFailure=yes -o "RemoteForward=$REMOTE_GPG_SOCKET $LOCAL_GPG_SOCKET" -O forward $REMOTEHOST
+  if [[ -e "$LOCAL_GPG_SOCKET" ]]; then
+    $SSH -T -o ExitOnForwardFailure=yes -R $REMOTE_GPG_SOCKET:$LOCAL_GPG_SOCKET -O forward $REMOTEHOST
+  else
+    echo "Error: no extra gpg extra socket."
+  fi
 
   echo "Connection to $REMOTEHOST with interactive shell..."
   # finally connect to host
