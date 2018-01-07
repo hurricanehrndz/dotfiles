@@ -6,6 +6,7 @@ REMOTEUSER="${REMOTEUSER_AT_REMOTEHOST%%@*}"
 CONTROLPATH="${HOME}/.ssh/master-%r@%h:%p"
 
 # SSH command to use, ignore conifg
+TERM=xterm-256color
 SSH="ssh -F /dev/null -o ControlMaster=auto -o ControlPath=$CONTROLPATH -o ControlPersist=45"
 
 # check to see if a ControlMaster exists
@@ -33,7 +34,6 @@ if $SSH -A -N -f "$REMOTEUSER_AT_REMOTEHOST"; then
     echo "Error: no extra gpg extra socket."
   fi
 
-  echo "Connection to $REMOTEHOST with interactive shell..."
   # finally connect to host
   $SSH -A $REMOTEHOST
 fi
