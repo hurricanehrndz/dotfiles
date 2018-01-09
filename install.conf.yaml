@@ -89,3 +89,7 @@
 
     - [nvim -c "call minpac#update()|quit" --headless, Installing vim plugins]
     - [nvim -c "call minpac#update()|quit" --headless, Confirm vim plugin install]
+
+    -
+      command: chmod 700 ~/.gnupg
+      description: Fix home gnupg homedir
