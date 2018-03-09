@@ -28,9 +28,17 @@ if [[ -o interactive ]] && [[ -t 2 ]]; then
 fi
 
 # make sure vi opens vim
-alias vi="nvim term://zsh "
+alias vi='nvim term://zsh -c "bnext" '
 alias vim='vim'
 alias vimdiff='nvim -d'
+# Fix nested terminals
+if [[ -n "$NVIM_LISTEN_ADDRESS" ]]; then
+  if [[ -x ~/.local/bin/nvr ]]; then
+    alias vi='~/.local/bin/nvr'
+  else
+    alias vi='echo "No nesting!"'
+  fi
+fi
 
 # Create a rm alias, default alias too intrusive
 alias rm='nocorrect rm'
@@ -92,7 +100,7 @@ alias m='buku'
 autoload -Uz alarm calc btheadphones
 
 # wake-on-lan cal-fedora-vmm01
-alias wake-server='sudo ether-wake -i wlp58s0 4c:cc:6a:fc:f0:7f'
+alias wake-server='sudo wakeonlan -i 10.255.250.255 4c:cc:6a:fc:f0:7f'
 
 # bundle exec
 alias be='TERM=xterm-256color bundle exec'
@@ -113,3 +121,8 @@ alias sudoe='sudo env PATH=$PATH'
 # unlock server
 alias unlock-ryzen='until ping -c1 ryzen-vmm01 &>/dev/null; do :; done; ppers -c systems/ryzen-vmm01 && xclip -o -selection clipboard | ssh -p 222 root@ryzen-vmm01 cryptroot-unlock'
 alias unlock-dev='until ping -c1 ryzen-dev-vm01 &>/dev/null; do :; done; ppers -c systems/ryzen-dev-vm01 && xclip -o -selection clipboard | ssh -p 222 root@ryzen-dev-vm01 cryptroot-unlock'
+
+# gitignore.gi
+function gi { curl -L -s https://www.gitignore.io/api/$@ ;}
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
