@@ -8,6 +8,24 @@
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
+  -
+    command: bash -c "[[ -d ~/.pyenv ]] || git clone https://github.com/pyenv/pyenv ~/.pyenv"
+    description: Installing pyenv
+  -
+    command: bash -c "[[ -d ~/.pyenv/plugins/pyenv-virtualenv ]] || git clone https://github.com/pyenv-virtualenv ~/.pyenv/plugins/pyenv-virtualenv"
+    description: Installing pyenv-virtualenv
+
+  -
+    command: bash -c "[[ -d ~/.pyenv/plugins/pyenv-update ]] || git clone https://github.com/pyenv-update ~/.pyenv/plugins/pyenv-update"
+    description: Installing pyenv-update
+
+  -
+    command: bash -c "[[ -d ~/.pyenv/plugins/pyenv-doctor ]] || git clone https://github.com/pyenv-doctor ~/.pyenv/plugins/pyenv-doctor"
+    description: Installing pyenv-doctor
+
+  -
+    command: bash -c "[[ -d ~/.pyenv/plugins/pyenv-install-latest ]] || git clone https://github.com/pyenv-install-latest ~/.pyenv/plugins/pyenv-install-latest"
+    description: Installing pyenv-install-latest
 
 - link:
     ~/.tmux.conf:
@@ -91,5 +109,53 @@
     - [nvim -c "call minpac#update()|quit" --headless, Confirm vim plugin install]
 
     -
+      command: ~/.config/nvim/pack/minpac/start/fzf/install --bin
+      description: Install fzf binary
+
+    -
+      command: ~/.config/nvim/pack/minpac/start/fzf/install --completion --key-bindings --update-rc --no-bash --no-fish
+      description: Configure fzf for zsh
+
+    -
+      command: ~/.pyenv/bin/pyenv update
+      description: Update all of pyenv
+
+    -
+      command: bash -c "[[ $(find ~/.pyenv/versions/ -maxdepth 1 -type d -name \"2.7*\" | wc -l) ]] || ~/.pyenv/bin/pyenv install-latest 2.7"
+      description: Installing latest python 2.7
+
+    -
+      command: bash -c "[[ $(find ~/.pyenv/versions/ -maxdepth 1 -type d -name \"3.6*\" | wc -l) ]] || ~/.pyenv/bin/pyenv install-latest 3.6"
+      description: Installing latest python 3.6
+
+    -
+      command: bash -c "[[ -L ~/.pyenv/versions/neovim2 ]] || ~/.pyenv/bin/pyenv virtualenv  ${$(find ~/.pyenv/versions/ -maxdepth 1 -type d -name '2.7*' | tail)##*/} neovim2"
+      description: Creating virtulaenv neovim2
+
+    -
+      command: ~/.pyenv/versions/neovim2/bin/pip install neovim
+      description: Install python2 neovim plugin
+
+    -
+      command: bash -c "[[ -L ~/.pyenv/versions/neovim3 ]] || ~/.pyenv/bin/pyenv virtualenv  ${$(find ~/.pyenv/versions/ -maxdepth 1 -type d -name '3.6*' | tail)##*/} neovim3"
+      description: Creating virtulaenv neovim3
+
+    -
+      command: ~/.pyenv/versions/neovim3/bin/pip install neovim
+      description: Install python3 neovim plugin
+
+    -
+      command: ~/.pyenv/versions/neovim3/bin/pip install neovim-remote
+      description: Install python3 neovim-remote plugin
+
+    -
       command: chmod 700 ~/.gnupg
       description: Fix home gnupg homedir
+
+    -
+      command: ~/.pyenv/bin/pyenv global ${$(find ~/.pyenv/versions/ -maxdepth 1 -type d -name '2.7*' | tail)##*/} ${$(find ~/.pyenv/versions/ -maxdepth 1 -type d -name '3.6*' | tail)##*/}
+      description: Setup Default Python Versions
+
+- link:
+    ~/.local/bin/nvr:
+      path: ~/.pyenv/versions/neovim3/bin/nvr
