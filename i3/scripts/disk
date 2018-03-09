@@ -8,7 +8,7 @@ btrfs_fi=$(df -T "$DIR" | awk 'END {print $2}')
 
 if [[ $btrfs_fi == "btrfs" ]]
 then
-	sudo /sbin/btrfs filesystem show $DIR | awk -v alert_low=$ALERT_LOW '
+	sudo /bin/btrfs filesystem show $DIR | awk -v alert_low=$ALERT_LOW '
 	{
 		if ($1 == "devid") {
 			size=$4;
