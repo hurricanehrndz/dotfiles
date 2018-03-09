@@ -114,7 +114,7 @@ set $w3 3 
 set $w4 4 
 set $w5 5 
 set $w6 6 
-set $w7 7
+set $w7 7 
 set $w8 8
 set $w9 9
 set $w0 10 
@@ -160,6 +160,10 @@ assign [window_role="browser"] $w3
 for_window [window_role="browser"] border none, layout tabbed, move workspace $w3
 for_window [window_role="pop-up"] floating enable, border normal
 
+# vscode
+assign [class="Code" window_role="browser"] $w7
+for_window [class="Code" window_role="browser" title=".*Visual Studio Code"] border pixel 1, move workspace $w7
+
 # nuvolaplayer
 assign [class="eu.tiliado.Nuvola"] $w5
 assign [class="eu.tiliado.NuvolaAppSpotify"] $w5
@@ -179,8 +183,8 @@ for_window [class="TeamViewer"] floating enable
 for_window [instance="Qt-subapplication" title="TeamViewer"] move scratchpad
 
 # weechat
-assign [class="URxvt" title="^WeeChat.*"] $w4
-for_window [class="URxvt" title="^WeeChat.*"] border pixel 1, move $w4
+assign [class="Mate-terminal" title="^WeeChat.*"] $w4
+for_window [class="Mate-terminal" title="^WeeChat.*"] border pixel 1, move $w4
 
 # Touchpad controls
 bindsym $mod+Control+space exec touchpadctrl -t  # toggle touchpad
