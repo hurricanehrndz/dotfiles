@@ -4,7 +4,7 @@ if [[ "$TERMINAL" == "urxvtc-256color" ]]; then
     # start urxvt daemon
     urxvtd-256color --quiet --opendisplay --fork
 fi
-if [ -e /usr/share/terminfo/x/xterm-256color ]; then
+if [[ -e /usr/share/terminfo/x/xterm-256color || -e /lib/terminfo/x/xterm-256color ]]; then
   export TERM='xterm-256color'
 else
   export TERM='xterm-color'
