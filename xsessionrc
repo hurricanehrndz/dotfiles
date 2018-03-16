@@ -1,4 +1,3 @@
 export TERMINAL=mate-terminal
 export BROWSER=firefox
-export PATH=$HOME/.local/bin:$PATH
 feh --bg-scale /usr/share/backgrounds/ubuntu-mate-artful/the-moon-and-ubuntu-mate.jpg
