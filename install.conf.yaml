@@ -27,6 +27,14 @@
     command: bash -c "[[ -d ~/.pyenv/plugins/pyenv-install-latest ]] || git clone https://github.com/pyenv-install-latest ~/.pyenv/plugins/pyenv-install-latest"
     description: Installing pyenv-install-latest
 
+  -
+    command: bash -c "[[ -d ~/.pyenv/plugins/pyenv-virtualenvwrapper ]] || git clone https://github.com/pyenv-virtualenvwrapper ~/.pyenv/plugins/pyenv-virtualenvwrapper"
+    description: Installing pyenv-virtualenvwrapper
+
+  -
+    command: ~/.pyenv/bin/pyenv update
+    description: Update pyenv and plugins
+
 - link:
     ~/.tmux.conf:
         path: tmux.conf
@@ -85,8 +93,8 @@
         path: todo/actions.d
     ~/.config/nvim/init.vim:
         path: nvim/init.vim
-    ~/.config/nvim/after:
-        path: nvim/after/
+    ~/.config/nvim/completion.vim:
+        path: nvim/completion.vim
     ~/.vim:
         path: ~/.config/nvim
     ~/.vimrc:
@@ -129,33 +137,50 @@
       description: Installing latest python 3.6
 
     -
-      command: bash -c "[[ -L ~/.pyenv/versions/neovim2 ]] || ~/.pyenv/bin/pyenv virtualenv  ${$(find ~/.pyenv/versions/ -maxdepth 1 -type d -name '2.7*' | tail)##*/} neovim2"
-      description: Creating virtulaenv neovim2
+      command: ~/.pyenv/bin/pyenv global ${$(find ~/.pyenv/versions/ -maxdepth 1 -type d -name '2.7*' | tail)##*/} ${$(find ~/.pyenv/versions/ -maxdepth 1 -type d -name '3.6*' | tail)##*/}
+
+      description: Setup Default Python Versions
 
     -
-      command: ~/.pyenv/versions/neovim2/bin/pip install neovim
+      command: zsh -c "[[ -d ~/.virtualenvs/neovim2 ]] || { eval $(~/.pyenv/bin/pyenv init -) && pyenv virtualenvwrapper_lazy && mkvirtualenv -p python2 neovim2 }"
+      description: Create python2 virtualenv for neovim
+
+    -
+      command: ~/.virtualenvs/neovim2/bin/pip install --upgrade neovim
       description: Install python2 neovim plugin
 
     -
-      command: bash -c "[[ -L ~/.pyenv/versions/neovim3 ]] || ~/.pyenv/bin/pyenv virtualenv  ${$(find ~/.pyenv/versions/ -maxdepth 1 -type d -name '3.6*' | tail)##*/} neovim3"
-      description: Creating virtulaenv neovim3
+      command: zsh -c "[[ -d ~/.virtualenvs/neovim3 ]] || { eval $(~/.pyenv/bin/pyenv init -) && pyenv virtualenvwrapper_lazy && mkvirtualenv -p python3 neovim3 }"
+      description: Create python3 virtualenv for neovim
 
     -
-      command: ~/.pyenv/versions/neovim3/bin/pip install neovim
+      command: ~/.virtualenvs/neovim3/bin/pip install --upgrade neovim neovim-remote nodeenv
       description: Install python3 neovim plugin
 
     -
-      command: ~/.pyenv/versions/neovim3/bin/pip install neovim-remote
-      description: Install python3 neovim-remote plugin
+      command: ~/.pyenv/versions/python3/bin/pip install --upgrade flake8 jedi psutil setproctitle
+      description: Install completion manager requirments
+
+    -
+      command: zsh -c "eval $(~/.pyenv/bin/pyenv init -); pyenv virtualenvwrapper_lazy; workon neovim3; nodeenv -p; npm install -g bash-language-server;"
+      description: "Install bash language server."
+
+    -
+      command: zsh -c "eval $(~/.pyenv/bin/pyenv init -); pyenv virtualenvwrapper_lazy; workon neovim3; nodeenv -p; npm install -g dockerfile-language-server-nodejs"
+      description: "Install dockerfile language server."
+
+    -
+      command: zsh -c "eval $(~/.pyenv/bin/pyenv init -); pyenv virtualenvwrapper_lazy; workon neovim3; nodeenv -p; npm install -g javascript-typescript-langserver"
+      description: "Install javascript language server."
 
     -
       command: chmod 700 ~/.gnupg
       description: Fix home gnupg homedir
 
-    -
-      command: ~/.pyenv/bin/pyenv global ${$(find ~/.pyenv/versions/ -maxdepth 1 -type d -name '2.7*' | tail)##*/} ${$(find ~/.pyenv/versions/ -maxdepth 1 -type d -name '3.6*' | tail)##*/}
-      description: Setup Default Python Versions
 
 - link:
     ~/.local/bin/nvr:
-      path: ~/.pyenv/versions/neovim3/bin/nvr
+      path: ~/.virtualenvs/neovim3/bin/nvr
+
+    ~/.local/bin/flake8:
+      path: ~/.virtualenvs/neovim3/bin/flake8
