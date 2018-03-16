@@ -33,8 +33,8 @@ alias vim='vim'
 alias vimdiff='nvim -d'
 # Fix nested terminals
 if [[ -n "$NVIM_LISTEN_ADDRESS" ]]; then
-  if [[ -x ~/.local/bin/nvr ]]; then
-    alias vi='~/.local/bin/nvr'
+  if [ -x "$(command -v nvr)" ]; then
+    alias nvim='nvr'
   else
     alias vi='echo "No nesting!"'
   fi
@@ -126,3 +126,6 @@ alias unlock-dev='until ping -c1 ryzen-dev-vm01 &>/dev/null; do :; done; ppers -
 function gi { curl -L -s https://www.gitignore.io/api/$@ ;}
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Set PATH
+export PATH="$HOME/.local/bin:$PATH"
