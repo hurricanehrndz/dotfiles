@@ -12,23 +12,23 @@
     command: bash -c "[[ -d ~/.pyenv ]] || git clone https://github.com/pyenv/pyenv ~/.pyenv"
     description: Installing pyenv
   -
-    command: bash -c "[[ -d ~/.pyenv/plugins/pyenv-virtualenv ]] || git clone https://github.com/pyenv-virtualenv ~/.pyenv/plugins/pyenv-virtualenv"
+    command: bash -c "[[ -d ~/.pyenv/plugins/pyenv-virtualenv ]] || git clone https://github.com/pyenv/pyenv-virtualenv ~/.pyenv/plugins/pyenv-virtualenv"
     description: Installing pyenv-virtualenv
 
   -
-    command: bash -c "[[ -d ~/.pyenv/plugins/pyenv-update ]] || git clone https://github.com/pyenv-update ~/.pyenv/plugins/pyenv-update"
+    command: bash -c "[[ -d ~/.pyenv/plugins/pyenv-update ]] || git clone https://github.com/pyenv/pyenv-update ~/.pyenv/plugins/pyenv-update"
     description: Installing pyenv-update
 
   -
-    command: bash -c "[[ -d ~/.pyenv/plugins/pyenv-doctor ]] || git clone https://github.com/pyenv-doctor ~/.pyenv/plugins/pyenv-doctor"
+    command: bash -c "[[ -d ~/.pyenv/plugins/pyenv-doctor ]] || git clone https://github.com/pyenv/pyenv-doctor ~/.pyenv/plugins/pyenv-doctor"
     description: Installing pyenv-doctor
 
   -
-    command: bash -c "[[ -d ~/.pyenv/plugins/pyenv-install-latest ]] || git clone https://github.com/pyenv-install-latest ~/.pyenv/plugins/pyenv-install-latest"
+    command: bash -c "[[ -d ~/.pyenv/plugins/pyenv-install-latest ]] || git clone https://github.com/momo-lab/pyenv-install-latest ~/.pyenv/plugins/pyenv-install-latest"
     description: Installing pyenv-install-latest
 
   -
-    command: bash -c "[[ -d ~/.pyenv/plugins/pyenv-virtualenvwrapper ]] || git clone https://github.com/pyenv-virtualenvwrapper ~/.pyenv/plugins/pyenv-virtualenvwrapper"
+    command: bash -c "[[ -d ~/.pyenv/plugins/pyenv-virtualenvwrapper ]] || git clone https://github.com/pyenv/pyenv-virtualenvwrapper ~/.pyenv/plugins/pyenv-virtualenvwrapper"
     description: Installing pyenv-virtualenvwrapper
 
   -
@@ -107,19 +107,6 @@
         path: xsessionrc
 
 - shell:
-    - mkdir -p ~/.config/nvim/pack/minpac/opt
-    - rm -rf ~/.config/nvim/pack/minpac/opt/minpac
-    -
-      command: git clone --depth 1 https://github.com/k-takata/minpac ~/.config/nvim/pack/minpac/opt/minpac
-      description: Installing minpac
-
-    - [nvim -c "call minpac#update()|quit" --headless, Installing vim plugins]
-    - [nvim -c "call minpac#update()|quit" --headless, Confirm vim plugin install]
-
-    -
-      command: ~/.config/nvim/pack/minpac/start/fzf/install --bin
-      description: Install fzf binary
-
     -
       command: ~/.config/nvim/pack/minpac/start/fzf/install --completion --key-bindings --update-rc --no-bash --no-fish
       description: Configure fzf for zsh
@@ -129,11 +116,11 @@
       description: Update all of pyenv
 
     -
-      command: bash -c "[[ $(find ~/.pyenv/versions/ -maxdepth 1 -type d -name \"2.7*\" | wc -l) ]] || ~/.pyenv/bin/pyenv install-latest 2.7"
+      command: bash -c "[[ \$(find ~/.pyenv/versions/ -maxdepth 1 -type d -name 2.7* | wc -l) != 0 ]] || ~/.pyenv/bin/pyenv install-latest 2.7"
       description: Installing latest python 2.7
 
     -
-      command: bash -c "[[ $(find ~/.pyenv/versions/ -maxdepth 1 -type d -name \"3.6*\" | wc -l) ]] || ~/.pyenv/bin/pyenv install-latest 3.6"
+      command: bash -c "[[ \$(find ~/.pyenv/versions/ -maxdepth 1 -type d -name 3.6* | wc -l) != 0 ]] || ~/.pyenv/bin/pyenv install-latest 3.6"
       description: Installing latest python 3.6
 
     -
@@ -154,12 +141,12 @@
       description: Create python3 virtualenv for neovim
 
     -
-      command: ~/.virtualenvs/neovim3/bin/pip install --upgrade neovim neovim-remote nodeenv
-      description: Install python3 neovim plugin
+      command: ~/.virtualenvs/neovim3/bin/pip install --upgrade flake8 jedi psutil setproctitle
+      description: Install completion manager requirments
 
     -
-      command: ~/.pyenv/versions/python3/bin/pip install --upgrade flake8 jedi psutil setproctitle
-      description: Install completion manager requirments
+      command: ~/.virtualenvs/neovim3/bin/pip install --upgrade neovim neovim-remote nodeenv
+      description: Install python3 neovim plugin
 
     -
       command: zsh -c "eval $(~/.pyenv/bin/pyenv init -); pyenv virtualenvwrapper_lazy; workon neovim3; nodeenv -p; npm install -g bash-language-server;"
@@ -172,6 +159,19 @@
     -
       command: zsh -c "eval $(~/.pyenv/bin/pyenv init -); pyenv virtualenvwrapper_lazy; workon neovim3; nodeenv -p; npm install -g javascript-typescript-langserver"
       description: "Install javascript language server."
+
+    - mkdir -p ~/.config/nvim/pack/minpac/opt
+    - rm -rf ~/.config/nvim/pack/minpac/opt/minpac
+    -
+      command: git clone --depth 1 https://github.com/k-takata/minpac ~/.config/nvim/pack/minpac/opt/minpac
+      description: Installing minpac
+
+    - [nvim -c "call minpac#update()|quit" --headless, Installing vim plugins]
+    - [nvim -c "call minpac#update()|quit" --headless, Confirm vim plugin install]
+
+    -
+      command: ~/.config/nvim/pack/minpac/start/fzf/install --bin
+      description: Install fzf binary
 
     -
       command: chmod 700 ~/.gnupg
