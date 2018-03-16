@@ -29,7 +29,6 @@ path=(
   /usr/local/{bin,sbin}
   /sbin
   /usr/sbin
-  ~/.local/bin
   $path
 )
 systemctl --user import-environment PATH
