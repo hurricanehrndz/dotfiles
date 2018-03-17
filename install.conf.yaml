@@ -95,6 +95,8 @@
         path: nvim/init.vim
     ~/.config/nvim/completion.vim:
         path: nvim/completion.vim
+    ~/.config/nvim/after:
+        path: nvim/after
     ~/.vim:
         path: ~/.config/nvim
     ~/.vimrc:
