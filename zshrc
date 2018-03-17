@@ -28,7 +28,7 @@ if [[ -o interactive ]] && [[ -t 2 ]]; then
 fi
 
 # make sure vi opens vim
-alias vi='nvim term://zsh -c "bnext" '
+alias vi='nvim'
 alias vim='vim'
 alias vimdiff='nvim -d'
 # Fix nested terminals
