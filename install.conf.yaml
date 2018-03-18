@@ -202,4 +202,15 @@
     ~/.local/bin/neovim-node-host:
       path: ~/.virtualenvs/neovim3/bin/neovim-node-host
 
+- shell:
+    -
+      command: mkdir -p ~/.config/tmux/plugins
+      description: Make tmux plugin directory
+
+    -
+      command: bash -c "[[ -d ~/.config/tmux/plugins/tpm ]] || git clone https://github.com/tmux-plugins/tpm.git ~/.config/tmux/plugins/tpm"
+      description: Install tpm
+
+    - command: ~/.config/tmux/plugins/tpm/bin/install_plugins
+      description: Install tmux plugins
 
