@@ -20,12 +20,15 @@ if $SSH -A -N -f "$REMOTEUSER_AT_REMOTEHOST"; then
   # Figure out local and remote GPG socket paths
   LOCAL_GPG_SOCKET="$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.extra"
   REMOTE_GPG_SOCKET="$($SSH $REMOTEHOST gpgconf --list-dir agent-socket)"
+  REMOTE_GPG_SOCKET_DIR="$($SSH $REMOTEHOST gpgconf --list-dir socketdir)"
 
   # kill all gpg-agent instances
   $SSH $REMOTEHOST pkill gpg-agent
 
   # make required directories for gpg forwarding
   $SSH $REMOTEHOST gpgconf --create-socketdir
+  # make sure no agent socket is left
+  $SSH $REMOTEHOST rm -f "$REMOTE_GPG_SOCKET_DIR/*"
 
   # forward gpg socket
   if [[ -e "$LOCAL_GPG_SOCKET" ]]; then
