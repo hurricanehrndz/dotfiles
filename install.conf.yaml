@@ -114,10 +114,6 @@
       description: Configure fzf for zsh
 
     -
-      command: ~/.pyenv/bin/pyenv update
-      description: Update all of pyenv
-
-    -
       command: bash -c "[[ \$(find ~/.pyenv/versions/ -maxdepth 1 -type d -name 2.7* | wc -l) != 0 ]] || ~/.pyenv/bin/pyenv install-latest 2.7"
       description: Installing latest python 2.7
 
@@ -176,6 +172,10 @@
       description: Install fzf binary
 
     -
+      command: zsh -c "gem install neovim"
+      description: Installing neovim gem
+
+    -
       command: chmod 700 ~/.gnupg
       description: Fix home gnupg homedir
 
@@ -186,3 +186,20 @@
 
     ~/.local/bin/flake8:
       path: ~/.virtualenvs/neovim3/bin/flake8
+
+    ~/.local/bin/npm:
+      path: ~/.virtualenvs/neovim3/bin/npm
+
+    ~/.local/bin/node:
+      path: ~/.virtualenvs/neovim3/bin/node
+
+- shell:
+    -
+      command: ~/.local/bin/npm install -g neovim
+      description: Install neovim node
+
+- link:
+    ~/.local/bin/neovim-node-host:
+      path: ~/.virtualenvs/neovim3/bin/neovim-node-host
+
+
