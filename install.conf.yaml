@@ -107,6 +107,10 @@
         path: compton.conf
     ~/.xsessionrc:
         path: xsessionrc
+    ~/.tmux-powerlinerc:
+        path: tmux-powerlinerc
+    ~/.config/tmux/powerline:
+        path: tmux/powerline
 
 - shell:
     -
