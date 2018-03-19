@@ -162,6 +162,10 @@
       command: zsh -c "eval $(~/.pyenv/bin/pyenv init -); pyenv virtualenvwrapper_lazy; workon neovim3; nodeenv -p; npm install -g javascript-typescript-langserver"
       description: "Install javascript language server."
 
+    -
+      command: zsh -c "eval $(~/.pyenv/bin/pyenv init -); pyenv virtualenvwrapper_lazy; workon neovim3; nodeenv -p; npm install -g neovim"
+      description: "Install neovim support for node"
+
     - mkdir -p ~/.config/nvim/pack/minpac/opt
     - rm -rf ~/.config/nvim/pack/minpac/opt/minpac
     -
