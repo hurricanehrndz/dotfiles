@@ -72,6 +72,12 @@
         path: nvim/completion.vim
     ~/.config/nvim/after:
         path: nvim/after
+    ~/.config/nvim/yaml:
+        path: nvim/yaml
+    ~/.config/nvim/settings.json:
+        path: nvim/settings.json
+    ~/.config/nvim/autoload:
+        path: nvim/autoload
     ~/.vim:
         path: ~/.config/nvim
     ~/.vimrc:
