@@ -28,6 +28,7 @@ if [[ -o interactive ]] && [[ -t 2 ]]; then
 fi
 
 # make sure vi opens vim
+alias vmin='VIMCONFIG="~/.vim/min" VIMDATA="~/.local/share/vmin" nvim --noplugin -u ~/.vim/min/init.vim'
 alias vi='nvim'
 alias vim='vim'
 alias vimdiff='nvim -d'
