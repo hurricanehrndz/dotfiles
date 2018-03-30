@@ -82,16 +82,6 @@
         path: compton.conf
     ~/.xsessionrc:
         path: xsessionrc
-    ~/.local/bin/nvr:
-      path: ~/.virtualenvs/neovim3/bin/nvr
-    ~/.local/bin/flake8:
-      path: ~/.virtualenvs/neovim3/bin/flake8
-    ~/.local/bin/npm:
-      path: ~/.virtualenvs/neovim3/bin/npm
-    ~/.local/bin/node:
-      path: ~/.virtualenvs/neovim3/bin/node
-    ~/.local/bin/neovim-node-host:
-      path: ~/.virtualenvs/neovim3/bin/neovim-node-host
     ~/.tmux-powerlinerc:
         path: tmux-powerlinerc
     ~/.config/tmux/powerline:
