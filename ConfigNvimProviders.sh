@@ -118,3 +118,10 @@ binaries=("$HOME/.virtualenvs/neovim3/bin/nvr" \
 for bin in "${binaries[@]}"; do
   linkToPath "$bin"
 done
+
+# Install rls
+if [[ -z "$(command -v rustup)"  ]]; then
+  curl https://sh.rustup.rs -sSf | sh
+fi
+rustup install nightly
+rustup component add rls-preview rust-analysis rust-src --toolchain nightly
