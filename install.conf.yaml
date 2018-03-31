@@ -68,8 +68,10 @@
         path: todo/actions.d
     ~/.config/nvim/init.vim:
         path: nvim/init.vim
-    ~/.config/nvim/completion.vim:
-        path: nvim/completion.vim
+    ~/.config/nvim/plugins.vim:
+        path: nvim/plugins.vim
+    ~/.config/nvim/plugin:
+        path: nvim/plugin
     ~/.config/nvim/after:
         path: nvim/after
     ~/.config/nvim/yaml:
