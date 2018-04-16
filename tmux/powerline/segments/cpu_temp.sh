@@ -6,7 +6,7 @@ run_segment() {
 		return
 	fi
 
-	temp=$(sensors | awk '/k10temp/{f=1} f{if ($1 ~ "^temp1*") {print $2}}')
+	temp=$(sensors | awk '/k10temp/{f=1} f{if ($1 ~ "^temp1*") {print $2; exit;}}')
 	if [ -n "$temp" ]; then
 		echo "$temp";
 	fi
