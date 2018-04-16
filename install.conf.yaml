@@ -8,32 +8,7 @@
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
-  -
-    command: bash -c "[[ -d ~/.pyenv ]] || git clone https://github.com/pyenv/pyenv ~/.pyenv"
-    description: Installing pyenv
-  -
-    command: bash -c "[[ -d ~/.pyenv/plugins/pyenv-virtualenv ]] || git clone https://github.com/pyenv/pyenv-virtualenv ~/.pyenv/plugins/pyenv-virtualenv"
-    description: Installing pyenv-virtualenv
-
-  -
-    command: bash -c "[[ -d ~/.pyenv/plugins/pyenv-update ]] || git clone https://github.com/pyenv/pyenv-update ~/.pyenv/plugins/pyenv-update"
-    description: Installing pyenv-update
-
-  -
-    command: bash -c "[[ -d ~/.pyenv/plugins/pyenv-doctor ]] || git clone https://github.com/pyenv/pyenv-doctor ~/.pyenv/plugins/pyenv-doctor"
-    description: Installing pyenv-doctor
-
-  -
-    command: bash -c "[[ -d ~/.pyenv/plugins/pyenv-install-latest ]] || git clone https://github.com/momo-lab/pyenv-install-latest ~/.pyenv/plugins/pyenv-install-latest"
-    description: Installing pyenv-install-latest
-
-  -
-    command: bash -c "[[ -d ~/.pyenv/plugins/pyenv-virtualenvwrapper ]] || git clone https://github.com/pyenv/pyenv-virtualenvwrapper ~/.pyenv/plugins/pyenv-virtualenvwrapper"
-    description: Installing pyenv-virtualenvwrapper
-
-  -
-    command: ~/.pyenv/bin/pyenv update
-    description: Update pyenv and plugins
+  - [$DOTFILES_DIR/ConfigNvimProviders.sh, Configure Neovim providers]
 
 - link:
     ~/.tmux.conf:
@@ -93,14 +68,16 @@
         path: todo/actions.d
     ~/.config/nvim/init.vim:
         path: nvim/init.vim
-    ~/.config/nvim/completion.vim:
-        path: nvim/completion.vim
+    ~/.config/nvim/plugins.vim:
+        path: nvim/plugins.vim
+    ~/.config/nvim/plugin:
+        path: nvim/plugin
     ~/.config/nvim/after:
         path: nvim/after
-    ~/.vim:
-        path: ~/.config/nvim
-    ~/.vimrc:
-        path: ~/.config/nvim/init.vim
+    ~/.config/nvim/yaml:
+        path: nvim/yaml
+    ~/.config/nvim/autoload:
+        path: nvim/autoload
     ~/.ssh/config:
         path: ssh/config
     ~/.config/compton.conf:
@@ -113,100 +90,29 @@
         path: tmux/powerline
 
 - shell:
+    - [mkdir -p ~/.config/nvim/pack/minpac/opt, Make minpac install destination]
+
+    - [rm -rf ~/.config/nvim/pack/minpac/opt/minpac, Delete old minpac plugin]
+
+    -
+      command: git clone --depth 1 https://github.com/k-takata/minpac ~/.config/nvim/pack/minpac/opt/minpac
+      description: Installing minpac
+
+    -
+      command: "nvim -c \"call minpac#update('', {'do': 'quit'})\" --headless"
+      description: Installing nvim plugins
+
     -
       command: ~/.config/nvim/pack/minpac/start/fzf/install --completion --key-bindings --update-rc --no-bash --no-fish
       description: Configure fzf for zsh
 
     -
-      command: bash -c "[[ \$(find ~/.pyenv/versions/ -maxdepth 1 -type d -name 2.7* | wc -l) != 0 ]] || ~/.pyenv/bin/pyenv install-latest 2.7"
-      description: Installing latest python 2.7
-
-    -
-      command: bash -c "[[ \$(find ~/.pyenv/versions/ -maxdepth 1 -type d -name 3.6* | wc -l) != 0 ]] || ~/.pyenv/bin/pyenv install-latest 3.6"
-      description: Installing latest python 3.6
-
-    -
-      command: ~/.pyenv/bin/pyenv global ${$(find ~/.pyenv/versions/ -maxdepth 1 -type d -name '2.7*' | tail)##*/} ${$(find ~/.pyenv/versions/ -maxdepth 1 -type d -name '3.6*' | tail)##*/}
-
-      description: Setup Default Python Versions
-
-    -
-      command: zsh -c "[[ -d ~/.virtualenvs/neovim2 ]] || { eval $(~/.pyenv/bin/pyenv init -) && pyenv virtualenvwrapper_lazy && mkvirtualenv -p python2 neovim2 }"
-      description: Create python2 virtualenv for neovim
-
-    -
-      command: ~/.virtualenvs/neovim2/bin/pip install --upgrade neovim
-      description: Install python2 neovim plugin
-
-    -
-      command: zsh -c "[[ -d ~/.virtualenvs/neovim3 ]] || { eval $(~/.pyenv/bin/pyenv init -) && pyenv virtualenvwrapper_lazy && mkvirtualenv -p python3 neovim3 }"
-      description: Create python3 virtualenv for neovim
-
-    -
-      command: ~/.virtualenvs/neovim3/bin/pip install --upgrade flake8 jedi psutil setproctitle
-      description: Install completion manager requirments
-
-    -
-      command: ~/.virtualenvs/neovim3/bin/pip install --upgrade neovim neovim-remote nodeenv
-      description: Install python3 neovim plugin
-
-    -
-      command: zsh -c "eval $(~/.pyenv/bin/pyenv init -); pyenv virtualenvwrapper_lazy; workon neovim3; nodeenv -p; npm install -g bash-language-server;"
-      description: "Install bash language server."
-
-    -
-      command: zsh -c "eval $(~/.pyenv/bin/pyenv init -); pyenv virtualenvwrapper_lazy; workon neovim3; nodeenv -p; npm install -g dockerfile-language-server-nodejs"
-      description: "Install dockerfile language server."
-
-    -
-      command: zsh -c "eval $(~/.pyenv/bin/pyenv init -); pyenv virtualenvwrapper_lazy; workon neovim3; nodeenv -p; npm install -g javascript-typescript-langserver"
-      description: "Install javascript language server."
-
-    - mkdir -p ~/.config/nvim/pack/minpac/opt
-    - rm -rf ~/.config/nvim/pack/minpac/opt/minpac
-    -
-      command: git clone --depth 1 https://github.com/k-takata/minpac ~/.config/nvim/pack/minpac/opt/minpac
-      description: Installing minpac
-
-    - [nvim -c "call minpac#update()|quit" --headless, Installing vim plugins]
-    - [nvim -c "call minpac#update()|quit" --headless, Confirm vim plugin install]
-
-    -
       command: ~/.config/nvim/pack/minpac/start/fzf/install --bin
       description: Install fzf binary
-
-    -
-      command: zsh -c "gem install neovim"
-      description: Installing neovim gem
-
     -
       command: chmod 700 ~/.gnupg
       description: Fix home gnupg homedir
 
-
-- link:
-    ~/.local/bin/nvr:
-      path: ~/.virtualenvs/neovim3/bin/nvr
-
-    ~/.local/bin/flake8:
-      path: ~/.virtualenvs/neovim3/bin/flake8
-
-    ~/.local/bin/npm:
-      path: ~/.virtualenvs/neovim3/bin/npm
-
-    ~/.local/bin/node:
-      path: ~/.virtualenvs/neovim3/bin/node
-
-- shell:
-    -
-      command: ~/.local/bin/npm install -g neovim
-      description: Install neovim node
-
-- link:
-    ~/.local/bin/neovim-node-host:
-      path: ~/.virtualenvs/neovim3/bin/neovim-node-host
-
-- shell:
     -
       command: mkdir -p ~/.config/tmux/plugins
       description: Make tmux plugin directory
