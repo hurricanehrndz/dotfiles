@@ -1,0 +1,21 @@
+[Desktop Entry]
+DefaultProfile=HurricaneHrndz.profile
+
+[Favorite Profiles]
+Favorites=
+
+[KonsoleWindow]
+ShowMenuBarByDefault=false
+
+[MainWindow]
+Height 900=439
+State=AAAA/wAAAAD9AAAAAAAABaAAAANQAAAABAAAAAQAAAAIAAAACPwAAAAA
+ToolBarsMovable=Disabled
+Width 1440=1440
+Window-Maximized 900x1440=true
+
+[SearchSettings]
+SearchRegExpression=true
+
+[TabBar]
+TabBarPosition=Top
