@@ -22,11 +22,6 @@ if [[ ! -z  "$(command -v chruby)" ]]; then
   chruby ruby
 fi
 
-# set cursor, to pipe
-if [[ -o interactive ]] && [[ -t 2 ]]; then
-  print -n -- "\033[1 q"
-fi
-
 # make sure vi opens vim
 alias vmin='VIMCONFIG="~/.vim/min" VIMDATA="~/.local/share/vmin" nvim --noplugin -u ~/.vim/min/init.vim'
 alias vi='nvim'
@@ -96,9 +91,6 @@ alias zz='fasd_cd -d -i' # cd with interactive selection
 # todo
 alias t='todo.sh'
 alias m='buku'
-
-# load custom functions
-autoload -Uz alarm calc btheadphones
 
 # wake-on-lan cal-fedora-vmm01
 alias wake-server='sudo wakeonlan -i 10.255.250.255 4c:cc:6a:fc:f0:7f'
