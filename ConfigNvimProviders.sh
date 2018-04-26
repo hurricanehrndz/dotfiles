@@ -73,7 +73,7 @@ if [[ ! -d $HOME/.virtualenvs/neovim2 ]]; then
 fi
 
 # Check for neovim3 virtualenv
-if [[ ! -d $HOME/.virtualenvs/neovim2 ]]; then
+if [[ ! -d $HOME/.virtualenvs/neovim3 ]]; then
   mkvirtualenv -p python3 neovim3
 fi
 
@@ -115,13 +115,16 @@ binaries=("$HOME/.virtualenvs/neovim3/bin/nvr" \
   "$HOME/.virtualenvs/neovim3/bin/node" \
   "$HOME/.virtualenvs/neovim3/bin/neovim-node-host")
 
+mkdir -p "$HOME/.local/bin"
 for bin in "${binaries[@]}"; do
   linkToPath "$bin"
 done
 
 # Install rls
 if [[ -z "$(command -v rustup)"  ]]; then
-  curl https://sh.rustup.rs -sSf | sh
+  curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
 fi
 rustup install nightly
 rustup component add rls-preview rust-analysis rust-src --toolchain nightly
+mkdir -p "$HOME/.zfunc"
+rustup completions zsh > "$HOME/.zfunc/_rustup"
