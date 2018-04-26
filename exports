@@ -27,9 +27,7 @@ export VIMDATA=~/.local/share/nvim
 #
 # Terminal
 #
-#export TERMINAL=urxvtc-256color
-#export TERMINAL=termite
-export TERMINAL=mate-terminal
+export TERMINAL=konsole
 
 #
 # MAN PAGES
