@@ -16,7 +16,6 @@
     ~/.zprezto:
         path: prezto
     ~/.zshrc:
-        create: true
         path:  zshrc
     ~/.zshenv:
         path: zshenv
@@ -40,14 +39,8 @@
         path: Xresources
     ~/.fonts:
         path: fonts
-    ~/.i3:
-        path: i3
     ~/bin:
         path: bin
-    ~/.zfunc:
-        path: zfunc
-    ~/.config/mopidy:
-        path: mopidy
     ~/.gnupg/gpg.conf:
         path: gnupg/gpg.conf
     ~/.gnupg/gpg-agent.conf:
@@ -88,6 +81,11 @@
         path: tmux-powerlinerc
     ~/.config/tmux/powerline:
         path: tmux/powerline
+    ~/.local/share/konsole:
+        path: kde/local/share/konsole
+    ~/.config/:
+        glob: true
+        path: kde/config/*
 
 - shell:
     - [mkdir -p ~/.config/nvim/pack/minpac/opt, Make minpac install destination]
@@ -123,4 +121,3 @@
 
     - command: ~/.config/tmux/plugins/tpm/bin/install_plugins
       description: Install tmux plugins
-
