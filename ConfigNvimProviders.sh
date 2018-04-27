@@ -38,7 +38,7 @@ while IFS= read -r pathname; do
     PATH="$pathname:$PATH"
   fi
 done < <( find "$HOME/.pyenv" -type d -name versions -prune -o -name bin -print )
-PATH="$HOME/.pyenv/shims:$PATH"
+PATH="$HOME/.pyenv/shims:$HOME/.pyenv/bin:$PATH"
 
 echo "Using the following path: $PATH"
 
