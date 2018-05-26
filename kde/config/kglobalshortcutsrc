@@ -18,7 +18,7 @@ _k_friendly_name=KDE Daemon
 display=Display\tMeta+P,Display\tMeta+P,Switch Display
 
 [khotkeys]
-_k_friendly_name=System Settings
+_k_friendly_name=KDE Daemon
 {02af61cb-84c3-4bf7-a4fa-48cb06fbb906}=Meta+Print,none,Take Active Window Screenshot
 {79a3cfad-c9b3-4a20-988f-73715f035de1}=Meta+Shift+Print,none,Take Rectangular Region Screenshot
 {aacc8808-d880-4d4c-9964-6d12983a1135}=Print,none,Start Screenshot Tool
@@ -190,7 +190,7 @@ Window to Screen 4=none,none,Window to Screen 4
 Window to Screen 5=none,none,Window to Screen 5
 Window to Screen 6=none,none,Window to Screen 6
 Window to Screen 7=none,none,Window to Screen 7
-_k_friendly_name=System Settings
+_k_friendly_name=KWin
 view_actual_size=,Meta+0,Actual Size
 view_zoom_in=Meta+=,Meta+=,Zoom In
 view_zoom_out=Meta+-,Meta+-,Zoom Out
