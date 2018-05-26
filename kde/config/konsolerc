@@ -9,7 +9,8 @@ ShowMenuBarByDefault=false
 
 [MainWindow]
 Height 900=439
-State=AAAA/wAAAAD9AAAAAAAABaAAAANQAAAABAAAAAQAAAAIAAAACPwAAAAA
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAAAABaAAAANuAAAABAAAAAQAAAAIAAAACPwAAAAA
 ToolBarsMovable=Disabled
 Width 1440=1440
 Window-Maximized 900x1440=true
