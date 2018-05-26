@@ -132,5 +132,6 @@ if [[ -z "$(command -v rustup)"  ]]; then
 fi
 rustup install nightly
 rustup component add rls-preview rust-analysis rust-src --toolchain nightly
+cargo install ripgrep
 mkdir -p "$HOME/.zfunc"
 rustup completions zsh > "$HOME/.zfunc/_rustup"
