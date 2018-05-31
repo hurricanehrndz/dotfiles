@@ -40,7 +40,7 @@ while IFS= read -r pathname; do
 done < <( find "$HOME/.pyenv" -type d -name versions -prune -o -name bin -print )
 OTHER_PATHS=("$HOME/.cargo/bin" "$HOME/.pyenv/shims" "$HOME/.pyenv/bin" "$HOME/.local/bin" "/snap/bin")
 for other_path in "${OTHER_PATHS[@]}"; do
-  if [[ ! "$PATH" =~ "$other_path" && -e "$other_path" ]]; then
+  if [[ ! "$PATH" =~ $other_path && -e "$other_path" ]]; then
     PATH="$other_path:$PATH"
   fi
 done
