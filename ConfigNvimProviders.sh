@@ -32,12 +32,6 @@ if [[ ! -d $HOME/.pyenv/plugins/pyenv-virtualenvwrapper ]]; then
   git clone https://github.com/pyenv/pyenv-virtualenvwrapper "$HOME/.pyenv/plugins/pyenv-virtualenvwrapper"
 fi
 
-# Update path
-while IFS= read -r pathname; do
-  if [[ $PATH =~ $pathname ]]; then
-    PATH="$pathname:$PATH"
-  fi
-done < <( find "$HOME/.pyenv" -type d -name versions -prune -o -name bin -print )
 OTHER_PATHS=("$HOME/.cargo/bin" "$HOME/.pyenv/shims" "$HOME/.pyenv/bin" "$HOME/.local/bin" "/snap/bin")
 for other_path in "${OTHER_PATHS[@]}"; do
   if [[ ! "$PATH" =~ $other_path && -e "$other_path" ]]; then
@@ -49,7 +43,7 @@ export PATH
 echo "Using the following path: $PATH"
 
 # Update pyenv plugins
-#pyenv update
+pyenv update
 
 # Install python2.7
 if [[ $(find "$HOME/.pyenv/versions/" -maxdepth 1 -type d -name '2.7*' | wc -l) == 0 ]]; then
@@ -65,6 +59,25 @@ fi
 pyv2="$(find "$HOME/.pyenv/versions/" -maxdepth 1 -type d -name '2.7*' | tail)"
 pyv3="$(find "$HOME/.pyenv/versions/" -maxdepth 1 -type d -name '3.6*' | tail)"
 pyenv global "${pyv2##*/}" "${pyv3##*/}"
+
+# Install Ansible
+pip2 install --upgrade pip
+pip3 install --upgrade pip
+if ! pip show ansible > /dev/null 2>&1 ; then
+  pip2 install ansible
+fi
+
+if ! pip show ansible-toolbox > /dev/null 2>&1 ; then
+  pip2 install git+https://github.com/larsks/ansible-toolbox
+fi
+
+if ! pip show python-apt > /dev/null 2>&1 ; then
+  pip2 install git+https://salsa.debian.org/apt-team/python-apt@1.6.1
+fi
+
+if ! pip show python-distutils-extra 2>&1 ; then
+  pip2 install git+https://salsa.debian.org/debian/python-distutils-extra.git@2.41
+fi
 
 # Init pyenv and virtualenvwrapper
 # shellcheck disable=SC2034
@@ -132,6 +145,6 @@ if [[ -z "$(command -v rustup)"  ]]; then
 fi
 rustup install nightly
 rustup component add rls-preview rust-analysis rust-src --toolchain nightly
-cargo install ripgrep
+cargo install --force ripgrep
 mkdir -p "$HOME/.zfunc"
 rustup completions zsh > "$HOME/.zfunc/_rustup"
