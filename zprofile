@@ -31,7 +31,6 @@ path=(
   /usr/sbin
   $path
 )
-systemctl --user import-environment PATH
 
 #
 # Less
