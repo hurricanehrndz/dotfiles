@@ -34,7 +34,7 @@ fi
 
 OTHER_PATHS=("$HOME/.cargo/bin" "$HOME/.pyenv/shims" "$HOME/.pyenv/bin" "$HOME/.local/bin" "/snap/bin")
 for other_path in "${OTHER_PATHS[@]}"; do
-  if [[ ! "$PATH" =~ $other_path && -e "$other_path" ]]; then
+  if [[ ! "$PATH" =~ $other_path  ]]; then
     PATH="$other_path:$PATH"
   fi
 done
@@ -43,15 +43,16 @@ export PATH
 echo "Using the following path: $PATH"
 
 # Update pyenv plugins
+export PYENV_ROOT="$HOME/.pyenv"
 pyenv update
 
 # Install python2.7
-if [[ $(find "$HOME/.pyenv/versions/" -maxdepth 1 -type d -name '2.7*' | wc -l) == 0 ]]; then
+if ! pyenv versions | grep -q -c "2.7" ; then
   pyenv install-latest 2.7
 fi
 
 # Install python3.6
-if [[ $(find "$HOME/.pyenv/versions/" -maxdepth 1 -type d -name '3.6*' | wc -l) == 0 ]]; then
+if ! pyenv versions | grep -q -c "3.6" ; then
   pyenv install-latest 3.6
 fi
 
@@ -59,6 +60,7 @@ fi
 pyv2="$(find "$HOME/.pyenv/versions/" -maxdepth 1 -type d -name '2.7*' | tail)"
 pyv3="$(find "$HOME/.pyenv/versions/" -maxdepth 1 -type d -name '3.6*' | tail)"
 pyenv global "${pyv2##*/}" "${pyv3##*/}"
+pyenv rehash
 
 # Install Ansible
 pip2 install --upgrade pip
