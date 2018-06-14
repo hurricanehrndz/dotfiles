@@ -63,8 +63,13 @@ pyenv global "${pyv2##*/}" "${pyv3##*/}"
 pyenv rehash
 
 # Install Ansible
-pip2 install --upgrade pip
-pip3 install --upgrade pip
+pip2 install -U pip
+pip2 install -U setuptools
+pip2 install -U wheel
+pip3 install -U pip
+pip3 install -U setuptools
+pip3 install -U wheel
+
 if ! pip show ansible > /dev/null 2>&1 ; then
   pip2 install ansible
 fi
