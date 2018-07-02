@@ -1,0 +1,1 @@
+﻿bash.exe -c -l "LIBGL_ALWAYS_INDIRECT=1 DISPLAY=:0 konsole"

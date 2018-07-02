@@ -1,0 +1,108 @@
+---
+
+- hosts: localhost
+  become: true
+  become_method: sudo
+  any_errors_fatal: false
+  max_fail_percentage: 30
+  tasks:
+    - name: Install build-essential
+      apt:
+        name: build-essential
+        state: present
+
+    - name: Install build-deps for ruby
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - bison
+        - libffi-dev
+        - libgdbm-dev
+        - libncurses5-dev
+        - libreadline-dev
+        - libssl-dev
+        - libyaml-dev
+        - zlib1g-dev
+
+    - name: Install build-deps for python
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - libbz2-dev
+        - libsqlite3-dev
+
+    - name: Register ruby-install
+      stat:
+        path: /usr/bin/ruby-install
+      register: ruby_install
+
+    - name: Download ruby-install src
+      git:
+        repo: 'https://github.com/postmodern/ruby-install.git'
+        dest: /tmp/ruby-install
+        version: master
+      when:
+        - not ruby_install.stat.exists
+
+    - name: Install ruby-install from src
+      make:
+        chdir: /tmp/ruby-install
+        target: install
+        params:
+          PREFIX: /usr
+      when:
+        - not ruby_install.stat.exists
+
+    - name: Cleanup ruby-install src
+      file:
+        path: /tmp/ruby-install
+        state: absent
+
+    - name: Cleanup ruby-install src
+      file:
+        path: /tmp/ruby-install
+        state: absent
+
+    # chruby install
+    - name: Register chruby
+      stat:
+        path: /usr/share/chruby
+      register: chruby
+
+    - name: Download chruby src
+      git:
+        repo: 'https://github.com/postmodern/chruby.git'
+        dest: /tmp/chruby
+        version: master
+      when:
+        - not chruby.stat.exists
+
+    - name: Install chruby from src
+      make:
+        chdir: /tmp/chruby
+        target: install
+        params:
+          PREFIX: /usr
+      when:
+        - not chruby.stat.exists
+
+    - name: Cleanup chruby src
+      file:
+        path: /tmp/chruby
+        state: absent
+
+    - name: Install other pkgs
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - intltool
+        - libapt-pkg-dev
+        - mesa-utils
+        - neovim
+        - pass
+        - shellcheck
+        - xbase-clients
+

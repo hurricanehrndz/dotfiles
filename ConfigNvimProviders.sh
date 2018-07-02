@@ -64,14 +64,18 @@ pyenv rehash
 
 # Install Ansible
 pip2 install -U pip
-pip2 install -U setuptools
-pip2 install -U wheel
+pip2 install -U --force setuptools
+pip2 install -U --force wheel
 pip3 install -U pip
-pip3 install -U setuptools
-pip3 install -U wheel
+pip3 install -U --force setuptools
+pip3 install -U --force wheel
 
 if ! pip show ansible > /dev/null 2>&1 ; then
   pip2 install ansible
+fi
+
+if ! pip show sphinx > /dev/null 2>&1 ; then
+  pip2 install sphinx
 fi
 
 if ! pip show ansible-toolbox > /dev/null 2>&1 ; then
