@@ -123,7 +123,7 @@ function gi { curl -L -s https://www.gitignore.io/api/$@ ;}
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Set PATH
-OTHER_PATHS=("$HOME/.cargo/bin" "$HOME/go/bin" "$HOME/.local/bin"  "$HOME/winbin/" "/snap/bin")
+OTHER_PATHS=("$HOME/.cargo/bin" "$HOME/go/bin" "$HOME/.local/bin"  "$HOME/winbin/" "$HOME/bin/" "/snap/bin")
 for other_path in "${OTHER_PATHS[@]}"; do
   if [[ ! "$PATH" =~ "$other_path" && -e "$other_path" ]]; then
     PATH="$other_path:$PATH"
