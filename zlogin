@@ -1,4 +1,3 @@
-# vim: ft=sh sw=3 sts=3 ts=3 noet list ai lcs=tab\:\|\  
 #
 # Executes commands at login post-zshrc.
 #
@@ -8,13 +7,23 @@
 
 # Execute code that does not affect the current session in the background.
 {
-	# Compile the completion dump to increase startup speed.
-	zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
-	if [[ -s "$zcompdump" && (! -s "${zcompdump}.zwc" || "$zcompdump" -nt "${zcompdump}.zwc") ]]
-	then
-		zcompile "$zcompdump"
-	fi
+  # Compile the completion dump to increase startup speed.
+  zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
+  if [[ -s "$zcompdump" && (! -s "${zcompdump}.zwc" || "$zcompdump" -nt "${zcompdump}.zwc") ]]; then
+    zcompile "$zcompdump"
+  fi
 } &!
+
+# Execute code only if STDERR is bound to a TTY.
+[[ -o INTERACTIVE && -t 2 ]] && {
+
+  # Print a random, hopefully interesting, adage.
+  if (( $+commands[fortune] )); then
+    fortune -s
+    print
+  fi
+
+} >&2
 
 # Solarized theme for tty, the dark version.
 # Based on:
@@ -22,23 +31,22 @@
 #   - Xresources from http://github.com/altercation/solarized
 # Generated with pty2tty.awk by Joep van Delft
 # http://github.com/joepvd/tty-solarized
-if [[ "$TERM" = "linux" ]]
-then
-	echo -en "\e]PB657b83" # S_base00
-	echo -en "\e]PA586e75" # S_base01
-	echo -en "\e]P0073642" # S_base02
-	echo -en "\e]P62aa198" # S_cyan
-	echo -en "\e]P8002b36" # S_base03
-	echo -en "\e]P2859900" # S_green
-	echo -en "\e]P5d33682" # S_magenta
-	echo -en "\e]P1dc322f" # S_red
-	echo -en "\e]PC839496" # S_base0
-	echo -en "\e]PE93a1a1" # S_base1
-	echo -en "\e]P9cb4b16" # S_orange
-	echo -en "\e]P7eee8d5" # S_base2
-	echo -en "\e]P4268bd2" # S_blue
-	echo -en "\e]P3b58900" # S_yellow
-	echo -en "\e]PFfdf6e3" # S_base3
-	echo -en "\e]PD6c71c4" # S_violet
-	clear # against bg artifacts
+if [ "$TERM" = "linux" ]; then
+    echo -en "\e]PB657b83" # S_base00
+    echo -en "\e]PA586e75" # S_base01
+    echo -en "\e]P0073642" # S_base02
+    echo -en "\e]P62aa198" # S_cyan
+    echo -en "\e]P8002b36" # S_base03
+    echo -en "\e]P2859900" # S_green
+    echo -en "\e]P5d33682" # S_magenta
+    echo -en "\e]P1dc322f" # S_red
+    echo -en "\e]PC839496" # S_base0
+    echo -en "\e]PE93a1a1" # S_base1
+    echo -en "\e]P9cb4b16" # S_orange
+    echo -en "\e]P7eee8d5" # S_base2
+    echo -en "\e]P4268bd2" # S_blue
+    echo -en "\e]P3b58900" # S_yellow
+    echo -en "\e]PFfdf6e3" # S_base3
+    echo -en "\e]PD6c71c4" # S_violet
+    clear # against bg artifacts
 fi

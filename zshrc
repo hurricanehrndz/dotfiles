@@ -42,9 +42,6 @@ fi
 alias rm='nocorrect rm'
 alias rm="${aliases[rm]:-rm} -I"
 
-# screen lock
-alias afk='i3exit lock'
-
 # diff
 alias cdiff='command diff'
 
