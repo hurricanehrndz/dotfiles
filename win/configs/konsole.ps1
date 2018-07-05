@@ -1,1 +1,1 @@
-﻿bash.exe -c -l "LIBGL_ALWAYS_INDIRECT=1 DISPLAY=:0 konsole"
+﻿wsl.exe zsh -l -c "eval `$(`$HOME/winbin/weasel-pageant -r) ; LIBGL_ALWAYS_INDIRECT=1 DISPLAY=:0 konsole"
