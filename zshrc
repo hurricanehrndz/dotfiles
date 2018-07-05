@@ -7,7 +7,6 @@
 #
 
 
-source $HOME/.zprofile
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
@@ -128,4 +127,3 @@ for other_path in "${OTHER_PATHS[@]}"; do
 done
 export PATH="$PATH"
 export SHELL=$(which zsh)
-eval $(weasel-pageant -r)
