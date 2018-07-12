@@ -14,7 +14,7 @@
   - [ \cp -r win/configs/*  /mnt/c/Users/$USER/configs/, Installing WIN config files ]
   - [ \cp -r win/Desktop/*  /mnt/c/Users/$USER/Desktop/, Installing WIN Desktop Shortcuts ]
   - [ \cp -r win/Startup/*  "/mnt/c/Users/$USER/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/", Installing win Startup Files ]
-  - [ ln -sf "/mnt/c/Users/$USER/bin" ~/winbin, Link winbin directory to home]
+  - [ ln -sfT "/mnt/c/Users/$USER/bin" ~/winbin, Link winbin directory to home]
 
 
 - link:
