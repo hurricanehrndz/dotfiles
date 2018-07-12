@@ -18,25 +18,25 @@ echo "Connecting to $REMOTEHOST as $REMOTEUSER"
 
 if $SSH -A -N -f "$REMOTEUSER_AT_REMOTEHOST"; then
   # Figure out local and remote GPG socket paths
-  LOCAL_GPG_SOCKET="$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.extra"
-  REMOTE_GPG_SOCKET="$($SSH $REMOTEHOST gpgconf --list-dir agent-socket)"
-  REMOTE_GPG_SOCKET_DIR="$($SSH $REMOTEHOST gpgconf --list-dir socketdir)"
+  LOCAL_GPG_SOCKET="$(gpgconf --list-dir agent-socket)"
+  REMOTE_GPG_SOCKET="$($SSH "$REMOTEUSER_AT_REMOTEHOST" gpgconf --list-dir agent-socket)"
+  REMOTE_GPG_SOCKET_DIR="$($SSH "$REMOTEUSER_AT_REMOTEHOST" gpgconf --list-dir socketdir)"
 
   # kill all gpg-agent instances
-  $SSH $REMOTEHOST pkill gpg-agent
+  $SSH "$REMOTEUSER_AT_REMOTEHOST" gpgconf --kill gpg-agent
 
   # make required directories for gpg forwarding
-  $SSH $REMOTEHOST gpgconf --create-socketdir
+  $SSH "$REMOTEUSER_AT_REMOTEHOST" gpgconf --create-socketdir
   # make sure no agent socket is left
-  $SSH $REMOTEHOST rm -f "$REMOTE_GPG_SOCKET_DIR/*"
+  $SSH "$REMOTEUSER_AT_REMOTEHOST"  rm -f "$REMOTE_GPG_SOCKET_DIR/S.gpg*"
 
   # forward gpg socket
   if [[ -e "$LOCAL_GPG_SOCKET" ]]; then
-    $SSH -T -o ExitOnForwardFailure=yes -R $REMOTE_GPG_SOCKET:$LOCAL_GPG_SOCKET -O forward $REMOTEHOST
+    $SSH -T -o ExitOnForwardFailure=yes -R $REMOTE_GPG_SOCKET:$LOCAL_GPG_SOCKET -O forward "$REMOTEUSER_AT_REMOTEHOST"
   else
     echo "Error: no extra gpg extra socket."
   fi
 
   # finally connect to host
-  $SSH -A $REMOTEHOST
+  $SSH -A "$REMOTEUSER_AT_REMOTEHOST"
 fi
