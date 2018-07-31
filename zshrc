@@ -112,7 +112,7 @@ alias tmux="env TERM=xterm-256color tmux"
 alias sudoe='sudo env PATH=$PATH'
 
 # unlock server
-alias unlock-ryzen='until ping -c1 ryzen-vmm01 &>/dev/null; do :; done; ppers -c systems/ryzen-vmm01 && xclip -o -selection clipboard | ssh -p 222 root@ryzen-vmm01 cryptroot-unlock'
+alias unlock-ryzen='while ! $(nc -z 10.255.250.210 222); do sleep 30; done; ppers -c systems/ryzen-vmm01 && xclip -o -selection clipboard | ssh -p 222 root@ryzen-vmm01 cryptroot-unlock'
 alias unlock-dev='until ping -c1 ryzen-dev-vm01 &>/dev/null; do :; done; ppers -c systems/ryzen-dev-vm01 && xclip -o -selection clipboard | ssh -p 222 root@ryzen-dev-vm01 cryptroot-unlock'
 
 # gitignore.gi
@@ -121,7 +121,7 @@ function gi { curl -L -s https://www.gitignore.io/api/$@ ;}
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Set PATH
-OTHER_PATHS=("$HOME/.cargo/bin" "$HOME/go/bin" "$HOME/.local/bin" "/snap/bin")
+OTHER_PATHS=("$HOME/.cargo/bin" "$HOME/go/bin" "$HOME/.local/bin" "$HOME/bin" "/snap/bin")
 for other_path in "${OTHER_PATHS[@]}"; do
   if [[ ! "$PATH" =~ "$other_path" && -e "$other_path" ]]; then
     PATH="$other_path:$PATH"
