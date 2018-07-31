@@ -19,7 +19,7 @@ kcminputrc Mouse cursorSize ''
 !/usr/share/config/kcminputrc
 *
 ksplashrc KSplash Theme Breeze
-/home/hurricanehrndz/.config/ksplashrc
+!/home/hurricanehrndz/.config/ksplashrc
 !/etc/xdg/xdg-plasma/ksplashrc
 !/etc/xdg/ksplashrc
 !/usr/share/kubuntu-default-settings/kf5-settings/ksplashrc
@@ -29,7 +29,7 @@ ksplashrc KSplash Theme Breeze
 !/usr/share/config/ksplashrc
 *
 ksplashrc KSplash Engine KSplashQML
-/home/hurricanehrndz/.config/ksplashrc
+!/home/hurricanehrndz/.config/ksplashrc
 !/etc/xdg/xdg-plasma/ksplashrc
 !/etc/xdg/ksplashrc
 !/usr/share/kubuntu-default-settings/kf5-settings/ksplashrc

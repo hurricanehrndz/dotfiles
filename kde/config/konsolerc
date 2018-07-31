@@ -13,6 +13,7 @@ MenuBar=Disabled
 State=AAAA/wAAAAD9AAAAAAAABaAAAANuAAAABAAAAAQAAAAIAAAACPwAAAAA
 ToolBarsMovable=Disabled
 Width 1440=1440
+Window-Maximized 1080x1920=true
 Window-Maximized 900x1440=true
 
 [SearchSettings]
