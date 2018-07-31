@@ -33,6 +33,11 @@ path=(
 )
 
 #
+# App Paths
+#
+emulate sh -c 'source /etc/profile.d/apps-bin-path.sh'
+
+#
 # Less
 #
 
