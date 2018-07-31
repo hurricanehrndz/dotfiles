@@ -35,7 +35,9 @@ path=(
 #
 # App Paths
 #
-emulate sh -c 'source /etc/profile.d/apps-bin-path.sh'
+if [[ -f "/etc/profile.d/apps-bin-path.sh" ]]; then
+  emulate sh -c 'source /etc/profile.d/apps-bin-path.sh'
+fi
 
 #
 # Less
