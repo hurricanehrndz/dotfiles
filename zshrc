@@ -113,7 +113,7 @@ alias sudoe='sudo env PATH=$PATH'
 
 # unlock server
 alias unlock-ryzen='while ! $(nc -z 10.255.250.210 222); do sleep 30; done; ppers -c systems/ryzen-vmm01 && xclip -o -selection clipboard | ssh -p 222 root@ryzen-vmm01 cryptroot-unlock'
-alias unlock-dev='until ping -c1 ryzen-dev-vm01 &>/dev/null; do :; done; ppers -c systems/ryzen-dev-vm01 && xclip -o -selection clipboard | ssh -p 222 root@ryzen-dev-vm01 cryptroot-unlock'
+alias unlock-dev='while ! $(nc -z 10.255.250.211 222); do sleep 30; done; ppers -c systems/ryzen-dev-vm01 && xclip -o -selection clipboard | ssh -p 222 root@ryzen-dev-vm01 cryptroot-unlock'
 
 # gitignore.gi
 function gi { curl -L -s https://www.gitignore.io/api/$@ ;}
