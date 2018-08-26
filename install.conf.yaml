@@ -16,7 +16,7 @@
     ~/.zprezto:
         path: prezto
     ~/.zshrc:
-        path:  zshrc
+        path: zshrc
     ~/.zshenv:
         path: zshenv
     ~/.zlogin:
@@ -81,16 +81,13 @@
         path: tmux-powerlinerc
     ~/.config/tmux/powerline:
         path: tmux/powerline
-    ~/.local/share/konsole:
-        path: kde/local/share/konsole
-    ~/.config/:
-        glob: true
-        path: kde/config/*
 
 - shell:
     - [mkdir -p ~/.config/nvim/pack/minpac/opt, Make minpac install destination]
 
     - [rm -rf ~/.config/nvim/pack/minpac/opt/minpac, Delete old minpac plugin]
+
+    - [$DOTFILES_DIR/installKdeConfig.sh, Install KDE config]
 
     -
       command: git clone --depth 1 https://github.com/k-takata/minpac ~/.config/nvim/pack/minpac/opt/minpac
