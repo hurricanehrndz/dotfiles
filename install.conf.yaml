@@ -53,8 +53,6 @@
         path: gnupg/scdaemon.conf
     ~/.exports:
         path: exports
-    ~/.config/termite:
-        path: termite
     ~/.todo/config:
         path: todo/config
     ~/.todo.actions.d:
@@ -73,8 +71,6 @@
         path: nvim/autoload
     ~/.ssh/config:
         path: ssh/config
-    ~/.config/compton.conf:
-        path: compton.conf
     ~/.xsessionrc:
         path: xsessionrc
     ~/.tmux-powerlinerc:
