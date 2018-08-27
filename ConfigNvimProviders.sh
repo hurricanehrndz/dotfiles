@@ -79,7 +79,7 @@ if ! pip show ansible-toolbox > /dev/null 2>&1 ; then
 fi
 
 if ! pip show python-apt > /dev/null 2>&1 ; then
-  pip2 install git+https://salsa.debian.org/apt-team/python-apt@1.6.1
+  pip2 install git+https://salsa.debian.org/apt-team/python-apt@1.6.2
 fi
 
 if ! pip show python-distutils-extra 2>&1 ; then
