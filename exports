@@ -54,3 +54,6 @@ PASSWORD_STORE_UMASK=177
 
 # pyenv virtualenvwrapper
 export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+
+# virsh default connect
+export VIRSH_DEFAULT_CONNECT_URI='qemu:///system'

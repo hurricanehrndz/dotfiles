@@ -57,9 +57,6 @@ alias egrep='egrep --color=auto'
 
 # commonly used sudo programs
 alias lsblk='sudo lsblk'
-alias virsh='virsh -c qemu:///system'
-alias virt-viewer='virt-viewer -c qemu:///system'
-alias virt-install='sudo virt-install -c qemu:///system'
 
 # password store
 alias pwork="PASSWORD_STORE_DIR=$HOME/.work-pass-store pass"
