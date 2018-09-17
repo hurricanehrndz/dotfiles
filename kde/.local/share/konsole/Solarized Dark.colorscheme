@@ -1,5 +1,5 @@
 [Background]
-Color=0,43,54
+Color=0,23,29
 
 [BackgroundFaint]
 Color=0,43,54
@@ -14,7 +14,7 @@ Color=7,54,66
 Color=7,54,66
 
 [Color0Intense]
-Color=0,43,54
+Color=193,202,205
 
 [Color1]
 Color=220,50,47
@@ -90,5 +90,5 @@ Color=147,161,161
 
 [General]
 Description=Solarized Dark
-Opacity=0.95
+Opacity=0.9
 Wallpaper=
