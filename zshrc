@@ -58,10 +58,6 @@ alias egrep='egrep --color=auto'
 # commonly used sudo programs
 alias lsblk='sudo lsblk'
 
-# password store
-alias pwork="PASSWORD_STORE_DIR=$HOME/.work-pass-store pass"
-alias ppers="PASSWORD_STORE_DIR=$HOME/.personal-pass-store pass"
-
 # Delete all stopped containers.
 alias dockercleanc='printf "\n>>> Deleting stopped containers\n\n" && docker rm $(docker ps -a | grep Exited |  docker ps -a | grep Exited | grep -oe "^\w*")'
 
