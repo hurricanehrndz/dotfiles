@@ -1,0 +1,24 @@
+#!/bin/bash
+
+fonts_to_install=("SourceCodePro" )
+nerdfont_releases="https://github.com/ryanoasis/nerd-fonts/releases.atom"
+nerdfonts_release_download_prefix="https://github.com/ryanoasis/nerd-fonts/releases/download/"
+
+
+get_release_ver() {
+  url="$1"
+  curl -sL "$url" | awk '{
+    if ($0 ~ "<entry>") { isRelease=1 }
+    if (isRelease == 1 && $0 ~ "title" && done != 1) {
+      ver=$0;
+      gsub("(</|<)title>","",ver);
+      gsub("[[:space:]]+","",ver);
+      done=1
+    }
+  }
+  END {printf "%s", ver;}'
+}
+
+#unzip -C "$zip_file" "*Mono.ttf" -d "$HOME/.fonts/$font_name"
+
+get_release_ver "$nerdfont_releases"
