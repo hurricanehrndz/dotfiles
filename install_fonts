@@ -1,9 +1,8 @@
 #!/bin/bash
 
-fonts_to_install=("SourceCodePro" )
+fonts_to_install=("SourceCodePro" "Hack" "InconsolataLGC" "FiraCode")
 nerdfont_releases="https://github.com/ryanoasis/nerd-fonts/releases.atom"
-nerdfonts_release_download_prefix="https://github.com/ryanoasis/nerd-fonts/releases/download/"
-
+download_url_prefix="https://github.com/ryanoasis/nerd-fonts/releases/download"
 
 get_release_ver() {
   url="$1"
@@ -19,6 +18,26 @@ get_release_ver() {
   END {printf "%s", ver;}'
 }
 
-#unzip -C "$zip_file" "*Mono.ttf" -d "$HOME/.fonts/$font_name"
+download_font() {
+  font_name="$1"
+  curl -o "$tmpdir/$font_name.zip" -sSL "$download_url_prefix/$version/$font_name.zip"
+}
 
-get_release_ver "$nerdfont_releases"
+install_font() {
+  font_name="$1"
+  zip_file="$tmpdir/$font_name.zip"
+  dest="$HOME/.fonts/$font_name"
+  mkdir -p "$dest"
+  unzip -C "$zip_file" "*Mono.ttf" -d "$dest"
+}
+
+version="$(get_release_ver "$nerdfont_releases")"
+tmpdir="$(mktemp -d)"
+
+for font_name in ${fonts_to_install[*]}; do
+  download_font "$font_name"
+  install_font "$font_name"
+done
+
+fc-cache -f -r > /dev/null
+rm -rf "$tmpdir"
