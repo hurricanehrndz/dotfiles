@@ -27,6 +27,7 @@ install_font() {
   font_name="$1"
   zip_file="$tmpdir/$font_name.zip"
   dest="$HOME/.fonts/$font_name"
+  rm -rf "$dest"
   mkdir -p "$dest"
   unzip -C "$zip_file" "*Mono.ttf" -d "$dest"
 }
