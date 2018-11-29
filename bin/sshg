@@ -9,7 +9,6 @@ for arg in "${args[@]}"; do
   fi
   (( arg_cnt++ ))
 done
-exit
 
 #REMOTEUSER_AT_REMOTEHOST="${*:-1}"
 REMOTEHOST="${REMOTEUSER_AT_REMOTEHOST##*@}"
