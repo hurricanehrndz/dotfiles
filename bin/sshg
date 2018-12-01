@@ -1,6 +1,16 @@
 #!/bin/bash
+args=("$@")
+arg_cnt=0
 
-REMOTEUSER_AT_REMOTEHOST="${*:-1}"
+for arg in "${args[@]}"; do
+  if [[ "$arg" =~ @ ]]; then
+    REMOTEUSER_AT_REMOTEHOST="$arg"
+    unset "args[$arg_cnt]"
+  fi
+  (( arg_cnt++ ))
+done
+
+#REMOTEUSER_AT_REMOTEHOST="${*:-1}"
 REMOTEHOST="${REMOTEUSER_AT_REMOTEHOST##*@}"
 REMOTEUSER="${REMOTEUSER_AT_REMOTEHOST%%@*}"
 CONTROLPATH="${HOME}/.ssh/master-%r@%h:%p"
@@ -42,5 +52,5 @@ if $SSH -A -N -f "$REMOTEUSER_AT_REMOTEHOST"; then
   fi
 
   # finally connect to host
-  $SSH -A "$REMOTEUSER_AT_REMOTEHOST"
+  $SSH -A "${args[@]}" "$REMOTEUSER_AT_REMOTEHOST"
 fi
