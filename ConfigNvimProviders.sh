@@ -103,10 +103,13 @@ if [[ ! -d $HOME/.virtualenvs/neovim3 ]]; then
   mkvirtualenv -p python3 neovim3
 fi
 
-# Install python support
-"$HOME/.virtualenvs/neovim2/bin/pip" install neovim
-"$HOME/.virtualenvs/neovim3//bin/pip" install flake8 jedi psutil setproctitle
-"$HOME/.virtualenvs/neovim3/bin/pip" install neovim neovim-remote nodeenv
+# Install python2 support
+"$HOME/.virtualenvs/neovim2/bin/pip" install pynvim
+# Install python3 support
+"$HOME/.virtualenvs/neovim3/bin/pip" install flake8 jedi psutil setproctitle
+"$HOME/.virtualenvs/neovim3/bin/pip" install python-language-server
+"$HOME/.virtualenvs/neovim3/bin/pip" install nodeenv
+"$HOME/.virtualenvs/neovim3/bin/pip" install pynvim neovim-remote
 
 # Install npm support
 workon neovim3
@@ -116,8 +119,6 @@ fi
 npm i -g bash-language-server
 npm i -g dockerfile-language-server-nodejs
 npm i -g javascript-typescript-langserver
-npm i -g neovim
-npm i -g hurricanehrndz/yaml-language-server#vim
 gem_bin=$(find "$HOME/.rubies/" -name "gem")
 
 # Install ruby support
@@ -137,9 +138,7 @@ function linkToPath() {
 # Setup superseding binaries
 binaries=("$HOME/.virtualenvs/neovim3/bin/nvr" \
   "$HOME/.virtualenvs/neovim3/bin/flake8" \
-  "$HOME/.virtualenvs/neovim3/bin/npm" \
-  "$HOME/.virtualenvs/neovim3/bin/node" \
-  "$HOME/.virtualenvs/neovim3/bin/neovim-node-host")
+  "$HOME/.virtualenvs/neovim3/bin/pyls" )
 
 mkdir -p "$HOME/.local/bin"
 for bin in "${binaries[@]}"; do
