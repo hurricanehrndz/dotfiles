@@ -10,3 +10,6 @@ host *
     ControlMaster auto
     ControlPath ~/.ssh/master-%r@%h:%p
     ControlPersist 1m
+
+host 10.255.250.1
+    MACs hmac-sha2-256
