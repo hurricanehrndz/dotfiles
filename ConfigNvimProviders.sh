@@ -2,6 +2,10 @@
 
 echo "Using home: $HOME"
 
+echo "Removing existing python install and virtualenvs..."
+rm -rf "$HOME/.virtualenvs/neovim2" "$HOME/.virtualenvs/neovim3" "$HOME/.virtualenvs/ansible-dev"
+rm -rf "$HOME/.pyenv/versions"
+
 # Install pyenv
 if [[ ! -d $HOME/.pyenv ]]; then
   git clone https://github.com/pyenv/pyenv "$HOME/.pyenv"
@@ -66,32 +70,21 @@ pyenv rehash
 pip2 install -U pip
 pip2 install -U setuptools
 pip2 install -U wheel
+pip2 install -U virtualenvwrapper
 pip3 install -U pip
 pip3 install -U setuptools
 pip3 install -U wheel
+pip3 install -U virtualenvwrapper
 
-if ! pip show ansible > /dev/null 2>&1 ; then
-  pip2 install ansible
-fi
-
-if ! pip show ansible-toolbox > /dev/null 2>&1 ; then
-  pip2 install git+https://github.com/larsks/ansible-toolbox
-fi
-
-if ! pip show python-apt > /dev/null 2>&1 ; then
-  pip2 install git+https://salsa.debian.org/apt-team/python-apt@1.6.2
-fi
-
-if ! pip show python-distutils-extra 2>&1 ; then
-  pip2 install git+https://salsa.debian.org/debian/python-distutils-extra.git@2.41
-fi
 
 # Init pyenv and virtualenvwrapper
 # shellcheck disable=SC2034
 WORKON_HOME="$HOME/.virtualenvs"
-pyenv init -
-pyenv virtualenv-init -
-eval "$(pyenv sh-virtualenvwrapper)"
+PYENV_SHELL=bash
+PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV=true
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+pyenv virtualenvwrapper
 
 # Check for neovim2 virtualenv
 if [[ ! -d $HOME/.virtualenvs/neovim2 ]]; then
@@ -104,22 +97,51 @@ if [[ ! -d $HOME/.virtualenvs/neovim3 ]]; then
 fi
 
 # Install python2 support
-"$HOME/.virtualenvs/neovim2/bin/pip" install pynvim
+workon neovim2
+pip install pynvim
+pip install yamllint
 # Install python3 support
-"$HOME/.virtualenvs/neovim3/bin/pip" install flake8 jedi psutil setproctitle
-"$HOME/.virtualenvs/neovim3/bin/pip" install python-language-server
-"$HOME/.virtualenvs/neovim3/bin/pip" install nodeenv
-"$HOME/.virtualenvs/neovim3/bin/pip" install pynvim neovim-remote
+workon neovim3
+pip install flake8 jedi psutil setproctitle
+pip install python-language-server
+pip install nodeenv
+pip install pynvim neovim-remote
 
 # Install npm support
 workon neovim3
 if [[ ! -x $HOME/.virtualenvs/neovim3/bin/node ]]; then
   nodeenv -p
 fi
-npm i -g bash-language-server
-npm i -g dockerfile-language-server-nodejs
-npm i -g javascript-typescript-langserver
+npm i -g yarn
+yarn global add prettier
+yarn global add bash-language-server
+yarn global add dockerfile-language-server-nodejs
+yarn global add javascript-typescript-langserver
 gem_bin=$(find "$HOME/.rubies/" -name "gem")
+
+# setup Ansible-dev env
+if [[ ! -d $HOME/.virtualenvs/ansible-dev ]]; then
+  mkvirtualenv -p python2 ansible-dev
+fi
+workon ansible-dev
+if ! pip show ansible > /dev/null 2>&1 ; then
+  pip install ansible
+  pip install ansible-lint
+  pip install molecule
+  pip install docker
+fi
+
+if ! pip show ansible-toolbox > /dev/null 2>&1 ; then
+  pip install git+https://github.com/larsks/ansible-toolbox
+fi
+
+if ! pip show python-apt > /dev/null 2>&1 ; then
+  pip install git+https://salsa.debian.org/apt-team/python-apt@1.6.2
+fi
+
+if ! pip show python-distutils-extra 2>&1 ; then
+  pip install git+https://salsa.debian.org/debian/python-distutils-extra.git@2.41
+fi
 
 # Install ruby support
 $gem_bin install neovim
@@ -137,7 +159,9 @@ function linkToPath() {
 
 # Setup superseding binaries
 binaries=("$HOME/.virtualenvs/neovim3/bin/nvr" \
+  "$HOME/.virtualenvs/neovim2/bin/yamllint" \
   "$HOME/.virtualenvs/neovim3/bin/flake8" \
+  "$HOME/.virtualenvs/neovim3/bin/prettier" \
   "$HOME/.virtualenvs/neovim3/bin/pyls" )
 
 mkdir -p "$HOME/.local/bin"
