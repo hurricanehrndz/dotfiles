@@ -18,8 +18,9 @@ else
   export TERM='xterm-color'
 fi
 
-if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-  source /etc/profile.d/vte.sh
+VTE_PROFILE="$(find /etc/profile.d/ -name "vte*")"
+if ([ $TILIX_ID ] || [ $VTE_VERSION ]) && [ $VTE_PROFILE ]; then
+  source "$VTE_PROFILE"
 fi
 
 if [[ ! -z  "$(command -v chruby)" ]]; then
