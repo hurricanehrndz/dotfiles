@@ -173,8 +173,7 @@ done
 if [[ -z "$(command -v rustup)"  ]]; then
   curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
 fi
-rustup install nightly
-rustup component add rls-preview rust-analysis rust-src --toolchain nightly
+rustup component add rls-preview rust-analysis rust-src
 cargo install --force ripgrep
 mkdir -p "$HOME/.zfunc"
 rustup completions zsh > "$HOME/.zfunc/_rustup"
