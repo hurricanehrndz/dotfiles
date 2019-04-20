@@ -5,6 +5,23 @@ echo "Using home: $HOME"
 echo "Removing existing python install and virtualenvs..."
 rm -rf "$HOME/.virtualenvs/neovim2" "$HOME/.virtualenvs/neovim3" "$HOME/.virtualenvs/ansible-dev"
 rm -rf "$HOME/.pyenv/versions"
+rm -rf "$HOME/.nvm"
+rm -rf "$HOME/.yarn/bin"
+rm -rf "$HOME/.config/yarn"
+
+# Install node support
+NVM_DIR="$HOME/.nvm"
+if [[ ! -e $NVM_DIR ]]; then
+  git clone https://github.com/creationix/nvm "$NVM_DIR"
+fi
+. $NVM_DIR/nvm.sh
+nvm install node
+npm i -g yarn
+yarn global add prettier
+yarn global add bash-language-server
+yarn global add dockerfile-language-server-nodejs
+yarn global add javascript-typescript-langserver
+yarn global add neovim
 
 # Install pyenv
 if [[ ! -d $HOME/.pyenv ]]; then
@@ -104,20 +121,7 @@ pip install yamllint
 workon neovim3
 pip install flake8 jedi psutil setproctitle
 pip install python-language-server
-pip install nodeenv
 pip install pynvim neovim-remote
-
-# Install npm support
-workon neovim3
-if [[ ! -x $HOME/.virtualenvs/neovim3/bin/node ]]; then
-  nodeenv -p
-fi
-npm i -g yarn
-yarn global add prettier
-yarn global add bash-language-server
-yarn global add dockerfile-language-server-nodejs
-yarn global add javascript-typescript-langserver
-gem_bin=$(find "$HOME/.rubies/" -name "gem")
 
 # setup Ansible-dev env
 if [[ ! -d $HOME/.virtualenvs/ansible-dev ]]; then
@@ -144,6 +148,7 @@ if ! pip show python-distutils-extra 2>&1 ; then
 fi
 
 # Install ruby support
+gem_bin=$(find "$HOME/.rubies/" -name "gem")
 $gem_bin install neovim
 
 function linkToPath() {
@@ -161,7 +166,6 @@ function linkToPath() {
 binaries=("$HOME/.virtualenvs/neovim3/bin/nvr" \
   "$HOME/.virtualenvs/neovim2/bin/yamllint" \
   "$HOME/.virtualenvs/neovim3/bin/flake8" \
-  "$HOME/.virtualenvs/neovim3/bin/prettier" \
   "$HOME/.virtualenvs/neovim3/bin/pyls" )
 
 mkdir -p "$HOME/.local/bin"
