@@ -116,6 +116,9 @@ alias newpass="tr -cd '[:alnum:]' < /dev/urandom | fold -w16 | head -n1"
 alias unlock-ryzen='until nc -w 3 -z 10.255.250.210 222; do sleep 3; done; pass -c systems/ryzen-vmm01 && xclip -o -selection clipboard | ssh -p 222 root@10.255.250.210 cryptroot-unlock'
 alias unlock-dev='until nc -w 3 -z 10.255.250.211 222; do sleep 3; done; pass -c systems/ryzen-dev-vm01 && xclip -o -selection clipboard | ssh -p 222 root@10.255.250.211 cryptroot-unlock'
 
+# df
+alias df='df -x squashfs'
+
 # gitignore.gi
 function gi { curl -L -s https://www.gitignore.io/api/$@ ;}
 
