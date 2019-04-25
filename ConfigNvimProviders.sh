@@ -67,27 +67,17 @@ echo "Using the following path: $PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 pyenv update
 
-# Install python2.7
-if ! pyenv versions | grep -q -c "2.7" ; then
-  pyenv install-latest 2.7
-fi
-
 # Install python3.6
 if ! pyenv versions | grep -q -c "3.6" ; then
   pyenv install-latest 3.6
 fi
 
 # Set pyenv default python version
-pyv2="$(find "$HOME/.pyenv/versions/" -maxdepth 1 -type d -name '2.7*' | tail)"
 pyv3="$(find "$HOME/.pyenv/versions/" -maxdepth 1 -type d -name '3.6*' | tail)"
-pyenv global "${pyv2##*/}" "${pyv3##*/}"
+pyenv global "${pyv3##*/}"
 pyenv rehash
 
 # Install Ansible
-pip2 install -U pip
-pip2 install -U setuptools
-pip2 install -U wheel
-pip2 install -U virtualenvwrapper
 pip3 install -U pip
 pip3 install -U setuptools
 pip3 install -U wheel
@@ -103,29 +93,20 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 pyenv virtualenvwrapper
 
-# Check for neovim2 virtualenv
-if [[ ! -d $HOME/.virtualenvs/neovim2 ]]; then
-  mkvirtualenv -p python2 neovim2
-fi
-
 # Check for neovim3 virtualenv
 if [[ ! -d $HOME/.virtualenvs/neovim3 ]]; then
   mkvirtualenv -p python3 neovim3
 fi
 
-# Install python2 support
-workon neovim2
-pip install pynvim
-pip install yamllint
 # Install python3 support
 workon neovim3
 pip install flake8 jedi psutil setproctitle
-pip install python-language-server
+pip install python-language-server yamllint
 pip install pynvim neovim-remote
 
 # setup Ansible-dev env
 if [[ ! -d $HOME/.virtualenvs/ansible-dev ]]; then
-  mkvirtualenv -p python2 ansible-dev
+  mkvirtualenv -p python3 ansible-dev
 fi
 workon ansible-dev
 if ! pip show ansible > /dev/null 2>&1 ; then
@@ -164,7 +145,7 @@ function linkToPath() {
 
 # Setup superseding binaries
 binaries=("$HOME/.virtualenvs/neovim3/bin/nvr" \
-  "$HOME/.virtualenvs/neovim2/bin/yamllint" \
+  "$HOME/.virtualenvs/neovim3/bin/yamllint" \
   "$HOME/.virtualenvs/neovim3/bin/flake8" \
   "$HOME/.virtualenvs/neovim3/bin/pyls" )
 
