@@ -67,13 +67,13 @@ echo "Using the following path: $PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 pyenv update
 
-# Install python3.6
-if ! pyenv versions | grep -q -c "3.6" ; then
-  pyenv install-latest 3.6
+# Install python3.7
+if ! pyenv versions | grep -q -c "3.7" ; then
+  pyenv install-latest 3.7
 fi
 
 # Set pyenv default python version
-pyv3="$(find "$HOME/.pyenv/versions/" -maxdepth 1 -type d -name '3.6*' | tail)"
+pyv3="$(find "$HOME/.pyenv/versions/" -maxdepth 1 -type d -name '3.7*' | tail)"
 pyenv global "${pyv3##*/}"
 pyenv rehash
 
@@ -95,37 +95,46 @@ pyenv virtualenvwrapper
 
 # Check for neovim3 virtualenv
 if [[ ! -d $HOME/.virtualenvs/neovim3 ]]; then
-  mkvirtualenv -p python3 neovim3
+  mkvirtualenv neovim3
 fi
 
 # Install python3 support
 workon neovim3
+pip3 install -U pip
+pip3 install -U setuptools
+pip3 install -U wheel
+pip3 install -U virtualenvwrapper
 pip install flake8 jedi psutil setproctitle
 pip install python-language-server yamllint
 pip install pynvim neovim-remote
 
 # setup Ansible-dev env
 if [[ ! -d $HOME/.virtualenvs/ansible-dev ]]; then
-  mkvirtualenv -p python3 ansible-dev
+  mkvirtualenv ansible-dev
 fi
 workon ansible-dev
+pip3 install -U pip
+pip3 install -U setuptools
+pip3 install -U wheel
+pip3 install -U virtualenvwrapper
 if ! pip show ansible > /dev/null 2>&1 ; then
   pip install ansible
   pip install ansible-lint
   pip install molecule
   pip install docker
+  pip install Sphinx
 fi
 
 if ! pip show ansible-toolbox > /dev/null 2>&1 ; then
   pip install git+https://github.com/larsks/ansible-toolbox
 fi
 
-if ! pip show python-apt > /dev/null 2>&1 ; then
-  pip install git+https://salsa.debian.org/apt-team/python-apt@1.6.2
+if ! pip show python-distutils-extra 2>&1 ; then
+  pip install git+https://salsa.debian.org/debian/python-distutils-extra.git@2.42
 fi
 
-if ! pip show python-distutils-extra 2>&1 ; then
-  pip install git+https://salsa.debian.org/debian/python-distutils-extra.git@2.41
+if ! pip show python-apt > /dev/null 2>&1 ; then
+  pip install git+https://salsa.debian.org/apt-team/python-apt@1.8.4
 fi
 
 # Install ruby support
