@@ -6,6 +6,10 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+VTE_PROFILE="$(find /etc/profile.d/ -name "vte*")"
+if ([ $TILIX_ID ] || [ $VTE_VERSION ]) && [ $VTE_PROFILE ]; then
+  source "$VTE_PROFILE"
+fi
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
@@ -16,11 +20,6 @@ if [[ -e /usr/share/terminfo/x/xterm-256color || -e /lib/terminfo/x/xterm-256col
   export TERM='xterm-256color'
 else
   export TERM='xterm-color'
-fi
-
-VTE_PROFILE="$(find /etc/profile.d/ -name "vte*")"
-if ([ $TILIX_ID ] || [ $VTE_VERSION ]) && [ $VTE_PROFILE ]; then
-  source "$VTE_PROFILE"
 fi
 
 if [[ ! -z  "$(command -v chruby)" ]]; then
