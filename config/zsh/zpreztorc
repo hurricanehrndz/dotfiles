@@ -109,11 +109,14 @@ zstyle ':prezto:module:editor' key-bindings 'emacs'
 #
 # Prompt
 #
-
 # Set the prompt theme to load.
 # Setting it to 'random' loads a random theme.
 # Auto set to 'off' on dumb terminals.
-zstyle ':prezto:module:prompt' theme 'sorin'
+fpath=(
+  ${HOME}/.config/zsh/zprompt
+  ${fpath}
+)
+zstyle ':prezto:module:prompt' theme 'hurricanehrndz'
 
 # Set the working directory prompt display length.
 # By default, it is set to 'short'. Set it to 'long' (without '~' expansion)
