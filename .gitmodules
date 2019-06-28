@@ -4,3 +4,6 @@
 [submodule "nvim"]
 	path = nvim
 	url = https://github.com/hurricanehrndz/nvim
+[submodule "config/zsh/zprezto"]
+	path = config/zsh/zprezto
+	url = https://github.com/sorin-ionescu/prezto
