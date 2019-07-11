@@ -1,3 +1,5 @@
 fonts/fonts.dir
 .uuid
 config/zsh/.zhistory
+config/zsh/.zcompdump
+config/zsh/.zcompcache
