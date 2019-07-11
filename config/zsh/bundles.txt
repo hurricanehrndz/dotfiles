@@ -1,0 +1,20 @@
+# zfunctions
+sorin-ionescu/prezto path:modules/prompt/functions kind:fpath
+
+# completion sources
+zsh-users/zsh-completions
+
+# sane start
+belak/zsh-utils
+belak/zsh-utils path:history
+sorin-ionescu/prezto path:modules/git/alias.zsh
+# init completion
+# create dump file when older than 20days
+belak/zsh-utils path:completion
+
+# prompt - git library
+woefe/git-prompt.zsh
+
+# these should be at last!
+zdharma/fast-syntax-highlighting
+zsh-users/zsh-history-substring-search
