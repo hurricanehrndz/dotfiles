@@ -7,7 +7,8 @@ zsh-users/zsh-completions
 # sane start
 belak/zsh-utils
 belak/zsh-utils path:history
-sorin-ionescu/prezto path:modules/git/alias.zsh
+#sorin-ionescu/prezto path:modules/git/alias.zsh
+lukechilds/zsh-nvm
 # init completion
 # create dump file when older than 20days
 belak/zsh-utils path:completion
@@ -16,5 +17,6 @@ belak/zsh-utils path:completion
 woefe/git-prompt.zsh
 
 # these should be at last!
-zdharma/fast-syntax-highlighting
+zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-history-substring-search
+zsh-users/zsh-autosuggestions
