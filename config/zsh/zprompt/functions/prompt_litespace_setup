@@ -173,15 +173,17 @@ function _zsh_git_prompt_git_status() {
             result = result BRANCH_SUFFIX;
 
             if (behind < 0) {
-                result = result BEHIND;
-                result = result sprintf("%d", behind * -1);
-                result = result RC;
+              result = result BEHIND;
+              result = result sprintf("%d", behind * -1);
+              result = result RC;
+              result = result RC " ";
             }
 
             if (ahead > 0) {
               result = result AHEAD;
               result = result sprintf("%d", ahead);
               result = result RC;
+              result = result RC " ";
             }
 
             result = result SEPARATOR;

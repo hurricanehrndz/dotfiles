@@ -10,11 +10,9 @@ if [[ -s "/usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh" ]]; then
   source "/usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh"
 fi
 
-if [[ ! -s "${HOME}/.local/pyenv/bin/pyenv" ]]; then
-  return
-fi
+[[ -s "${HOME}/.local/share/pyenv/bin/pyenv" ]] || return
 
-export PYENV_ROOT="$HOME/.local/pyenv"
+export PYENV_ROOT="$HOME/.local/share/pyenv"
 path=("$PYENV_ROOT/bin" $path)
 # lazy load pyenv
 __pyenv_started=0

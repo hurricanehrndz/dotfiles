@@ -1,3 +1,5 @@
+---
+
 - defaults:
     link:
       relink: true
@@ -6,108 +8,106 @@
 
 - clean: ['~']
 
-- shell:
-  - [git submodule update --init --recursive, Installing submodules]
-  - [$DOTFILES_DIR/ConfigNvimProviders.sh, Configure Neovim providers]
-
 - link:
-    ~/.tmux.conf:
-        path: tmux.conf
-    ~/.zprezto:
-        path: prezto
-    ~/.zshrc:
-        path: zshrc
     ~/.zshenv:
-        path: zshenv
-    ~/.zlogin:
-        path: zlogin
-    ~/.zlogout:
-        path: zlogout
-    ~/.zpreztorc:
-        path: zpreztorc
-    ~/.zprofile:
-        path: zprofile
+      path: config/zsh/zshenv
+    ~/.config/zsh:
+      path: config/zsh
     ~/.gitconfig:
-        path: gitconfig
+      path: gitconfig
     ~/.dir_colors:
-        path: dir_colors
+      path: dir_colors
     ~/.gitignore_global:
-        path: gitignore_global
+      path: gitignore_global
     ~/.Xdefaults:
-        path: Xdefaults
+      path: Xdefaults
     ~/.Xresources:
-        path: Xresources
+      path: Xresources
     ~/bin:
-        path: bin
-    ~/.gnupg/gpg.conf:
-        path: gnupg/gpg.conf
-    ~/.gnupg/gpg-agent.conf:
-        path: gnupg/gpg-agent.conf
-    ~/.gnupg/dirmngr.conf:
-        path: gnupg/dirmngr.conf
-    ~/.gnupg/scd-event:
-        path: gnupg/scd-event
-    ~/.gnupg/scdaemon.conf:
-        path: gnupg/scdaemon.conf
-    ~/.exports:
-        path: exports
-    ~/.todo/config:
-        path: todo/config
-    ~/.todo.actions.d:
-        path: todo/actions.d
-    ~/.config/nvim/init.vim:
-        path: nvim/init.vim
-    ~/.config/nvim/plugins.vim:
-        path: nvim/plugins.vim
-    ~/.config/nvim/plugin:
-        path: nvim/plugin
-    ~/.config/nvim/after:
-        path: nvim/after
-    ~/.config/nvim/yaml:
-        path: nvim/yaml
-    ~/.config/nvim/autoload:
-        path: nvim/autoload
-    ~/.ssh/config:
-        path: ssh/config
+      path: bin
+    ~/.gnupg:
+      path: gnupg
+    ~/.todo:
+      path: todo
+    ~/.config/nvim/:
+      path: nvim
+    ~/.ssh:
+      path: ssh
     ~/.xsessionrc:
-        path: xsessionrc
-    ~/.tmux-powerlinerc:
-        path: tmux-powerlinerc
-    ~/.config/tmux/powerline:
-        path: tmux/powerline
+      path: xsessionrc
 
 - shell:
-    - [mkdir -p ~/.config/nvim/pack/minpac/opt, Make minpac install destination]
+    - [git submodule update --init --recursive, Installing submodules]
 
-    - [rm -rf ~/.config/nvim/pack/minpac/opt/minpac, Delete old minpac plugin]
-
+    # Install antibody
+    -
+      commmand: curl -sfL git.io/antibody | sh -s - -b "$HOME/.local/bin"
+      description: Install antibody
 
     -
-      command: git clone --depth 1 https://github.com/k-takata/minpac ~/.config/nvim/pack/minpac/opt/minpac
-      description: Installing minpac
+      command: antibody bundle < config/zsh/bundles.txt
+      description: Install zsh plugins
+
+    # Install pyenv
+    -
+      command: test -d "$HOME/.local/share/pyenv" || \
+                git clone https://github.com/pyenv/pyenv.git \
+                "$HOME/.local/share/pyenv"
+      description: Install pyenv
+    -
+      command: pushd "$HOME/.local/share/pyenv" && \
+                git pull && \
+                popd
+      description: Update pyenv
+    -
+      command: test -d "$HOME/.local/share/pyenv/plugins/pyenv-update" || \
+                git clone https://github.com/pyenv/pyenv-update.git \
+                "$HOME/.local/share/pyenv/plugins/pyenv-update"
+      description: Install pyenv-update
+    -
+      command: pushd "$HOME/.local/share/pyenv/plugins/pyenv-update" && \
+                git pull && \
+                popd
+      description: Update pyenv-update
+    -
+      command: test -d "$HOME/.local/share/pyenv/plugins/pyenv-virtualenv" || \
+                git clone https://github.com/pyenv/pyenv-virtualenv.git \
+                "$HOME/.local/share/pyenv/plugins/pyenv-virtualenv"
+      description: Install pyenv-virtualenv
 
     -
-      command: "nvim -c \"call minpac#update('', {'do': 'quit'})\" --headless"
-      description: Installing nvim plugins
+      command: pushd "$HOME/.local/share/pyenv/plugins/pyenv-virtualenv" && \
+                git pull && \
+                popd
+      description: Update pyenv-virtualenv
+    -
+      command: test -d \
+                "$HOME/.local/share/pyenv/plugins/pyenv-install-latest" || \
+                git clone https://github.com/momo-lab/pyenv-install-latest.git \
+                "$HOME/.local/share/pyenv/plugins/pyenv-install-latest"
+      description: Install pyenv-install-latest
 
     -
-      command: ~/.config/nvim/pack/minpac/start/fzf/install --completion --key-bindings --update-rc --no-bash --no-fish
-      description: Configure fzf for zsh
+      command: pushd \
+                "$HOME/.local/share/pyenv/plugins/pyenv-install-latest" && \
+                git pull && \
+                popd
+      description: Update pyenv-install-latest
+
+    # Install nvm
+    -
+      command: NVM_DIR="$HOME/.local/share/nvm" test -d $NVM_DIR || \
+                git clone https://github.com/creationix/nvm "$NVM_DIR"
+      description: Install nvm
 
     -
-      command: ~/.config/nvim/pack/minpac/start/fzf/install --bin
-      description: Install fzf binary
-    -
-      command: chmod 700 ~/.gnupg
-      description: Fix home gnupg homedir
+      command: pushd \
+                "$HOME/.local/share/nvm" && \
+                git pull && \
+                popd
+      description: Update nvm
 
+    # Install fonts
     -
-      command: mkdir -p ~/.config/tmux/plugins
-      description: Make tmux plugin directory
-
-    -
-      command: bash -c "[[ -d ~/.config/tmux/plugins/tpm ]] || git clone https://github.com/tmux-plugins/tpm.git ~/.config/tmux/plugins/tpm"
-      description: Install tpm
-
-    - command: ~/.config/tmux/plugins/tpm/bin/install_plugins
-      description: Install tmux plugins
+      command: ./install-fonts
+      description: Install NERD fonts
