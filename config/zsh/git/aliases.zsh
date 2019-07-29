@@ -17,7 +17,7 @@ alias glg='git log --topo-order --all --graph --pretty=format:"${_git_log_onelin
 alias ggrh='git reset --hard origin/$(current_branch)'
 alias gd='git diff'
 alias gdc='git diff --cached'
-alias gc='git commit'
+alias gc='git commit --verbose'
 alias gca='git commit -a'
 alias ga='git add'
 alias gca!='git commit -a --amend'
