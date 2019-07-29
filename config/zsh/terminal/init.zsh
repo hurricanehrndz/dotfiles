@@ -12,12 +12,5 @@ export LESS_TERMCAP_us=$'\E[00;37m'      # Begins underline.
 export GROFF_NO_SGR=1                    # for konsole and gnome-terminal
 
 
-if (( $#commands[(i)lesspipe(|.sh)] )); then
-  export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
-fi
-
-if (( $+commands[most] )); then
-    export PAGER="most"
-else
-    export PAGER="less"
-fi
+(( $#commands[(i)lesspipe(|.sh)] )) && eval "$(lesspipe)"
+export PAGER="less"
