@@ -5,7 +5,8 @@ if (( ! $+commands[git] )); then
   return
 fi
 
-_git_log_oneline_format='%C(green)%h%C(reset) %s%C(red)%d%C(reset)%n'
+#_git_log_oneline_format='%C(green)%h%C(reset) %s%C(red)%d%C(reset)%n'
+_git_log_oneline_format='%C(green)%h%C(reset) %s%C(red)%d %C(reset)%C(blue)Sig:%G?%C(reset)%n'
 
 alias gcl='git clone --recursive'
 alias gf='git fetch'
