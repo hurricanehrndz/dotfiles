@@ -14,12 +14,13 @@ fi
 
 export PYENV_ROOT="$HOME/.local/share/pyenv"
 path=("$PYENV_ROOT/bin" $path)
+
 # lazy load pyenv
 __pyenv_started=0
 
 __pyenv_init() {
   test $__pyenv_started = 0 && {
-    eval "$(command pyenv init -)"
+    eval "$(command pyenv init - --no-rehash zsh)"
     __pyenv_started=1
   }
 }
@@ -27,14 +28,4 @@ __pyenv_init() {
 pyenv() {
   __pyenv_init
   command pyenv "$@"
-}
-
-python() {
-  __pyenv_init
-  command python "$@"
-}
-
-pip() {
-  __pyenv_init
-  command pip "$@"
 }
