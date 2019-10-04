@@ -27,8 +27,6 @@
       path: bin
     ~/.gnupg:
       path: gnupg
-    ~/.todo:
-      path: todo
     ~/.config/nvim/:
       path: nvim
     ~/.ssh:
