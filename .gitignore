@@ -17,4 +17,4 @@ crls.d
 private-keys-v1.d
 
 # direnv
-config/zsh/direnv/allow
+config/direnv/allow/
