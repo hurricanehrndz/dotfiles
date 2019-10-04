@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+# vim:set ft=zsh sw=2 sts=2 ts=2 et:
+
+curl -sLw "\n" "https://www.gitignore.io/api/$@"
