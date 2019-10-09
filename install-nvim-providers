@@ -30,6 +30,7 @@ python_ver="$(pyenv versions --bare | sort -n | head | grep  "^3.")"
 python_bin="$PYENV_ROOT/versions/$python_ver/bin/python"
 
 # Check for neovim3 virtualenv
+source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 if [[ ! -d $HOME/.virtualenvs/neovim3 ]]; then
   mkvirtualenv -p "${python_bin:A}" neovim3
 fi
@@ -51,11 +52,11 @@ pip install -U \
   neovim-remote
 
 # Install node support
+source "$HOME/.local/share/nvm/nvm.sh"
 nvm install node
 npm i -g yarn
 yarn global add \
   prettier \
-  bash-language-server \
   dockerfile-language-server-nodejs \
   javascript-typescript-langserver \
   neovim
