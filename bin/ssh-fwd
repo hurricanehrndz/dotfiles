@@ -17,7 +17,9 @@ _fwd_gpg() {
   HOST="$1"
   # Figure out local and remote GPG socket paths
   LOCAL_GPG_SOCKET="$(gpgconf --list-dir agent-socket)"
+  LOCAL_SSH_SOCKET="$(gpgconf --list-dir agent-ssh-socket)"
   REMOTE_GPG_SOCKET="$($SSH "$HOST" gpgconf --list-dir agent-socket)"
+  REMOTE_SSH_SOCKET="$($SSH "$HOST" gpgconf --list-dir agent-ssh-socket)"
   REMOTE_GPG_SOCKET_DIR="$($SSH "$HOST" gpgconf --list-dir socketdir)"
 
   # kill all gpg-agent instances
@@ -31,6 +33,7 @@ _fwd_gpg() {
   # forward gpg socket
   if [[ -e "$LOCAL_GPG_SOCKET" ]]; then
     $SSH -T -o ExitOnForwardFailure=yes -R $REMOTE_GPG_SOCKET:$LOCAL_GPG_SOCKET -O forward "$HOST"
+    $SSH -T -o ExitOnForwardFailure=yes -R $REMOTE_SSH_SOCKET:$LOCAL_SSH_SOCKET -O forward "$HOST"
   else
     echo "Error: no extra gpg extra socket."
   fi
