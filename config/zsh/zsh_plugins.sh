@@ -4,8 +4,6 @@ fpath+=( /home/hurricanehrndz/.local/share/antibody/https-COLON--SLASH--SLASH-gi
 
 source /home/hurricanehrndz/.local/share/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-belak-SLASH-zsh-utils/history/history.plugin.zsh
 fpath+=( /home/hurricanehrndz/.local/share/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-belak-SLASH-zsh-utils/history )
-source /home/hurricanehrndz/.local/share/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-lukechilds-SLASH-zsh-nvm/zsh-nvm.plugin.zsh
-fpath+=( /home/hurricanehrndz/.local/share/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-lukechilds-SLASH-zsh-nvm )
 source /home/hurricanehrndz/.local/share/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-belak-SLASH-zsh-utils/completion/completion.plugin.zsh
 fpath+=( /home/hurricanehrndz/.local/share/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-belak-SLASH-zsh-utils/completion )
 source /home/hurricanehrndz/.local/share/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-woefe-SLASH-git-prompt.zsh/git-prompt.plugin.zsh

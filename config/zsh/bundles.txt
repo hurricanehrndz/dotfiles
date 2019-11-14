@@ -8,7 +8,6 @@ zsh-users/zsh-completions
 belak/zsh-utils
 belak/zsh-utils path:history
 #sorin-ionescu/prezto path:modules/git/alias.zsh
-lukechilds/zsh-nvm
 # init completion
 # create dump file when older than 20days
 belak/zsh-utils path:completion
