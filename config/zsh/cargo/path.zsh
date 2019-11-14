@@ -3,4 +3,4 @@
 
 test -d "$HOME/.cargo/bin" || return 0
 
-path=("$HOME/.local/cargo/bin" $path)
+path=("$HOME/.cargo/bin" $path)
