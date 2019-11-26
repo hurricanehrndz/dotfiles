@@ -15,14 +15,10 @@
       path: config/zsh
     ~/.gitconfig:
       path: gitconfig
-    ~/.dir_colors:
-      path: dir_colors
     ~/.gitignore_global:
       path: gitignore_global
-    ~/.Xdefaults:
-      path: Xdefaults
-    ~/.Xresources:
-      path: Xresources
+    ~/.dir_colors:
+      path: dir_colors
     ~/bin:
       path: bin
     ~/.gnupg:
@@ -31,81 +27,12 @@
       path: nvim
     ~/.ssh:
       path: ssh
+    ~/.Xdefaults:
+      path: Xdefaults
+    ~/.Xresources:
+      path: Xresources
     ~/.xsessionrc:
       path: xsessionrc
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
-
-    # Install antibody
-    -
-      commmand: curl -sfL git.io/antibody | sh -s - -b "$HOME/.local/bin"
-      description: Install antibody
-
-    -
-      command: antibody bundle < config/zsh/bundles.txt
-      description: Install zsh plugins
-
-    # Install pyenv
-    -
-      command: test -d "$HOME/.local/share/pyenv" || \
-                git clone https://github.com/pyenv/pyenv.git \
-                "$HOME/.local/share/pyenv"
-      description: Install pyenv
-    -
-      command: pushd "$HOME/.local/share/pyenv" && \
-                git pull && \
-                popd
-      description: Update pyenv
-    -
-      command: test -d "$HOME/.local/share/pyenv/plugins/pyenv-update" || \
-                git clone https://github.com/pyenv/pyenv-update.git \
-                "$HOME/.local/share/pyenv/plugins/pyenv-update"
-      description: Install pyenv-update
-    -
-      command: pushd "$HOME/.local/share/pyenv/plugins/pyenv-update" && \
-                git pull && \
-                popd
-      description: Update pyenv-update
-    -
-      command: test -d "$HOME/.local/share/pyenv/plugins/pyenv-virtualenv" || \
-                git clone https://github.com/pyenv/pyenv-virtualenv.git \
-                "$HOME/.local/share/pyenv/plugins/pyenv-virtualenv"
-      description: Install pyenv-virtualenv
-
-    -
-      command: pushd "$HOME/.local/share/pyenv/plugins/pyenv-virtualenv" && \
-                git pull && \
-                popd
-      description: Update pyenv-virtualenv
-    -
-      command: test -d \
-                "$HOME/.local/share/pyenv/plugins/pyenv-install-latest" || \
-                git clone https://github.com/momo-lab/pyenv-install-latest.git \
-                "$HOME/.local/share/pyenv/plugins/pyenv-install-latest"
-      description: Install pyenv-install-latest
-
-    -
-      command: pushd \
-                "$HOME/.local/share/pyenv/plugins/pyenv-install-latest" && \
-                git pull && \
-                popd
-      description: Update pyenv-install-latest
-
-    # Install nvm
-    -
-      command: NVM_DIR="$HOME/.local/share/nvm" test -d $NVM_DIR || \
-                git clone https://github.com/creationix/nvm "$NVM_DIR"
-      description: Install nvm
-
-    -
-      command: pushd \
-                "$HOME/.local/share/nvm" && \
-                git pull && \
-                popd
-      description: Update nvm
-
-    # Install fonts
-    -
-      command: ./install-fonts
-      description: Install NERD fonts
