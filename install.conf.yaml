@@ -29,6 +29,8 @@
       path: nvim
     ~/.ssh:
       path: ssh
+    ~/.nvmrc:
+      path: nvmrc
     ~/.Xdefaults:
       path: Xdefaults
     ~/.Xresources:
