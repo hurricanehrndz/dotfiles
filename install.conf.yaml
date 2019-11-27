@@ -13,6 +13,8 @@
       path: config/zsh/zshenv
     ~/.config/zsh:
       path: config/zsh
+    ~/.config/powershell:
+      path: config/powershell
     ~/.gitconfig:
       path: gitconfig
     ~/.gitignore_global:
