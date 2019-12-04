@@ -70,6 +70,14 @@ key_info+=(
 )
 
 #
+# External Editor
+#
+
+# Allow command line editing in an external editor.
+autoload -Uz edit-command-line
+zle -N edit-command-line
+
+#
 # Functions
 #
 
@@ -207,6 +215,20 @@ done
 for key bind in ${(kv)global_keybinds} ${(kv)vicmd_keybinds}; do
   bindkey -M vicmd "$key" "$bind"
 done
+
+#
+# Vi Key Bindings from prezto
+#
+
+# Edit command in an external editor emacs style (v is used for visual mode)
+bindkey -M vicmd "$key_info[Control]X$key_info[Control]E" edit-command-line
+
+# Undo/Redo
+bindkey -M vicmd "u" undo
+bindkey -M vicmd "$key_info[Control]R" redo
+
+# Toggle comment at the start of the line.
+bindkey -M vicmd "#" vi-pound-insert
 
 # Inserts 'sudo ' at the beginning of the line.
 function prepend-sudo {
