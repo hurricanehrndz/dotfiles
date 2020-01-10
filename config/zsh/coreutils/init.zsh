@@ -51,22 +51,12 @@ if [[ "$TERM" != dumb ]] && (( $+commands[grc] )) ; then
   fi
   # df colored
   alias df="grc --colour=auto df -x squashfs -h"
-  # ls/exa colored
-  if (( $+commands[exa] )); then
-    alias l="exa --group-directories-first -1a"
-    alias la="exa --group-directories-first -a"
-    alias ll="exa --group-directories-first -lghH"
-    alias lt="exa -lhHgs modified"
-    alias ls="exa --group-directories-first"
-    alias tree="ll --tree"
-  else
-    alias l="grc --colour=auto ls --color --group-directories-first -1A"
-    alias la="grc --colour=auto ls --color --group-directories-first -AC"
-    alias ll="grc --colour=auto ls --color --group-directories-first -lh"
-    alias lt="grc --colour=auto ls --color -lhtr"
-    alias ls="grc --colour=auto ls --color --group-directories-first -C"
-  fi
-
+  # ls colored
+  alias l="grc --colour=auto ls --color --group-directories-first -1A"
+  alias la="grc --colour=auto ls --color --group-directories-first -AC"
+  alias ll="grc --colour=auto ls --color --group-directories-first -lh"
+  alias lt="grc --colour=auto ls --color -lhtr"
+  alias ls="grc --colour=auto ls --color --group-directories-first -C"
   # Clean up variables
   unset cmds cmd
 fi
