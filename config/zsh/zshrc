@@ -3,6 +3,8 @@
 
 # shortcut to this dotfiles path is $DOTFILES
 #export DOTFILES="$HOME/.config/dotfiles"
+# Time format
+export TIME="\t%e real,\t%U user,\t%S sys"
 
 # Antibody's home
 export ANTIBODY_HOME="$HOME/.local/share/antibody"
