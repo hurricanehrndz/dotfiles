@@ -65,6 +65,12 @@
     log = true
     tool = vimdiff
 
+[mergetool]
+    keepBackup = false
+
+[mergetool "vimdiff"]
+    cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
+
 [github]
     user = hurricanehrndz
 
