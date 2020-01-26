@@ -112,3 +112,4 @@
 
 [commit]
     gpgsign = false
+    verbose = true
