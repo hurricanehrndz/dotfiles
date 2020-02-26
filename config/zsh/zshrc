@@ -65,3 +65,9 @@ if (( ! $+functions[__vte_prompt_command] )); then
     source "$VTE_PROFILE[1]"
   fi
 fi
+
+_screenfetch=($HOME/.screenfetch(Nm-20))
+if [[ $#_screenfetch < 1 ]] && [[ -x $(command -v screenfetch) ]]; then
+  touch $HOME/.screenfetch
+  screenfetch
+fi
