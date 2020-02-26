@@ -276,7 +276,7 @@ function prompt_litespace_precmd_newline() {
 }
 
 function __litespace_user() {
-  if [[ $LOGNAME != $USER ]] \
+  if [[ -n $SSH_CLIENT ]] \
     || [[ $UID == 0 ]] \
     || [[ $ZSH_THEME_LITESPACE_SHOW_USER ]]; then
       print -P '%F{9}%n%f '
@@ -362,7 +362,7 @@ function prompt_litespace_setup() {
 
   # In the second line of the prompt $psvar[12] is read
   PROMPT=$'$(__litespace_user)$(__litespace_host)'
-  PROMPT=$'%F{7}in %f%F{2}$__litespace_pwd%f %F{242}$(gitprompt)%f'
+  PROMPT+=$'%F{7}in %f%F{2}$__litespace_pwd%f %F{242}$(gitprompt)%f'
   PROMPT+=$'$prompt_newline'
   PROMPT+=$'%(12V.%F{242}%12v%f .)%(?.%F{cyan}.%F{red})${prompt_litespace_state}%f '
   RPROMPT=''
