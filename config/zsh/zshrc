@@ -48,9 +48,9 @@ if [[ -s "${ZDOTDIR}/zsh_plugins.sh" ]]; then
   source "${ZDOTDIR}/zsh_plugins.sh"
 fi
 
-# setup prompt
-autoload -Uz promptinit && promptinit
-prompt litespace
+# litespace prompt
+autoload -Uz prompt_litespace_setup
+prompt_litespace_setup
 
 # load everything but the path and init files
 for file in ${${config_files:#*/path.zsh}:#*/init.zsh}; do
