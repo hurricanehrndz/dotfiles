@@ -4,8 +4,7 @@ TCPKeepAlive yes
 # https://bugs.launchpad.net/ubuntu/+source/openssh/+bug/1790963
 # primary client does not support protocols
 # issues when ssh client > forwarding client
-PubkeyAcceptedKeyTypes -rsa-sha2-512
-PubkeyAcceptedKeyTypes -rsa-sha2-256
+PubkeyAcceptedKeyTypes -rsa-sha2-512,rsa-sha2-256
 
 host *
     ControlMaster auto
