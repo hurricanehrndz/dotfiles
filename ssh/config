@@ -1,15 +1,19 @@
 ServerAliveInterval 120
 ServerAliveCountMax 1200
 TCPKeepAlive yes
-
-host bitbucket.org
-    ControlMaster no
-    ControlPersist no
+# https://bugs.launchpad.net/ubuntu/+source/openssh/+bug/1790963
+# primary client does not support protocols
+# issues when ssh client > forwarding client
+PubkeyAcceptedKeyTypes -rsa-sha2-512
+PubkeyAcceptedKeyTypes -rsa-sha2-256
 
 host *
     ControlMaster auto
-    ControlPath ~/.ssh/master-%r@%h:%p
-    ControlPersist 1m
+    ControlPath ~/.ssh/masters/%r@%h:%p
+    ControlPersist 10s
 
-host 10.255.250.1
-    MACs hmac-sha2-256
+host manjaro-dev
+    ControlMaster auto
+    ControlPath ~/.ssh/masters/%r@%h:%p
+    ControlPersist 15s
+    RemoteForward /run/user/1000/gnupg/S.gpg-agent /run/user/1000/gnupg/S.gpg-agent.extra
