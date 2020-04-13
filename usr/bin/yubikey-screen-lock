@@ -1,9 +1,0 @@
-#!/bin/bash
-# Double checking if the Yubikey is actually removed, Challenge-Response won't trigger the screensaver this way.
-result=$(lsusb | grep -c -e "ID 1050:")
-
-if [[ $result -eq 0 ]]; then
-  echo "YubiKey Removed or Changed" | systemd-cat -p info -t yubikey-screen-lock
-  # Locking the screen
-  /usr/bin/loginctl lock-sessions
-fi
