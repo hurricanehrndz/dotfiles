@@ -6,10 +6,6 @@ TCPKeepAlive yes
 # issues when ssh client > forwarding client
 PubkeyAcceptedKeyTypes -rsa-sha2-512,rsa-sha2-256
 
-host *
-    ControlMaster auto
-    ControlPath ~/.ssh/masters/%r@%h:%p
-    ControlPersist 10s
 
 host manjaro-dev
     ControlMaster auto
