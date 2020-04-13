@@ -12,10 +12,6 @@ export ANTIBODY_HOME="$HOME/.local/share/antibody"
 # your project folder that we can `c [tab]` to
 export PROJECTS="$HOME/Code"
 
-if [[ ! $XDG_RUNTIME_DIR =~ "snap" ]]; then
-  export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
-fi
-
 # your default editor
 if (( $+commands[nvim] )); then
   export EDITOR='nvim'
