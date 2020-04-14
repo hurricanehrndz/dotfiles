@@ -1,8 +1,0 @@
-#!/bin/sh
-
-state=$8
-
-if [ "$state" = "NOCARD" ]; then
-  /usr/local/bin/clean-gpg-keygrips
-  pkill -9 scdaemon
-fi
