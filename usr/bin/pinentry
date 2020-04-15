@@ -1,9 +1,0 @@
-#!/bin/bash
-
-[[ "$DESKTOP_SESSION" =~ "plasma" ]] &&  exec /usr/bin/pinentry-qt  "$@"
-
-[[ "$DESKTOP_SESSION" =~ "xfce" ]]   &&  exec /usr/bin/pinentry-gtk-2  "$@"
-
-[[ "$DESKTOP_SESSION" =~ "gnome" ]]  &&  exec /usr/bin/pinentry-gnome3  "$@"
-
-exec /usr/bin/pinentry-tty "$@"
