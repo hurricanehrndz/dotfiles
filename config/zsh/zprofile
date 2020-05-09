@@ -1,7 +1,7 @@
-if [[ -n $SSH_CONNECTION ]] && [[ -x $(command -v byobu-launch) ]]; then
-    _byobu_sourced=1 . $(command -v byobu-launch) 2>/dev/null || true
-fi
-
 if ! grep -qc 'source /etc/profile' /etc/zsh/zprofile; then
     emulate sh -c 'source /etc/profile'
+fi
+
+if [[ -n $SSH_CONNECTION ]] && [[ -x $(command -v byobu-launch) ]]; then
+    _byobu_sourced=1 . $(command -v byobu-launch) 2>/dev/null || true
 fi
