@@ -15,3 +15,9 @@ host manjaro-dev
     ControlPath ~/.ssh/masters/%r@%h:%p
     ControlPersist 15s
     RemoteForward /run/user/1000/gnupg/S.gpg-agent /run/user/1000/gnupg/S.gpg-agent.extra
+
+host ryzen-dev-vm01
+    ControlMaster auto
+    ControlPath ~/.ssh/masters/%r@%h:%p
+    ControlPersist 15s
+    RemoteForward /run/user/1000/gnupg/S.gpg-agent /run/user/1000/gnupg/S.gpg-agent.extra
