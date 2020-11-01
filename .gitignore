@@ -3,6 +3,7 @@ fonts/fonts.dir
 
 # zdotdir
 config/zsh/.zhistory
+config/zsh/.zsh_history
 config/zsh/.zcompdump
 config/zsh/.zcompcache
 
