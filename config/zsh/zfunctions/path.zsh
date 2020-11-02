@@ -4,3 +4,4 @@ fpath=($ZDOTDIR/zfunctions $fpath)
 autoload randpw
 autoload gi
 autoload timezsh
+autoload update-fnm
