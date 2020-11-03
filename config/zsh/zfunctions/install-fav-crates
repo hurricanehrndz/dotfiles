@@ -1,0 +1,24 @@
+#!/usr/bin/env zsh
+# vim:set ft=zsh sw=2 sts=2 ts=2 et:
+# https://zaiste.net/posts/shell-commands-rust/
+fav_crates=(
+  "bandwhich"
+  "bat"
+  "bottom"
+  "du-dust"
+  "exa"
+  "fd-find"
+  "grex"
+  "hyperfine"
+  "procs"
+  "ripgrep"
+  "sd"
+  "starship"
+  "starship"
+  "tealdeer"
+  "tokei"
+  "zoxide"
+  "ncspot"
+)
+
+cargo install "${fav_crates[@]}"
