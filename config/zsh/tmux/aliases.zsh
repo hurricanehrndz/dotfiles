@@ -6,4 +6,5 @@ TMUX_CONF="~/.config/tmux/tmux.conf"
 alias                               \
   tn="tmux -u -f $TMUX_CONF new"    \
   ta="tmux -u -f $TMUX_CONF attach" \
+  tm="tmux -u -f $TMUX_CONF"        \
   tt="nvim $TMUX_CONF"
