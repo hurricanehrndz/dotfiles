@@ -6,3 +6,4 @@ autoload gi
 autoload timezsh
 autoload update-fnm
 autoload cargo-reinstall-all
+autoload install-fav-crates
