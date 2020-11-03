@@ -2,7 +2,7 @@
 # vim:set ft=zsh sw=2 sts=2 ts=2 et:
 
 # shortcut to this dotfiles path is $DOTFILES
-#export DOTFILES="$HOME/.config/dotfiles"
+export DOTFILES="$HOME/.config/dotfiles"
 # Time format
 export TIME="\t%e real,\t%U user,\t%S sys"
 
