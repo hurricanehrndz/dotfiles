@@ -6,9 +6,6 @@
 # Time format
 export TIME="\t%e real,\t%U user,\t%S sys"
 
-# Antibody's home
-export ANTIBODY_HOME="$HOME/.local/share/antibody"
-
 # your project folder that we can `c [tab]` to
 export PROJECTS="$HOME/Code"
 
@@ -39,14 +36,11 @@ for file in ${(M)config_files:#*/init.zsh}; do
   source "$file"
 done
 
-# load antibody plugins
-if [[ -s "${ZDOTDIR}/zsh_plugins.sh" ]]; then
-  source "${ZDOTDIR}/zsh_plugins.sh"
-fi
-
 # litespace prompt
 autoload -Uz prompt_litespace_setup
 prompt_litespace_setup
+# load sheldon plugins
+source <(sheldon source)
 
 # load everything but the path and init files
 for file in ${${config_files:#*/path.zsh}:#*/init.zsh}; do
