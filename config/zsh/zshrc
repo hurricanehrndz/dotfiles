@@ -17,7 +17,6 @@ else
   export EDITOR='vi'
   export VISUAL="vi"
 fi
-export VEDITOR='code'
 
 # Ensure path arrays do not contain duplicates.
 typeset -gU cdpath fpath mailpath path
