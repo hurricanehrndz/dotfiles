@@ -14,7 +14,6 @@ fav_crates=(
   "ripgrep"
   "sd"
   "starship"
-  "starship"
   "tealdeer"
   "tokei"
   "zoxide"
