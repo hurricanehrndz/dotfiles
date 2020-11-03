@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+# vim:set ft=zsh sw=2 sts=2 ts=2 et:
+#
+cargo install --list | awk -vORS='\0' '/^\w/{print $1}' |xargs -0 -i cargo install --force {}

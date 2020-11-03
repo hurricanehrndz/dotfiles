@@ -5,3 +5,4 @@ autoload randpw
 autoload gi
 autoload timezsh
 autoload update-fnm
+autoload cargo-reinstall-all
