@@ -3,3 +3,8 @@
 # catch-all alias file for various utilities
 
 alias e='exa'
+alias ela='exa -la'
+alias elt='exa -la --sort modified'
+
+alias t='exa -T'
+alias tl='exa -Tl'
