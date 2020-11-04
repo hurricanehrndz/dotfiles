@@ -3,10 +3,12 @@
 
 TMUX_CONF="~/.config/tmux/tmux.conf"
 
-alias                               \
-  tn="tmux -u -f $TMUX_CONF new"    \
-  ta="tmux -u -f $TMUX_CONF attach" \
-  tm="tmux -u -f $TMUX_CONF"        \
-  tt="nvim $TMUX_CONF"
+alias                                      \
+  tmn="tmux -u -f $TMUX_CONF new"          \
+  tma="tmux -u -f $TMUX_CONF attach"       \
+  tml="tmux -u -f $TMUX_CONF ls"           \
+  tmk="tmux -u -f $TMUX_CONF kill-session" \
+  tm="tmux -u -f $TMUX_CONF"               \
+  tmt="nvim $TMUX_CONF"
 
 alias tsheldon='sheldon --data-dir "$HOME/.config/tmux/plugins" --config-dir "$HOME/.config/tmux"'
