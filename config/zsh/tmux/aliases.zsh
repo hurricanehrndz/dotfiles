@@ -4,7 +4,9 @@
 TMUX_CONF="~/.config/tmux/tmux.conf"
 
 alias                               \
-  tn="tmux -u -f $TMUX_CONF new"    \
-  ta="tmux -u -f $TMUX_CONF attach" \
-  tm="tmux -u -f $TMUX_CONF"        \
+  tn="tmux new"    \
+  ta="tmux attach" \
+  tm="tmux"        \
   tt="nvim $TMUX_CONF"
+
+alias tsheldon='sheldon --data-dir "$HOME/.config/tmux/plugins" --config-dir "$HOME/.config/tmux"'
