@@ -20,10 +20,10 @@ defer = { value = 'zsh-defer source "{{ file }}"', each = true }
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
 
-[plugins.prezto]
-github = "sorin-ionescu/prezto"
-dir = "modules/prompt/functions"
-apply = ["fpath"]
+#[plugins.prezto]
+#github = "sorin-ionescu/prezto"
+#dir = "modules/prompt/functions"
+#apply = ["fpath"]
 
 # specify completion sources before module
 [plugins.compeltions]
