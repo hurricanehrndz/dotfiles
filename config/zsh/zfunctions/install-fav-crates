@@ -21,4 +21,4 @@ fav_crates=(
   "ncspot"
 )
 
-cargo install "${fav_crates[@]}"
+SHELL_COMPLETIONS_DIR="$HOME/.local/share/zsh/completions" cargo install "${fav_crates[@]}"
