@@ -128,11 +128,6 @@ function zle-line-init {
     # Enable terminal application mode.
     echoti smkx
   fi
-
-  # Ensure we have the correct cursor. We could probably do this less
-  # frequently, but this does what we need and shouldn't incur that much
-  # overhead.
-  # zle update-cursor-style
 }
 zle -N zle-line-init
 
@@ -149,8 +144,6 @@ zle -N zle-line-finish
 
 # Resets the prompt when the keymap changes
 function zle-keymap-select {
-  #zle update-cursor-style
-
   zle reset-prompt
   zle -R
 }
@@ -190,12 +183,12 @@ vicmd_keybinds=(
 
 # Special case for ControlLeft and ControlRight because they have multiple
 # possible binds.
-for key in "${(s: :)key_info[ControlLeft]}" "${key_info[AltLeft]}"; do
+for key in "${(s: :)key_info[ControlLeft]}" "${(s: :)key_info[AltLeft]}"; do
   bindkey -M emacs "$key" emacs-backward-word
   bindkey -M viins "$key" vi-backward-word
   bindkey -M vicmd "$key" vi-backward-word
 done
-for key in "${(s: :)key_info[ControlRight]}" "${key_info[AltRight]}"; do
+for key in "${(s: :)key_info[ControlRight]}" "${(s: :)key_info[AltRight]}"; do
   bindkey -M emacs "$key" emacs-forward-word
   bindkey -M viins "$key" vi-forward-word
   bindkey -M vicmd "$key" vi-forward-word
@@ -222,6 +215,7 @@ done
 
 # Edit command in an external editor emacs style (v is used for visual mode)
 bindkey -M vicmd "$key_info[Control]X$key_info[Control]E" edit-command-line
+bindkey -M viins "$key_info[Control]X$key_info[Control]E" edit-command-line
 
 # Undo/Redo
 bindkey -M vicmd "u" undo
