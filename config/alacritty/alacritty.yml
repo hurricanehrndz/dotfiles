@@ -1,0 +1,53 @@
+env:
+  TERM: xterm-256color
+# Colors (Ayu Mirage)
+colors:
+  # Default colors
+  primary:
+    background: '#202734'
+    foreground: '#CBCCC6'
+
+  # Normal colors
+  normal:
+    black: '#191E2A'
+    red: '#FF3333'
+    green: '#BAE67E'
+    yellow: '#FFA759'
+    blue: '#73D0FF'
+    magenta: '#FFD580'
+    cyan: '#95E6CB'
+    white: '#C7C7C7'
+
+  # Bright colors
+  bright:
+    black: '#686868'
+    red: '#F27983'
+    green: '#A6CC70'
+    yellow: '#FFCC66'
+    blue: '#5CCFE6'
+    magenta: '#FFEE99'
+    cyan: '#95E6CB'
+    white: '#FFFFFF'
+
+scrolling:
+  # disable scrolling.
+  history: 0
+
+background_opacity: 0.96
+
+font:
+  normal:
+    family: FuraCode Nerd Font Mono
+    style: Regular
+    size: 12
+
+key_bindings:
+  - { key: V,        mods: Control|Shift, action: Paste            }
+  - { key: C,        mods: Control|Shift, action: Copy             }
+  - { key: J,        mods: Control|Shift, action: DecreaseFontSize }
+  - { key: K,        mods: Control|Shift, action: IncreaseFontSize }
+  - { key: Key0,     mods: Control|Shift, action: ResetFontSize    }
+  - { key: Equals,   mods: Control,       action: None             }
+  - { key: Add,      mods: Control,       action: None             }
+  - { key: Subtract, mods: Control,       action: None             }
+  - { key: Minus,    mods: Control,       action: None             }
