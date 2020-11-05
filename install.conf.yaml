@@ -1,0 +1,14 @@
+- defaults:
+    link:
+      relink: true
+      create: true
+      force: true
+
+- clean: ['~']
+
+- link:
+    ~/.config/tmux/tmux.conf: config/tmux/tmux.conf
+    ~/.config/tmux/tpm.tmux: config/tmux/tpm.tmux
+    ~/.config/sheldon/plugins.toml: config/sheldon/plugins.toml
+    ~/.config/starship.toml: config/starship.toml
+
