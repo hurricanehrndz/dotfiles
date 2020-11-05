@@ -2,9 +2,12 @@
 # vim:set sw=2 sts=2 ts=2 et:
 # catch-all alias file for various utilities
 
-alias e='exa'
-alias ela='exa -la'
-alias elt='exa -la --sort modified'
+alias e   = 'exa'
+alias ela = 'exa -la'
+alias elt = 'exa -la --sort modified'
+alias t   = 'exa -T'
+alias tl  = 'exa -Tl'
 
-alias t='exa -T'
-alias tl='exa -Tl'
+
+# nvim edit aliases
+alias nvea = 'nvim "$DOTFILES/config/zsh/utils/aliases.zsh"'
