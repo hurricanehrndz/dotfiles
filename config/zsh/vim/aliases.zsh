@@ -11,6 +11,8 @@ export VIMDATA=~/.local/share/nvim
 alias vi='nvim'
 alias vim='vim'
 alias vimdiff='nvim -d'
+alias nveplg='nvim ~/.config/nvim/lua/plugs.lua'
+alias nvelsp='nvim ~/.config/nvim/lua/lsp_config.lua'
 
 if [[ -n "$NVIM_LISTEN_ADDRESS" ]]; then
   if (( $+commands[nvr] )); then
