@@ -6,3 +6,6 @@ export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export BAT_PAGER="less -RF"
+
+# kvm default connection
+export VIRSH_DEFAULT_CONNECT_URI='qemu:///system'
