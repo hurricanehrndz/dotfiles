@@ -3,10 +3,11 @@
 # catch-all alias file for various utilities
 
 # exa aliases
-alias e='exa'                                                  \
-      el='exa -lh --group-directories-first'                   \
-      ela='exa -lha --group-directories-first'                 \
-      elt='exa -lha --sort modified --group-directories-first'
+alias
+  e='exa'                                                  \
+  el='exa -lh --group-directories-first'                   \
+  ela='exa -lha --group-directories-first'                 \
+  elt='exa -lha --sort modified --group-directories-first'
 
 # replace tree with exa
 tl() {
@@ -19,7 +20,7 @@ t() {
 # why use vim
 alias
   vi='nvim'      \
-s vd='nvim -d'
+  vd='nvim -d'
 
 # forgot what file I want
 alias
