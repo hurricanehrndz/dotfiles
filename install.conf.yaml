@@ -7,8 +7,14 @@
 - clean: ['~']
 
 - link:
+    ~/.config/zsh: config/zsh
+    ~/.zshenv: config/zshenv
+    ~/.config/X11/Xresources: config/X11/Xresources
+    ~/.config/gnupg/gpg-agent.conf: config/gpg-agent
     ~/.config/tmux/tmux.conf: config/tmux/tmux.conf
     ~/.config/tmux/tpm.tmux: config/tmux/tpm.tmux
+    ~/.config/git/ignore: config/git/ignore
+    ~/.config/git/config: config/git/config
     ~/.config/sheldon/plugins.toml: config/sheldon/plugins.toml
     ~/.config/starship.toml: config/starship.toml
-
+    ~/.ssh/config: ssh/config
