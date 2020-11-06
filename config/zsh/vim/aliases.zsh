@@ -9,7 +9,7 @@ export VIMCONFIG=~/.config/nvim
 export VIMDATA=~/.local/share/nvim
 
 alias vi='nvim'
-alias vim='vim'
+alias vim='nvim'
 alias vimdiff='nvim -d'
 alias nveplg='nvim ~/.config/nvim/lua/plugs.lua'
 alias nvelsp='nvim ~/.config/nvim/lua/lsp_config.lua'
