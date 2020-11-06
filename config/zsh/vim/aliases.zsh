@@ -10,6 +10,7 @@ export VIMDATA=~/.local/share/nvim
 
 alias vi='nvim'
 alias vim='nvim'
+alias vff='nvim $(fzf --height 40% --reverse --preview "bat --style=numbers --color=always --line-range :500 {}")'
 alias vimdiff='nvim -d'
 alias nveplg='nvim ~/.config/nvim/lua/plugs.lua'
 alias nvelsp='nvim ~/.config/nvim/lua/lsp_config.lua'
