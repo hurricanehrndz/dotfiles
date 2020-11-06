@@ -2,8 +2,8 @@
 # vim:set sw=2 sts=2 ts=2 et:
 # catch-all alias file for various utilities
 
-# exa aliases
-alias
+# # exa aliases
+alias                                                      \
   e='exa'                                                  \
   el='exa -lh --group-directories-first'                   \
   ela='exa -lha --group-directories-first'                 \
@@ -18,24 +18,23 @@ t() {
 }
 
 # why use vim
-alias
+alias            \
   vi='nvim'      \
   vd='nvim -d'
 
 # forgot what file I want
-alias
+alias                                                                       \
   vff='nvim                                                                 \
       $(fzf                                                                 \
         --height 40% --reverse                                              \
         --preview "bat --style=numbers --color=always --line-range :500 {}" \
       )'
 
-
 # quick edits
-alias vplg='nvim ~/.config/nvim/lua/plugs.lua'               \
-      vlsp='nvim ~/.config/nvim/lua/lsp_config.lua'          \
-      vaka='nvim "$DOTFILES/config/zsh/profile/aliases.zsh"'
-
+alias                                                    \
+  vplg='nvim ~/.config/nvim/lua/plugs.lua'               \
+  vlsp='nvim ~/.config/nvim/lua/lsp_config.lua'          \
+  vaka='nvim "$DOTFILES/config/zsh/profile/aliases.zsh"'
 
 if [[ -n "$NVIM_LISTEN_ADDRESS" ]]; then
   if (( $+commands[nvr] )); then
@@ -66,7 +65,7 @@ alias tsheldon='sheldon --data-dir "$HOME/.config/tmux/plugins" --config-dir "$H
 alias wake-server='sudo wakeonlan -i 172.28.251.255 4c:cc:6a:fc:f0:7f'
 
 # unlock vms
-alias unlock-ryzen=' \
+alias unlock-ryzen='                                   \
   until nc -w 3 -z ryzen-vmm01-boot 222; do            \
     sleep 3;                                           \
   done;                                                \
