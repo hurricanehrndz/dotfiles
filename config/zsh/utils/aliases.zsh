@@ -3,10 +3,14 @@
 # catch-all alias file for various utilities
 
 alias e='exa'
-alias ela='exa -la'
-alias elt='exa -la --sort modified'
+alias el='exa -lh --group-directories-first'
+alias ela='exa -lha --group-directories-first'
+alias elt='exa -lha --sort modified --group-directories-first'
 alias t='exa -T'
 alias tl='exa -Tl'
 
 # nvim edit aliases
 alias nvea='nvim "$DOTFILES/config/zsh/utils/aliases.zsh"'
+
+# rust tools
+alias cat='bat'
