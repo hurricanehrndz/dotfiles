@@ -20,3 +20,4 @@
     ~/.config/starship.toml: config/starship.toml
     ~/.ssh/config: config/ssh/config
     ~/.config/alacritty/alacritty.yml: config/alacritty/alacritty.yml
+    ~/.config/environment.d: config/environment.d

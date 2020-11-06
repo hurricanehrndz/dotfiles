@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+# vim:set ft=zsh sw=2 sts=2 ts=2 et:
+
+for f in $HOME/.config/environment.d/*; do
+  source "$f"
+  export $(cut -d= -f1 "$f")
+  cut -d= -f1 "$f" | xargs -i systemctl --user import-environment {}
+done
