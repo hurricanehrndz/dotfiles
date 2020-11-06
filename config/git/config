@@ -50,7 +50,7 @@
 [core]
     pager        = less -FRSX
     whitespace   = fix,-indent-with-non-tab,trailing-space,cr-at-eol
-    excludesfile = $XDG_CONFIG_HOME/git/config/global-ignore
+    excludesfile = $XDG_CONFIG_HOME/git/config/ignore
 
 [diff]
     # Detect copies as well as renames
