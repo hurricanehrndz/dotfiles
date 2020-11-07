@@ -9,6 +9,7 @@
 - link:
     ~/.config/zsh: config/zsh
     ~/.zshenv: config/zsh/zshenv
+    ~/.profile: config/zsh/zprofile
     ~/.config/X11/Xresources: config/X11/Xresources
     ~/.config/gnupg/gpg-agent.conf: config/gnupg/gpg-agent.conf
     ~/.config/gnupg/gpg.conf: config/gnupg/gpg.conf
