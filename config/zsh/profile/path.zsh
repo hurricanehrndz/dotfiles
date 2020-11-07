@@ -9,3 +9,7 @@ fi
 if [[ -d "$HOME/.cargo/bin"  ]]; then
   path=("$HOME/.cargo/bin" $path)
 fi
+
+if [[ -d "$HOME/.local/bin" ]]; then
+  path=("$HOME/.local/bin" $path)
+fi
