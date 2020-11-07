@@ -71,3 +71,7 @@ alias unlock-ryzen='                                   \
   done;                                                \
   gopass -c systems/ryzen-vmm01 && pbpaste             \
   | ssh -p 222 root@ryzen-vmm01-boot cryptroot-unlock'
+
+# list path
+lpath() { echo $PATH | tr ':' '\n' }
+
