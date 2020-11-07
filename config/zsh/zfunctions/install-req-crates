@@ -1,0 +1,32 @@
+#!/usr/bin/env zsh
+# vim:set ft=zsh sw=2 sts=2 ts=2 et:
+# https://zaiste.net/posts/shell-commands-rust/
+req_crates=(
+  "bandwhich"
+  "bat"
+  "bottom"
+  "du-dust"
+  "exa"
+  "fd-find"
+  "grex"
+  "hyperfine"
+  "procs"
+  "ripgrep"
+  "sd"
+  "starship"
+  "sheldon"
+  "tealdeer"
+  "tokei"
+  "cargo-update"
+  "cargo-cache"
+)
+
+for crate in "${req_crates[@]}"; do
+  if ! cargo list --installed | grep -qcE "^${crate}"; then
+    SHELL_COMPLETIONS_DIR="$HOME/.local/share/zsh/completions" \
+      cargo install "${crate}"
+  fi
+done
+
+# update all crates
+cargo install-update -a
