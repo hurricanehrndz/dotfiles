@@ -17,7 +17,6 @@ fav_crates=(
   "sheldon"
   "tealdeer"
   "tokei"
-  "zoxide"
   "ncspot"
 )
 

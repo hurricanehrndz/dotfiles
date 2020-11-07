@@ -23,10 +23,5 @@ export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
 
-# init zoxide
-if (( $+commands[zoxide] )); then
-  eval "$(zoxide init zsh)"
-fi
-
 # ANSIBLE cfg
 export ANSIBLE_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/ansible/ansible.cfg"
