@@ -39,14 +39,14 @@ font:
   normal:
     family: FuraCode Nerd Font Mono
     style: Regular
-    size: 12
+  size: 10
 
 key_bindings:
   - { key: V,        mods: Control|Shift, action: Paste            }
   - { key: C,        mods: Control|Shift, action: Copy             }
   - { key: J,        mods: Control|Shift, action: DecreaseFontSize }
   - { key: K,        mods: Control|Shift, action: IncreaseFontSize }
-  - { key: Key0,     mods: Control|Shift, action: ResetFontSize    }
+  - { key: Key0,     mods: Control,       action: ResetFontSize    }
   - { key: Equals,   mods: Control,       action: None             }
   - { key: Add,      mods: Control,       action: None             }
   - { key: Subtract, mods: Control,       action: None             }
