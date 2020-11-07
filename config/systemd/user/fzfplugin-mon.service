@@ -2,8 +2,8 @@
 Description="Run fzf install"
 
 [Service]
-ExecStartPre=/bin/sleep 10
+ExecStartPre=/bin/sleep 3
 ExecStart=%h/.local/share/sheldon/repos/github.com/junegunn/fzf/install --bin
-ExecStopPost=/usr/bin/mv                                        \
-  %h/.local/share/sheldon/repos/github.com/junegunn/fzf/bin/fzf \
+ExecStopPost=/usr/bin/ln -sf                                    \
+  %h/.local/share/sheldon/repos/github.com/junegunn/fzf/bin/*   \
   %h/.local/bin/
