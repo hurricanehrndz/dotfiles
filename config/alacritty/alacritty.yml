@@ -4,17 +4,17 @@ env:
 colors:
   # Default colors
   primary:
-    background: '#202734'
+    background: '#1F2430'
     foreground: '#CBCCC6'
 
   # Normal colors
   normal:
-    black: '#191E2A'
+    black: '#8A9199'
     red: '#FF3333'
     green: '#BAE67E'
     yellow: '#FFA759'
     blue: '#73D0FF'
-    magenta: '#FFD580'
+    magenta: '#CFBAFA'
     cyan: '#95E6CB'
     white: '#C7C7C7'
 
@@ -25,7 +25,7 @@ colors:
     green: '#A6CC70'
     yellow: '#FFCC66'
     blue: '#5CCFE6'
-    magenta: '#FFEE99'
+    magenta: '#D4BFFF'
     cyan: '#95E6CB'
     white: '#FFFFFF'
 
