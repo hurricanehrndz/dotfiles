@@ -11,9 +11,9 @@
     ~/.zshenv: config/zsh/zshenv
     ~/.profile: config/zsh/zprofile
     ~/.config/X11/Xresources: config/X11/Xresources
-    ~/.config/gnupg/gpg-agent.conf: config/gnupg/gpg-agent.conf
-    ~/.config/gnupg/gpg.conf: config/gnupg/gpg.conf
-    ~/.config/gnupg/scdaemon.conf: config/gnupg/scdaemon.conf
+    ~/.gnupg/gpg-agent.conf: config/gnupg/gpg-agent.conf
+    ~/.gnupg/gpg.conf: config/gnupg/gpg.conf
+    ~/.gnupg/scdaemon.conf: config/gnupg/scdaemon.conf
     ~/.config/tmux/tmux.conf: config/tmux/tmux.conf
     ~/.config/tmux/tpm.tmux: config/tmux/tpm.tmux
     ~/.config/tmux/plugins.toml: config/tmux/plugins.toml
