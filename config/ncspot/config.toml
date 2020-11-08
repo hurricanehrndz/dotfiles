@@ -1,0 +1,11 @@
+[saved_state]
+volume = 60
+repeat = "track"
+shuffle = true
+album_column = true
+
+# https://github.com/hrkfdn/ncspot/blob/master/src/command.rs#L124
+# commands can be found in fmt function
+# vim like bindings incoming
+[keybindings]
+" " = "toggleplay"

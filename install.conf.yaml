@@ -11,6 +11,7 @@
     ~/.zshenv: config/zsh/zshenv
     ~/.profile: config/zsh/zprofile
     ~/.config/X11/Xresources: config/X11/Xresources
+    ~/.config/ncspot/config.toml: config/ncspot/config.toml
     ~/.gnupg/gpg-agent.conf: config/gnupg/gpg-agent.conf
     ~/.gnupg/gpg.conf: config/gnupg/gpg.conf
     ~/.gnupg/scdaemon.conf: config/gnupg/scdaemon.conf
