@@ -49,3 +49,8 @@ if [[ $#_screenfetch < 1 ]] && [[ -x $(command -v screenfetch) ]]; then
 fi
 
 eval "$(starship init zsh)"
+
+# start tmux on remote session
+if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
+  tma -t ssh_tmux || tmn -s ssh_tmux
+fi
