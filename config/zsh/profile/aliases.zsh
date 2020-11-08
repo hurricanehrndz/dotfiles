@@ -74,3 +74,6 @@ alias unlock-ryzen='                                   \
 
 # list path
 lpath() { echo $PATH | tr ':' '\n' }
+
+# workaround for fnm
+alias fnm='fnm --log-level=info'
