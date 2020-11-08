@@ -6,9 +6,6 @@ export DOTFILES="$HOME/.config/dotfiles"
 # Time format
 export TIME="\t%e real,\t%U user,\t%S sys"
 
-# your project folder that we can `c [tab]` to
-export PROJECTS="$HOME/Code"
-
 # your default editor
 if (( $+commands[nvim] )); then
   export EDITOR='nvim'

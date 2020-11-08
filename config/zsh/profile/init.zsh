@@ -11,12 +11,12 @@ export VIRSH_DEFAULT_CONNECT_URI='qemu:///system'
 
 # nvim settings
 if (( $+commands[nvim] )); then
-  export VIMCONFIG=~/.config/nvim
-  export VIMDATA=~/.local/share/nvim
+  export VIMCONFIG="$HOME/.config/nvim"
+  export VIMDATA="$HOME/.local/share/nvim"
 fi
 
 # tmux config
-export TMUX_CONF="~/.config/tmux/tmux.conf"
+export TMUX_CONF="${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf"
 export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 
 # autosuggetions
@@ -28,3 +28,14 @@ export ANSIBLE_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/ansible/ansible.cfg"
 
 # GPG
 export GNUPGHOME="${XDG_CONFIG_HOME:-$HOME/.config}/gnupg"
+
+# FNM
+export FNM_DIR="$HOME/.local/share/fnm"
+if (( $+commands[fnm] )); then
+  eval "$(fnm --log-level='quiet' env)"
+  [[ -e "$FNM_DIR/aliases/default" ]] && fnm use default
+fi
+
+# GOLANG
+export GOPATH="$HOME/.local/share/go"
+export GOBIN="$HOME/.local/bin"

@@ -74,4 +74,3 @@ alias unlock-ryzen='                                   \
 
 # list path
 lpath() { echo $PATH | tr ':' '\n' }
-
