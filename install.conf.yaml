@@ -7,21 +7,52 @@
 - clean: ['~']
 
 - link:
+    # profile settings
     ~/.config/zsh: config/zsh
     ~/.zshenv: config/zsh/zshenv
     ~/.profile: config/zsh/zprofile
+
+    # X11 settings and themes
     ~/.config/X11/Xresources: config/X11/Xresources
-    ~/.config/ncspot/config.toml: config/ncspot/config.toml
-    ~/.gnupg/gpg-agent.conf: config/gnupg/gpg-agent.conf
-    ~/.gnupg/gpg.conf: config/gnupg/gpg.conf
-    ~/.gnupg/scdaemon.conf: config/gnupg/scdaemon.conf
-    ~/.config/tmux/tmux.conf: config/tmux/tmux.conf
-    ~/.config/tmux/tpm.tmux: config/tmux/tpm.tmux
-    ~/.config/tmux/plugins.toml: config/tmux/plugins.toml
-    ~/.config/git/ignore: config/git/ignore
-    ~/.config/git/config: config/git/config
+
+    # zsh plugin manager settings
     ~/.config/sheldon/plugins.toml: config/sheldon/plugins.toml
+    # space worthy like prompt
     ~/.config/starship.toml: config/starship.toml
-    ~/.ssh/config: config/ssh/config
+    # terminal emulator settings
     ~/.config/alacritty/alacritty.yml: config/alacritty/alacritty.yml
-    ~/.config/environment.d: config/environment.d
+
+    # ssh of course?
+    ~/.ssh/config: config/ssh/config
+
+    # tmux configs
+    ~/.config/tmux/:
+        glob: true
+        relink: true
+        path: config/tmux/*
+
+    # git configs
+    ~/.config/git/:
+        glob: true
+        relink: true
+        path: config/git/*
+
+    # GNUPG configs
+    ~/.gnupg/:
+        glob: true
+        relink: true
+        path: config/gnupg/*
+
+    # systemd user units
+    ~/.config/systemd/user/:
+        glob: true
+        relink: true
+        path: config/systemd/user/*
+
+    # settings spotify console player
+    ~/.config/ncspot/config.toml: config/ncspot/config.toml
+
+- shell:
+    # enable file watch for new fzf updates
+    - [systemctl --user daemon-reload]
+    - [systemctl --user enable --now fzfplugin-mon.path]
