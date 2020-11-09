@@ -48,6 +48,17 @@ if [[ $#_screenfetch < 1 ]] && [[ -x $(command -v screenfetch) ]]; then
   screenfetch
 fi
 
+# Update environment before execute
+function import_tmux_env() {
+  if [[ -n "$TMUX" ]]; then
+    SSH_AUTH_SOCK=$(tmux show-environment SSH_AUTH_SOCK 2> /dev/null)
+    [[ -n "$SSH_AUTH_SOCK" ]] && export $SSH_AUTH_SOCK
+    DISPLAY=$(tmux show-environment DISPLAY 2> /dev/null)
+    [[ -n "$DISPLAY" ]] && export $DISPLAY
+  fi
+}
+precmd_functions+=(import_tmux_env)
+
 eval "$(starship init zsh)"
 
 # start tmux on remote session
