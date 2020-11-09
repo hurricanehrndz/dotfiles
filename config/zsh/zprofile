@@ -1,6 +1,12 @@
+#!/usr/bin/env zsh
+# vim:set ft=zsh sw=2 sts=2 ts=2 et:
+#
 if ! grep -qc 'source /etc/profile' /etc/zsh/zprofile; then
-    emulate sh -c 'source /etc/profile'
+  emulate sh -c 'source /etc/profile'
 fi
 
 export XDG_CONFIG_HOME="$HOME/.config"
-export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
+# Do not set SSH_AUTH_SOCKET on remote connection
+if [[ -z "$SSH_CONNECTION" ]]; then
+  export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
+fi
