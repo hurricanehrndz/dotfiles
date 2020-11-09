@@ -27,6 +27,11 @@ github = "junegunn/fzf"
 [plugins.compeltions]
 github = "zsh-users/zsh-completions"
 
+# directory plugin from prezto
+[plugins.directory]
+github = "sorin-ionescu/prezto"
+use = ["modules/directory/*.zsh"]
+
 # initalize history options and completion
 [plugins.zsh-utils]
 github = "belak/zsh-utils"
