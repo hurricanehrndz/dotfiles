@@ -51,10 +51,10 @@ fi
 # Update environment before execute
 function import_tmux_env() {
   if [[ -n "$TMUX" ]]; then
-    SSH_AUTH_SOCK=$(tmux show-environment SSH_AUTH_SOCK 2> /dev/null)
-    [[ -n "$SSH_AUTH_SOCK" ]] && export $SSH_AUTH_SOCK
-    DISPLAY=$(tmux show-environment DISPLAY 2> /dev/null)
-    [[ -n "$DISPLAY" ]] && export $DISPLAY
+    ssh_auth_sock=$(tmux show-environment | grep "^SSH_AUTH_SOCK")
+    [[ -n "$ssh_auth_sock" ]] && export $ssh_auth_sock
+    display=$(tmux show-environment | grep  "^DISPLAY")
+    [[ -n "$display" ]] && export $display
   fi
 }
 precmd_functions+=(import_tmux_env)
