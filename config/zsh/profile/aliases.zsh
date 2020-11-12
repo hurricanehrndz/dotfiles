@@ -77,3 +77,14 @@ lpath() { echo $PATH | tr ':' '\n' }
 
 # workaround for fnm
 alias fnm='fnm --log-level=info'
+
+alias                                                          \
+  mlcv='molecule converge'                                     \
+  mlls='molecule list'                                         \
+  mlds='molecule destroy'                                      \
+  mlvf='molecule verify'                                       \
+  mllt='molecule lint'                                         \
+  mllg='molecule login'                                        \
+  mlaa='export MLDISTRO="archlinux" MLIMG="archlinux/current"' \
+  mlaf='export MLDISTRO="fedora" MLIMG="fedora/33"'            \
+  mlau='export MLDISTRO="ubuntu" MLIMG="ubuntu/focal"'
