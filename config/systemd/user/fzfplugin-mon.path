@@ -1,9 +1,0 @@
-[Unit]
-Description="Monitor for new version of fzf"
-
-[Path]
-PathModified=%h/.local/share/sheldon/repos/github.com/junegunn/fzf/install
-Unit=fzfplugin-mon.service
-
-[Install]
-WantedBy=default.target

@@ -1,6 +1,0 @@
-[Unit]
-Description="Run fzf install"
-
-[Service]
-ExecStartPre=/bin/sleep 3
-ExecStart=%h/.local/share/sheldon/repos/github.com/junegunn/fzf/install --bin

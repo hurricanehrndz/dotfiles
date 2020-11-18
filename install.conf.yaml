@@ -49,16 +49,15 @@
         relink: true
         path: config/gnupg/*
 
-    # systemd user units
-    ~/.config/systemd/user/:
-        glob: true
-        relink: true
-        path: config/systemd/user/*
-
     # settings spotify console player
     ~/.config/ncspot/config.toml: config/ncspot/config.toml
 
+
 - shell:
-    # enable file watch for new fzf updates
-    - [systemctl --user daemon-reload]
-    - [systemctl --user enable --now fzfplugin-mon.path]
+    # install plugins
+    - [~/.cargo/bin/sheldon lock]
+
+# install skim (fzf)
+- link:
+    ~/.local/bin/sk-tmux: ~/.local/share/sheldon/repos/github.com/lotabout/skim/bin/sk-tmux
+    ~/.local/bin/fzf-tmux: ~/.local/share/sheldon/repos/github.com/lotabout/skim/bin/sk-tmux

@@ -20,8 +20,8 @@ defer = { value = 'zsh-defer source "{{ file }}"', each = true }
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
 
-[plugins.fzf]
-github = "junegunn/fzf"
+[plugins.skim]
+github = "lotabout/skim"
 
 # specify completion sources before module
 [plugins.compeltions]
