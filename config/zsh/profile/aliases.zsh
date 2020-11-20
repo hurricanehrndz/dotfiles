@@ -79,7 +79,7 @@ lpath() { echo $PATH | tr ':' '\n' }
 alias fnm='fnm --log-level=info'
 
 alias                                                          \
-  mlcv='molecule converge'                                     \
+  mlcv='molecule --debug converge'                             \
   mlls='molecule list'                                         \
   mlds='molecule destroy'                                      \
   mlvf='molecule verify'                                       \
