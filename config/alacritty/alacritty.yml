@@ -48,6 +48,4 @@ key_bindings:
   - { key: K,        mods: Control|Shift, action: IncreaseFontSize }
   - { key: Key0,     mods: Control,       action: ResetFontSize    }
   - { key: Equals,   mods: Control,       action: None             }
-  - { key: Add,      mods: Control,       action: None             }
-  - { key: Subtract, mods: Control,       action: None             }
   - { key: Minus,    mods: Control,       action: None             }
