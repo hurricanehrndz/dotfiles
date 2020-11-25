@@ -57,7 +57,7 @@ function import_tmux_env() {
     [[ -n "$display" ]] && export $display
   fi
 }
-precmd_functions+=(import_tmux_env)
+preexec_functions+=(import_tmux_env)
 
 eval "$(starship init zsh)"
 

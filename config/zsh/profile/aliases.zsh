@@ -85,6 +85,7 @@ alias                                                          \
   mlvf='molecule verify'                                       \
   mllt='molecule lint'                                         \
   mllg='molecule login'                                        \
+  ml='molecule'                                                \
   mlaa='export MLDISTRO="archlinux" MLIMG="archlinux/current"' \
   mlaf='export MLDISTRO="fedora" MLIMG="fedora/33"'            \
   mlau='export MLDISTRO="ubuntu" MLIMG="ubuntu/focal"'
