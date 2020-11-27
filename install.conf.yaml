@@ -52,6 +52,10 @@
     # settings spotify console player
     ~/.config/ncspot/config.toml: config/ncspot/config.toml
 
+    # Xorg
+    ~/.xinitrc: config/xinitrc
+    ~/.config/xmonad: config/xmonad
+
 
 - shell:
     # install plugins

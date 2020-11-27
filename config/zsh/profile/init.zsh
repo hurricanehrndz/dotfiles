@@ -5,6 +5,12 @@
 export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export BAT_PAGER="less -RF"
+export TERMINAL="alacritty"
+
+# xmonad dirs
+export XMONAD_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/xmonad"
+export XMONAD_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/xmonad"
+export XMONAD_DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/xmonad"
 
 # kvm default connection
 export VIRSH_DEFAULT_CONNECT_URI='qemu:///system'
