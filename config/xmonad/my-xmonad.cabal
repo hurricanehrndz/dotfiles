@@ -9,6 +9,7 @@ cabal-version:  >=1.10
 
 executable my-xmonad
   main-is:             Main.hs
+  ghc-options:         -Wall -Wno-missing-signatures -O2 -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base
                      , xmonad
                      , xmonad-contrib
