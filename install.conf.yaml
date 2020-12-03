@@ -9,7 +9,7 @@
 - link:
     # profile settings
     ~/.config/zsh: config/zsh
-    ~/.zshenv: config/zsh/zshenv
+    ~/.zshenv: config/zsh/.zshenv
 
     # X11 settings and themes
     ~/.config/X11/Xresources: config/X11/Xresources
