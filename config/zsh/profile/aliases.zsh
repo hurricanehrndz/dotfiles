@@ -75,9 +75,7 @@ alias unlock-ryzen='                                   \
 # list path
 lpath() { echo $PATH | tr ':' '\n' }
 
-# workaround for fnm
-alias fnm='fnm --log-level=info'
-
+# molecule (ansible)
 alias                                                          \
   mlcv='molecule --debug converge'                             \
   mlls='molecule list'                                         \
@@ -89,3 +87,6 @@ alias                                                          \
   mlaa='export MLDISTRO="archlinux" MLIMG="archlinux/current"' \
   mlaf='export MLDISTRO="fedora" MLIMG="fedora/33"'            \
   mlau='export MLDISTRO="ubuntu" MLIMG="ubuntu/focal"'
+
+# wget: do not pollute home
+alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'

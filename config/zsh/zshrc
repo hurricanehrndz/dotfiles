@@ -1,22 +1,8 @@
 #!/usr/bin/env zsh
 # vim:set ft=zsh sw=2 sts=2 ts=2 et:
 
-# shortcut to this dotfiles path is $DOTFILES
-export DOTFILES="$HOME/.config/dotfiles"
-# Time format
-export TIME="\t%e real,\t%U user,\t%S sys"
-
-# your default editor
-if (( $+commands[nvim] )); then
-  export EDITOR='nvim'
-  export VISUAL="nvim"
-else
-  export EDITOR='vi'
-  export VISUAL="vi"
-fi
-
-# Ensure path arrays do not contain duplicates.
-typeset -gU cdpath fpath mailpath path
+# No duplicates in path arrays
+typeset -gU cdpath fpath mailpath PATH path
 
 # all of our zsh files
 typeset -U config_files
@@ -35,6 +21,12 @@ done
 # load sheldon plugins
 source <(sheldon source)
 
+# set default node version
+if (( $+commands[fnm] )); then
+  eval "$(fnm env)"
+  [[ -e "$FNM_DIR/aliases/default" ]] && fnm --log-level quiet use default
+fi
+
 # load everything but the path and init files
 for file in ${${config_files:#*/path.zsh}:#*/init.zsh}; do
   source "$file"
@@ -42,9 +34,9 @@ done
 
 unset config_files
 
-_screenfetch=($HOME/.screenfetch(Nmh-20))
+_screenfetch=($XDG_DATA_HOME/.screenfetch(Nmh-20))
 if [[ $#_screenfetch < 1 ]] && [[ -x $(command -v screenfetch) ]]; then
-  touch $HOME/.screenfetch
+  touch "$XDG_DATA_HOME/.screenfetch"
   screenfetch
 fi
 
@@ -58,6 +50,11 @@ function import_tmux_env() {
   fi
 }
 preexec_functions+=(import_tmux_env)
+
+# Do not set SSH_AUTH_SOCKET on remote connection
+if [[ -z "$SSH_CONNECTION" ]]; then
+  export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
+fi
 
 eval "$(starship init zsh)"
 

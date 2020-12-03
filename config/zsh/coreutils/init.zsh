@@ -92,4 +92,3 @@ export LESS_TERMCAP_us=$'\E[00;37m'      # Begins underline.
 export GROFF_NO_SGR=1                    # for konsole and gnome-terminal
 
 (( $#commands[(i)lesspipe(|.sh)] )) && eval "$(lesspipe)"
-export PAGER="less"

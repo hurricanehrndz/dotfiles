@@ -4,9 +4,3 @@
 if ! grep -qc 'source /etc/profile' /etc/zsh/zprofile; then
   emulate sh -c 'source /etc/profile'
 fi
-
-export XDG_CONFIG_HOME="$HOME/.config"
-# Do not set SSH_AUTH_SOCKET on remote connection
-if [[ -z "$SSH_CONNECTION" ]]; then
-  export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
-fi

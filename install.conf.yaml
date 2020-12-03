@@ -10,7 +10,6 @@
     # profile settings
     ~/.config/zsh: config/zsh
     ~/.zshenv: config/zsh/zshenv
-    ~/.profile: config/zsh/zprofile
 
     # X11 settings and themes
     ~/.config/X11/Xresources: config/X11/Xresources
@@ -44,7 +43,7 @@
         path: config/git/*
 
     # GNUPG configs
-    ~/.gnupg/:
+    ~/.local/share/gnupg/:
         glob: true
         relink: true
         path: config/gnupg/*
@@ -56,10 +55,13 @@
     ~/.xinitrc: config/xinitrc
     ~/.config/xmonad: config/xmonad
 
+    # npm
+    ~/.config/npm/config: config/npm/config
+
 
 - shell:
     # install plugins
-    - [~/.cargo/bin/sheldon lock]
+    - [zsh -i -c "sheldon lock"]
 
 # install skim (fzf)
 - link:
