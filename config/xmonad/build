@@ -1,9 +1,8 @@
 #!/bin/sh
-#
 # As of 0.13, xmonad --recompile will look for a custom build script.
 
 set -e
 
-stack build :my-xmonad
-stack install :my-xmonad --local-bin-path bin/
+cabal build my-xmonad
+cabal install --bindir=bin
 mv bin/my-xmonad "$1"
