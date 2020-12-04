@@ -34,7 +34,7 @@ alias                                                                       \
 alias                                                    \
   vplg='nvim ~/.config/nvim/lua/plugs.lua'               \
   vlsp='nvim ~/.config/nvim/lua/lsp_config.lua'          \
-  vaka='nvim "$DOTFILES/config/zsh/profile/aliases.zsh"'
+  vaka='nvim "$DOTFILES/config/zsh/aliases/conf.zsh"'
 
 if [[ -n "$NVIM_LISTEN_ADDRESS" ]]; then
   if (( $+commands[nvr] )); then
@@ -90,3 +90,6 @@ alias                                                          \
 
 # wget: do not pollute home
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
+
+# yarn: do not pollute my house
+alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"

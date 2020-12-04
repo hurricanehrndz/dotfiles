@@ -7,7 +7,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
-if [ $(expr $SHELL : '.*zsh$') -gt 3 ]; then
+if [ -z "$XDG_GREETER_DATA_DIR" ]; then
   # No duplicates in path arrays
   typeset -gU cdpath fpath mailpath PATH path
   # Source default profile if not done by system config
@@ -22,7 +22,7 @@ if [ $(expr $SHELL : '.*zsh$') -gt 3 ]; then
   export PATH
 else
   # Fallback for bash
-  PATH="$XDG_DATA_HOME/cargo/bin:$HOME/.local/bin:$HOME/.yarn/bin:$PAHT"
+  PATH="$XDG_DATA_HOME/cargo/bin:$HOME/.local/bin:$HOME/.yarn/bin:$PATH"
   export PATH=$(echo "$PATH" | \
     awk -v RS=':' -v ORS=":" '!a[$1]++{if (NR > 1) printf ORS; printf $a[$1]}')
 fi
@@ -39,7 +39,7 @@ export BROWSER="firefox"
 export READER="zathura"
 
 # Default editor (will set zsh binds to vi mode)
-if (( $+commands[nvim] )); then
+if [ -n $(command -v nvim) ]; then
   export VIMCONFIG="$HOME/.config/nvim"
   export VIMDATA="$HOME/.local/share/nvim"
   export EDITOR='nvim'

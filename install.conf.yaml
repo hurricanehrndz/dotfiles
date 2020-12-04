@@ -12,8 +12,8 @@
     ~/.zshenv: config/zsh/zshenv
     ~/.profile: config/zsh/zprofile
 
-    # X11 settings and themes
-    ~/.config/X11/Xresources: config/X11/Xresources
+    # x11 settings and themes
+    ~/.config/x11/Xresources: config/x11/Xresources
 
     # zsh plugin manager settings
     ~/.config/sheldon/plugins.toml: config/sheldon/plugins.toml
@@ -53,11 +53,12 @@
     ~/.config/ncspot/config.toml: config/ncspot/config.toml
 
     # Xorg
-    ~/.xinitrc: config/xinitrc
+    ~/.xinitrc: config/x11/xinitrc
     ~/.config/xmonad: config/xmonad
 
     # npm
     ~/.config/npm/config: config/npm/config
+    ~/.config/yarn/config: config/yarn/config
 
 
 - shell:
