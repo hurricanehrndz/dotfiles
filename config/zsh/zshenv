@@ -1,0 +1,9 @@
+#
+# zshenv is sourced on interactive login/non-login
+#
+
+# Start compinit in my zshrc
+skip_global_compinit=1
+
+# zshrc files
+export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"

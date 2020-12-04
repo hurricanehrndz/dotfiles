@@ -9,7 +9,8 @@
 - link:
     # profile settings
     ~/.config/zsh: config/zsh
-    ~/.zshenv: config/zsh/.zshenv
+    ~/.zshenv: config/zsh/zshenv
+    ~/.profile: config/zsh/zprofile
 
     # X11 settings and themes
     ~/.config/X11/Xresources: config/X11/Xresources
@@ -43,7 +44,7 @@
         path: config/git/*
 
     # GNUPG configs
-    ~/.local/share/gnupg/:
+    ~/.gnupg/:
         glob: true
         relink: true
         path: config/gnupg/*

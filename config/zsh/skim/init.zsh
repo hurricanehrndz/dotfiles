@@ -1,12 +1,12 @@
 #!/usr/bin/env zsh
 # vim:set ft=zsh sw=2 sts=2 ts=2 et:
 
-(( $+commands[fzf] )) || return
+(( $+commands[sk] )) || return
 
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+export SKIM_DEFAULT_OPTIONS='--height 40% --layout=reverse --border'
 
 fman() {
-  man -k . | fzf --prompt='Man> ' | awk '{print $1}' | xargs -r man
+  man -k . | sk --prompt='Man> ' | awk '{print $1}' | xargs -r man
 }
 
 # if fd is avaible change default find command
@@ -25,4 +25,4 @@ _fzf_compgen_dir() {
   fd --type d --hidden --follow --exclude ".git" . "$1"
 }
 
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export SKIM_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'

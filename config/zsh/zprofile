@@ -1,5 +1,31 @@
 #!/usr/bin/env zsh
-# vim:set sw=2 sts=2 ts=2 et:
+# vim:set ft=zsh sw=2 sts=2 ts=2 et:
+
+# see: https://wiki.archlinux.org/index.php/XDG_Base_Directory
+# Home clean-up:
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+
+if [ $(expr $SHELL : '.*zsh$') -gt 3 ]; then
+  # No duplicates in path arrays
+  typeset -gU cdpath fpath mailpath PATH path
+  # Source default profile if not done by system config
+  grep -qc 'source /etc/profile' /etc/zsh/zprofile || \
+    emulate sh -c 'source /etc/profile'
+  path=(               \
+    "$XDG_DATA_HOME/cargo/bin"  \
+    "$HOME/.local/bin" \
+    "$HOME/.yarn/bin"  \
+    "$path[@]"         \
+  )
+  export PATH
+else
+  # Fallback for bash
+  PATH="$XDG_DATA_HOME/cargo/bin:$HOME/.local/bin:$HOME/.yarn/bin:$PAHT"
+  export PATH=$(echo "$PATH" | \
+    awk -v RS=':' -v ORS=":" '!a[$1]++{if (NR > 1) printf ORS; printf $a[$1]}')
+fi
 
 # Shortcut to dotfiles path is $DOTFILES
 export DOTFILES="$XDG_CONFIG_HOME/dotfiles"
@@ -12,7 +38,7 @@ export TERMINAL="alacritty"
 export BROWSER="firefox"
 export READER="zathura"
 
-# Default editor
+# Default editor (will set zsh binds to vi mode)
 if (( $+commands[nvim] )); then
   export VIMCONFIG="$HOME/.config/nvim"
   export VIMDATA="$HOME/.local/share/nvim"
@@ -24,6 +50,8 @@ else
 fi
 
 # Pagers
+# less: do not pollute home
+export LESSHISTFILE="-"
 export PAGER="less"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export BAT_PAGER="less -RF"
@@ -61,10 +89,10 @@ export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 # FNM
 export FNM_DIR="$XDG_DATA_HOME/fnm"
 
-path=(               \
-  "$CARGO_HOME/bin"  \
-  "$HOME/.local/bin" \
-  "$HOME/.yarn/bin"  \
-  "$path[@]"         \
-)
-export PATH
+# Do not set SSH_AUTH_SOCKET on remote connection
+if [[ -z "$SSH_CONNECTION" ]]; then
+  export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
+fi
+
+# x11
+export ERRFILE="$XDG_CACHE_HOME/x11/xsession-errors"
