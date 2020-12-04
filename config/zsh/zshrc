@@ -24,10 +24,10 @@ for file in ${${config_files:#*/path.zsh}:#*/init.zsh}; do
 done
 unset config_files
 
-_screenfetch=($XDG_DATA_HOME/.screenfetch(Nmh-20))
-if [[ $#_screenfetch < 1 ]] && [[ -x $(command -v screenfetch) ]]; then
-  touch "$XDG_DATA_HOME/.screenfetch"
-  screenfetch
+_sysinfo_fetch=($XDG_DATA_HOME/.sysinfo_fetch(Nmh-20))
+if [[ $#_sysinfo_fetch < 1 ]] && [[ -x $(command -v neofetch) ]]; then
+  touch "$XDG_DATA_HOME/.sysinfo_fetch"
+  neofetch
 fi
 
 # Update environment before execute
