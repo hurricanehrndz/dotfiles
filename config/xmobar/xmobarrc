@@ -1,38 +1,46 @@
-Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
-       , additionalFonts = []
-       , borderColor = "black"
-       , border = TopB
-       , bgColor = "black"
-       , fgColor = "grey"
-       , alpha = 255
-       , position = Top
-       , textOffset = -1
-       , iconOffset = -1
-       , lowerOnStart = True
-       , pickBroadest = False
-       , persistent = False
-       , hideOnStart = False
-       , iconRoot = "."
-       , allDesktops = True
-       , overrideRedirect = True
-       , commands = [ Run Weather "EGPF" ["-t","<station>: <tempC>C",
-                                          "-L","18","-H","25",
-                                          "--normal","green",
-                                          "--high","red",
-                                          "--low","lightblue"] 36000
-                    , Run Network "eth0" ["-L","0","-H","32",
-                                          "--normal","green","--high","red"] 10
-                    , Run Network "eth1" ["-L","0","-H","32",
-                                          "--normal","green","--high","red"] 10
-                    , Run Cpu ["-L","3","-H","50",
-                               "--normal","green","--high","red"] 10
-                    , Run Memory ["-t","Mem: <usedratio>%"] 10
-                    , Run Swap [] 10
-                    , Run Com "uname" ["-s","-r"] "" 36000
-                    , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
-                    ]
-       , sepChar = "%"
-       , alignSep = "}{"
-       , template = "%cpu% | %memory% * %swap% | %eth0% - %eth1% }\
-                    \{ <fc=#ee9a00>%date%</fc>| %EGPF% | %uname%"
-       }
+-- vim: set ft=haskell sw=4 et:
+--
+Config {
+    font = "xft:Noto Sans Mono:pixelsize=11:antialias=true,hinting=true",
+    additionalFonts = [
+                        "xft:FontAwesome:pixelsize=13,antialias=true,hinting=true",
+                        "xft:FontAwesome:pixelsize=18,antialias=true,hinting=true",
+                        "xft:SauceCodePro Nerd Font:pixelsize=13,antialias=true,hinting=true"
+                      ],
+    bgColor          = "#2F343F",
+    fgColor          = "white",
+    position         = TopSize C 100 24
+    textOffset       = -1,
+    iconOffset       = -1,
+    alpha            = 235,
+    border           = BottomB,
+    borderWidth      = 1
+    borderColor      = "#c0c5ce",
+    lowerOnStart     = True,
+    hideOnStart      = False,
+    allDesktops      = True,
+    overrideRedirect = True,
+    pickBroadest     = False,
+    persistent       = False,
+    iconRoot         = ".",
+    sepChar          = "%",
+    alignSep         = "}{",
+    template         = "%UnsafeStdinReader% }{ <fc=#666666><fn=2>|</fn></fc><fc=#b3afc2><fn=1> </fn> %uname% </fc><fc=#666666><fn=2>|</fn></fc> %multicpu% <fc=#666666><fn=2>|</fn></fc> %memory% <fc=#666666><fn=2>|</fn></fc> %date% ",
+    commands         =
+      [
+        Run MultiCpu   [
+                         "--template" , "<fc=white><fn=1></fn> cpu: </fc><fc=white></fc><total> %"  ,
+                         "--Low"      , "50"                                                     ,
+                         "--High"     , "85"                                                     ,
+                         "--low"      , "#ffffff"                                                ,
+                         "--normal"   , "#ffffff"                                                ,
+                         "--high"     , "#fd0537"
+                       ] 10,
+        Run Memory     [
+                         "--template"  ,"<fc=white><fn=1></fn> mem: <used>M (<usedratio>%)</fc>"
+                       ] 10,
+        Run Date       "<fn=1></fn> %b %d %Y - %H:%M " "date" 50,
+        Run Com        "uname" ["-r"] "" 3600,
+        Run UnsafeStdinReader
+      ]
+   }
