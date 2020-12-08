@@ -55,6 +55,7 @@
     # Xorg
     ~/.xinitrc: config/x11/xinitrc
     ~/.config/xmonad: config/xmonad
+    ~/.config/xmobar: config/xmobar
 
     # npm
     ~/.config/npm/config: config/npm/config
