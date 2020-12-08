@@ -5,6 +5,7 @@
 
 # compiled xmonad executable
 xmonad-*
+*-xmonad
 
 # files used by stack
 .stack-work/
