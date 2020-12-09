@@ -3,6 +3,5 @@
 
 set -e
 
-cabal build my-xmonad
 cabal install --bindir=bin
 mv bin/my-xmonad "$1"
