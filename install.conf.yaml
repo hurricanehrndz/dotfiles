@@ -12,9 +12,6 @@
     ~/.zshenv: config/zsh/zshenv
     ~/.profile: config/zsh/zprofile
 
-    # x11 settings and themes
-    ~/.config/x11/Xresources: config/x11/Xresources
-
     # zsh plugin manager settings
     ~/.config/sheldon/plugins.toml: config/sheldon/plugins.toml
     # space worthy like prompt
@@ -53,9 +50,12 @@
     ~/.config/ncspot/config.toml: config/ncspot/config.toml
 
     # Xorg
-    ~/.xinitrc: config/x11/xinitrc
+    ~/.config/X11: config/X11
+    ~/.xinitrc: config/X11/xinitrc
     ~/.config/xmonad: config/xmonad
     ~/.config/xmobar: config/xmobar
+    ~/.config/picom: config/picom
+    ~/.config/compton.conf: config/picom/picom.conf
 
     # npm
     ~/.config/npm/config: config/npm/config

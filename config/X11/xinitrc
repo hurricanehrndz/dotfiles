@@ -1,0 +1,21 @@
+#!/bin/sh
+# vim:set ft=sh sw=2 sts=2 ts=2 et
+
+xhost +si:localuser:`id -un` > /dev/null
+
+# Where the default Home folders have not already been created, generate them
+if [ -x /usr/bin/xdg-user-dirs-update ]; then
+	/usr/bin/xdg-user-dirs-update
+fi
+
+if test -z "$DBUS_SESSION_BUS_ADDRESS"; then
+	eval $(dbus-launch --exit-with-session --sh-syntax)
+fi
+systemctl --user import-environment DISPLAY XAUTHORITY
+
+if command -v dbus-update-activation-environment >/dev/null 2>&1; then
+	dbus-update-activation-environment DISPLAY XAUTHORITY
+fi
+
+# Start xmonad
+exec xmonad

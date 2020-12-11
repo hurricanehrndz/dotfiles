@@ -1,5 +1,0 @@
-#!/bin/bash
-# vim:set ft=sh sw=2 sts=2 ts=2 et
-
-# Start xmonad
-exec xmonad
