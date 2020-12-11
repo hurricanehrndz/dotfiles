@@ -35,7 +35,7 @@ export TIME="\t%e real,\t%U user,\t%S sys"
 
 # Default Programs
 export TERMINAL="alacritty"
-export BROWSER="firefox"
+export BROWSER="brave"
 export READER="zathura"
 
 # Default editor (will set zsh binds to vi mode)
@@ -80,7 +80,6 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/config"
 
 # GOLANG
 export GOPATH="$XDG_DATA_HOME/go"
-export GOBIN="$HOME/.local/bin"
 
 # Rust
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
@@ -95,4 +94,4 @@ if [[ -z "$SSH_CONNECTION" ]]; then
 fi
 
 # x11
-export ERRFILE="$XDG_CACHE_HOME/x11/xsession-errors"
+export ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
