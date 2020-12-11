@@ -1,20 +1,27 @@
--- darcs starter config
-import System.IO
+-- System
+import System.IO(hPutStrLn)
+
+
+-- Base
 import XMonad
 
 -- Actions
 -- import XMonad.Actions.CycleWS(nextScreen, prevScreen)
 
+
 -- Hooks
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.SetWMName
+
 
 -- Utilities
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeysP, removeKeysP)
 import XMonad.Util.Cursor
 import XMonad.Util.SpawnOnce
+
 
 -- Layouts
 import XMonad.Layout.ResizableTile
@@ -26,9 +33,29 @@ import XMonad.Layout.Spacing
 import XMonad.Layout.Renamed
 import qualified XMonad.Layout.MultiToggle as MT (Toggle(..))
 
+
+-- Variables
+-- modMask
+myModMask :: KeyMask
+myModMask = mod4Mask
+
+-- Terminal
+myTerminal :: String
+myTerminal = "alacritty"
+
+-- ScreenLocker
+myScreenLocker :: String
+myScreenLocker = "xautolock -locknow"
+
+-- Screenshot tool
+myScreenshotTool :: String
+myScreenshotTool = "flameshot gui -p ~/Pictures/captures"
+
+
 -- Gaps
 mySpacing :: Integer -> l a -> ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
+
 
 -- layouts
 myLayoutHook = avoidStruts . smartBorders .
@@ -48,8 +75,16 @@ myLayoutHook = avoidStruts . smartBorders .
 
 -- startup
 myStartupHook = do
-   setDefaultCursor xC_left_ptr
-   spawnOnce "nitrogen --restore &"
+  setDefaultCursor xC_left_ptr
+  spawnOnce "nitrogen --restore &"
+  spawnOnce "picom &"
+  spawnOnce "dunst &"
+  spawnOnce "unclutter --timeout 3 -jitter 50 --ignore-scrolling &"
+  spawnOnce "xssproxy &"
+  spawnOnce "xautolock -time 5 -locker slock -notify 30 -notifier 'xset dpms force off' &"
+  spawnOnce "flameshot &"
+  setWMName "LG3D"
+
 
 -- remove default binds
 noDefaultKeys :: [String]
@@ -58,6 +93,7 @@ noDefaultKeys =
     "M-<Space>",
     "M-S-p"
   ]
+
 
 -- my keyboard shortcuts
 myKeys :: [(String, X ())]
@@ -68,14 +104,20 @@ myKeys =
     ("M-<Space> n"        , sendMessage NextLayout)                                     ,
     ("M-<Space> <Return>" , sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts) ,
 
+    -- Lock screen
+    ("M-C-l"      , spawn myScreenLocker)       ,
+
+    -- Screenshot tool
+    ("M-<Print>"  , spawn myScreenshotTool)     ,
+
     -- Toggle dock
-    ("M-b"   , sendMessage ToggleStruts)   ,
+    ("M-b"        , sendMessage ToggleStruts)   ,
 
     -- Increase/decrease spacing (gaps)
-    ("M-d"   , decWindowSpacing 4)         , -- Decrease window spacing
-    ("M-i"   , incWindowSpacing 4)         , -- Increase window spacing
-    ("M-S-d" , decScreenSpacing 4)         , -- Decrease screen spacing
-    ("M-S-i" , incScreenSpacing 4)           -- Increase screen spacing
+    ("M-d"        , decWindowSpacing 4)         , -- Decrease window spacing
+    ("M-i"        , incWindowSpacing 4)         , -- Increase window spacing
+    ("M-S-d"      , decScreenSpacing 4)         , -- Decrease screen spacing
+    ("M-S-i"      , incScreenSpacing 4)           -- Increase screen spacing
   ]
 
 
@@ -83,9 +125,10 @@ main :: IO ()
 main = do
   xmproc <- spawnPipe "xmobar $HOME/.config/xmobar/xmobarrc"
   xmonad $ ewmh $ docks def {
-    modMask = mod4Mask,         -- Use Super instead of Alt
-    terminal = "alacritty",
+    modMask = myModMask,         -- Use Super instead of Alt
+    terminal = myTerminal,
     layoutHook = myLayoutHook,
+    startupHook = myStartupHook,
     logHook = dynamicLogWithPP xmobarPP {
       ppOutput = hPutStrLn xmproc                         ,
       ppCurrent = xmobarColor "#98be65" "" . wrap "[" "]" , -- Current workspace in xmobar
