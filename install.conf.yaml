@@ -67,7 +67,7 @@
 
 - shell:
     # install plugins
-    - [zsh -i -c "sheldon lock"]
+    - [zsh -l -i -c "sheldon lock"]
 
 # install skim (fzf)
 - link:
