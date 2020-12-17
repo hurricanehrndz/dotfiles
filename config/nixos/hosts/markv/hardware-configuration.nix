@@ -25,7 +25,7 @@
 
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/f25d953a-86a1-4f85-a063-316a4481569b";
-    fsType = "f2fs";
+    fsType = "btrfs";
   };
 
   fileSystems."/nix/store" = {
