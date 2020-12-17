@@ -5,7 +5,7 @@ let hostname = "markv";
 in {
   imports = [
     # Include the results of the hardware scan.
-    ../hardware-configuration.nix
+    ./hardware-configuration.nix
     # Import me!
     ../../profiles/hurricanehrndz.nix
     # home-manager
