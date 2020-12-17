@@ -7,7 +7,7 @@
 
     users.hurricanehrndz = {
       isNormalUser = true;
-      home = "/home/hurricanenhrndz";
+      home = "/home/hurricanehrndz";
       description = "Carlos Benito Hernandez";
       extraGroups = [ "wheel" "networkmanager" "audio" "libvirtd" "lxd" ];
       shell = pkgs.zsh;
