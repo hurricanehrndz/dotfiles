@@ -3,6 +3,7 @@
 {
   # Enable the X11 windowing system.
   services.xserver = {
+    autorun = false;
     enable = true;
     layout = "us";
 
@@ -21,16 +22,10 @@
       EndSection
     '';
 
-    desktopManager = {
-      default = "none";
-      xterm.enable = false;
-      none.enable = true;
-    };
-
-    displayManager = {
-      lightdm.enable = false;
-      startx.enable = true;
-    };
+    # Disable desktop manager.
+    desktopManager.default = "none";
+    desktopManager.xterm.enable = false;
+    displayManager.startx.enable = true;
   };
 
   environment.systemPackages = with pkgs; [ xorg.xkill ];
