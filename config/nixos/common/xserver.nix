@@ -25,14 +25,13 @@
     # Disable desktop manager.
     desktopManager = {
       xterm.enable = false;
-      session =
-        [{ name = "home-manager";
-           start = ''
-             ${pkgs.runtimeShell} $HOME/.hm-xsession &
-             waitPID=$!
-           '';
-         }
-        ];
+      session = [{
+        name = "home-manager";
+        start = ''
+          ${pkgs.runtimeShell} $HOME/.hm-xsession &
+          waitPID=$!
+        '';
+      }];
     };
     displayManager.startx.enable = true;
 
