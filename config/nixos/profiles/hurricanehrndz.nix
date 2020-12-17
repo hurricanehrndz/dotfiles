@@ -22,6 +22,4 @@
 
   # Allow to run nix
   nix.allowedUsers = [ "hurricanehrndz" ];
-  # Allow container access
-  virtualisation.containers.users = [ "hurricanehrndz" ];
 }

@@ -23,9 +23,19 @@
     '';
 
     # Disable desktop manager.
-    desktopManager.default = "none";
-    desktopManager.xterm.enable = false;
+    desktopManager = {
+      xterm.enable = false;
+      session =
+        [{ name = "home-manager";
+           start = ''
+             ${pkgs.runtimeShell} $HOME/.hm-xsession &
+             waitPID=$!
+           '';
+         }
+        ];
+    };
     displayManager.startx.enable = true;
+
   };
 
   environment.systemPackages = with pkgs; [ xorg.xkill ];
