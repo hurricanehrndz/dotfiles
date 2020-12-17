@@ -5,7 +5,7 @@
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
-    boot.loader.timeout = 0;
+    loader.timeout = 0;
 
     # Cleanup /tmp on reboot
     cleanTmpDir = true;
