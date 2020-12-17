@@ -1,7 +1,7 @@
 # NixOS first deployment
 { config, pkgs, ... }:
 
-let hostname = "markv";
+let hostName = "markv";
 in {
   imports = [
     # Include the results of the hardware scan.
