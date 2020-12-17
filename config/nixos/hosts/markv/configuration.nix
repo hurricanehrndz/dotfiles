@@ -23,7 +23,7 @@ in {
 
   # Define the hostname
   networking = {
-    inherit hostname;
+    inherit hostName;
     networkmanager.enable = true;
   };
 
