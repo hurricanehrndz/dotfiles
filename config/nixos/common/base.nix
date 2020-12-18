@@ -18,24 +18,9 @@
   documentation.man.enable = true;
   documentation.dev.enable = true;
 
-  programs.zsh = {
-    enable = true;
-    shellAliases = {
-      vim = "nvim";
-      vi = "nvim";
-    };
-    enableCompletion = true;
-    autosuggestions.enable = true;
-  };
-
-  # System-wide environment variables to be set
-  environment = {
-    variables = {
-      # There is no other editor
-      EDITOR = "nvim";
-      VISUAL = "nvim";
-    };
-  };
+  # Enable only - let home-manager manage
+  programs.zsh.enable = true;
+  programs.command-not-found.enable = true;
 
   # Needed for zsh completion of system packages, e.g. systemd
   environment.pathsToLink = [ "/share/zsh" ];
@@ -67,6 +52,7 @@
     # nix tools
     nox
     nix-du
+    nix-index
 
     # Hardware-related tools
     usbutils
@@ -74,8 +60,8 @@
     lshw
   ];
 
+  # help random number generation
   services.haveged.enable = true;
-  services.lorri.enable = true;
 
   #nix.trustedUsers = [ "@wheel" ];
 
