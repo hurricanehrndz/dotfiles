@@ -3,6 +3,8 @@
 {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  # Source default nix profile
+  targets.genericLinux.enable = true;
 
   # Configure nix
   nixpkgs.config.allowUnfree = true;
@@ -22,12 +24,14 @@
   # Enable shell management
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
     enableCompletion = true;
     defaultKeymap = "viins";
     dotDir = ".config/zsh";
     history = {
+      extended = true;
       expireDuplicatesFirst = true;
+      ignoreDups = true;
+      ignoreSpace = true;
       path = ".config/zsh/.zsh_history";
     };
   };
