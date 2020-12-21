@@ -21,6 +21,9 @@
     # nix stuff
     nix-zsh-completions
 
+    # utils
+    weechat
+
     # my local packages
     sheldon
   ];
