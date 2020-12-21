@@ -8,6 +8,7 @@
 
   # Configure nix
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [(import ./pkgs/default.nix)];
   xdg.configFile."nixpkgs/config.nix".source = ./nixpkgs.nix;
 
   home.packages = with pkgs; [
@@ -19,12 +20,15 @@
 
     # nix stuff
     nix-zsh-completions
+
+    # my local packages
+    sheldon
   ];
 
   # Enable shell management
   programs.zsh = {
     enable = true;
-    enableCompletion = true;
+    enableCompletion = false; # Enable when ready
     defaultKeymap = "viins";
     dotDir = ".config/zsh";
     history = {
@@ -34,6 +38,10 @@
       ignoreSpace = true;
       path = ".config/zsh/.zsh_history";
     };
+    # completion and plugins
+    initExtra = ''
+      ${builtins.readFile ./zsh/completion-opts.zsh}
+    '';
   };
   programs.bat.enable = true;
   programs.skim = {
