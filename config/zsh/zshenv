@@ -7,3 +7,6 @@ skip_global_compinit=1
 
 # zshrc files
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+if [ -e /home/hurricanehrndz/.nix-profile/etc/profile.d/nix.sh ]; then
+  . /home/hurricanehrndz/.nix-profile/etc/profile.d/nix.sh;
+fi
