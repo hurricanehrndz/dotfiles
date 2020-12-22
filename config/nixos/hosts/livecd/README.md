@@ -26,4 +26,16 @@ nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=myis
 
 ## Cleanup
 
-Need to figure out how to clean the store. I think the `nix-collect-garbage` could be helpful.
+Need to figure out how to clean the store. I think the `nix-collect-garbage`
+could be helpful.
+
+```sh
+nix-channel --update
+nix-env -u --always
+rm /nix/var/nix/gcroots/auto/*
+nix-collect-garbage -d
+```
+
+Seems like nix-build generates indirect roots -- needs to be researched.
+
+see: https://nixos.org/guides/nix-pills/garbage-collector.html
